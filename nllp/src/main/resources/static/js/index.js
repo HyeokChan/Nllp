@@ -33,7 +33,8 @@ function fn_onClickSigninBtn(){
 
 function fn_signinCallback(result){
     if(result.status == 200){
-        console.log("OK");
+        console.log("success!");
+        console.log("result : ", result);
     }
 }
 

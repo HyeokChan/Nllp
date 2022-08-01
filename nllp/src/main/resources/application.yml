@@ -1,0 +1,10 @@
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@10.211.55.3:1521/orcl
+    username: c##dev
+    password: 1234
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+mybatis:
+  type-aliases-package: com.rg.nllp.mapper
+  mapper-locations: mybatis/mapper/**/*.xml

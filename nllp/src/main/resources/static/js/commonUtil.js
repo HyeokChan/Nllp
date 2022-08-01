@@ -20,7 +20,6 @@ CommonUtil.isEmpty = function (target){
 
 /*Ajax*/
 CommonUtil.ajaxSend = function(json, callback){
-    console.log("OK!");
     $.ajax({
         type : "POST",
         url : "/user/signin",
