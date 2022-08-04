@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rg.nllp.common.mapper.UserMapper">
 
-    <select id="findUserInfo" parameterType="com.rg.nllp.common.vo.UserVO" resultType="com.rg.nllp.common.vo.UserDVO">
-        select 'kimwowo' as userName from dual
+    <select id="findUserInfo" parameterType="userVO" resultType="userDVO">
+        SELECT 'AAA' AS USER_NAME
+          FROM DUAL
     </select>
 
 </mapper>
