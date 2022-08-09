@@ -19,13 +19,15 @@ CommonUtil.isEmpty = function (target){
 }
 
 /*Ajax*/
-CommonUtil.ajaxSend = function(json, callback){
+CommonUtil.ajaxSend = function(url, json, callback){
     $.ajax({
         type : "POST",
-        url : "/user/signin",
+        url : url,
         data : json,
         success : function(result){
-            callback(result);
+            if(callback != null){
+                callback(result);
+            }
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){
 

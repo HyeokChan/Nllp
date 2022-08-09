@@ -4,29 +4,34 @@ import com.rg.nllp.common.service.UserService;
 import com.rg.nllp.common.vo.UserDVO;
 import com.rg.nllp.common.vo.UserRVO;
 import com.rg.nllp.common.vo.UserVO;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 
 @Controller
 @RequestMapping("/user")
+@RequiredArgsConstructor
 @Slf4j
 public class UserController {
 
-    UserService userService;
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+
+    private final UserService userService;
+
+    /*로그인 화면이동*/
+    @GetMapping(value = "/signinForm")
+    public String signForm(){
+        return "user/signin";
     }
 
+    /*로그인 처리*/
     @PostMapping(value = "/signin")
-    @ResponseBody
     public UserRVO signin(UserVO inVO) throws Exception {
         UserRVO userRVO = new UserRVO();
         UserDVO userDVO = new UserDVO();
@@ -35,4 +40,8 @@ public class UserController {
         userRVO.setRData(userDVO);
         return userRVO;
     }
+
+    /*회원가입 화면 이동*/
+
+
 }
