@@ -12,6 +12,4 @@ public class DefaultVO {
     private String initId;
     private String updtDate;
     private String updtId;
-
-    private int status;
 }

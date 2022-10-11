@@ -22,8 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDVO findUserInfo(UserVO inVO) throws Exception {
-        UserDVO userDVO = new UserDVO();
-        userDVO = userMapper.findUserInfo(inVO);
+        UserDVO userDVO = userMapper.findUserInfo(inVO);
         log.info("userDVO 출력 ::::: {}", userDVO);
         return userDVO;
     }
