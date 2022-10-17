@@ -18,7 +18,9 @@ spring:
     enabled: false
   batch:
     jdbc:
-      initialize-schema: always
+      initialize-schema: never
+    job:
+      enabled: true
 
 mybatis:
   type-aliases-package: com.rg.nllp
