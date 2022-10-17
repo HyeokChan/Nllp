@@ -16,6 +16,9 @@ spring:
       pool-name: oraPool
   thymeleaf:
     enabled: false
+  batch:
+    jdbc:
+      initialize-schema: never
 
 mybatis:
   type-aliases-package: com.rg.nllp
