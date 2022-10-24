@@ -20,7 +20,7 @@ spring:
     jdbc:
       initialize-schema: never
     job:
-      enabled: true
+      enabled: false
 
 mybatis:
   type-aliases-package: com.rg.nllp

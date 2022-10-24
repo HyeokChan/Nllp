@@ -1,26 +1,26 @@
-package com.rg.nllp;
+package com.rg.nllp.common.vo.user;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * packageName    : com.rg.nllp.common.vo.user
- * fileName       : UserVO
+ * fileName       : UserRVO
  * author         : hyeokchan
  * date           : 2022/10/24
- * description    : 시스템항목을 갖는 Default VO
+ * description    :
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
  * 2022/10/24        hyeokchan       최초 생성
  */
-@Setter
 @Getter
+@Setter
 @ToString
-public class DefaultVO {
-    private String initUserId;
-    private String initDate;
-    private String updtUserId;
-    private String updtDate;
+public class UserRVO {
+    private UserDVO rData;
+    private List<UserDVO> rList;
 }

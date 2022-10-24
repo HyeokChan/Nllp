@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rg.nllp.common.mapper.UserMapper">
-
-    <select id="findUserInfo" parameterType="userVO" resultType="userDVO">
-        SELECT 'AAA' AS USER_NAME
-          FROM DUAL
+    <!--사용자체크-->
+    <select id="checkUserInfo" parameterType="com.rg.nllp.common.vo.user.UserVO" resultType="int">
+        select count(1)
+          from tb_user_info
+         where sgb_cd = #{sgbCd}
+           and user_id = #{userId}
+           and user_pw = #{userPw}
     </select>
+    <!--기 신청된 사용자 아이디 체크-->
+    <select id="checkDupUserReqInfo" parameterType="com.rg.nllp.common.vo.user.UserVO" resultType="int">
+        select count(1)
+          from c##chan.tb_user_req
+         where sgb_cd = #{sgbCd}
+           and user_id = #{userId}
+    </select>
+    <!--사용자신청처리-->
+    <insert id="instUserReqInfo" parameterType="com.rg.nllp.common.vo.user.UserVO">
+        insert
+          into c##chan.tb_user_req(
+               sgb_cd
+             , user_id
+             , user_pw
+             , user_nm
+             , appv_yn
+             , init_user_id
+             , init_date
+             , updt_user_id
+             , updt_date
+          )
+          values (
+               #{sgbCd}
+             , #{userId}
+             , #{userPw}
+             , #{userNm}
+             , 'N'
+             , 'system'
+             , sysdate
+             , 'system'
+             , sysdate
+          )
+    </insert>
+    <!--사용자신청 허가-->
+    <insert id="instUserInfo" parameterType="com.rg.nllp.common.vo.user.UserVO">
+        insert
+          into c##chan.tb_user_info(
+               sgb_cd
+             , user_id
+             , user_pw
+             , user_nm
+             , init_user_id
+             , init_date
+             , updt_user_id
+             , updt_date
+          )
+        select sgb_cd
+             , user_id
+             , user_pw
+             , user_nm
+             , 'admin'
+             , sysdate
+             , 'admin'
+             , sysdate
+          from c##chan.tb_user_req
+         where sgb_cd = #{sgbCd}
+           and user_id = #{userId}
+    </insert>
+    <!--사용자신청테이블 반영처리-->
+    <update id="updtUserReqInfo" parameterType="com.rg.nllp.common.vo.user.UserVO">
+        update c##chan.tb_user_req
+           set appv_yn = 'Y'
+         where sgb_cd = #{sgbCd}
+           and user_id = #{userId}
+    </update>
 
 </mapper>
