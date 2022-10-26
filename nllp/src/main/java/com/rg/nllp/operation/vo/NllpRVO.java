@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * packageName    : com.rg.nllp.operation.vo
  * fileName       : NllpRVO
@@ -19,6 +21,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class NllpRVO extends DefaultVO {
-
+public class NllpRVO {
+    private NllpDVO rData;
+    private List<NllpDVO> rList;
 }
