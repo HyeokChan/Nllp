@@ -9,6 +9,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * packageName    : com.rg.nllp.common.controller
+ * fileName       : UserServiceImpl
+ * author         : hyeokchan
+ * date           : 2022/10/26
+ * description    : 사용자정보 로직
+ * ===========================================================
+ * DATE              AUTHOR             NOTE
+ * -----------------------------------------------------------
+ * 2022/10/26        hyeokchan       최초 생성
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j

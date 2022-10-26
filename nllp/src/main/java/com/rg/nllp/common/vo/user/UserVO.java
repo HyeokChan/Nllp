@@ -10,7 +10,7 @@ import lombok.ToString;
  * fileName       : UserVO
  * author         : hyeokchan
  * date           : 2022/10/24
- * description    :
+ * description    : 사용자정보 inVO
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------

@@ -11,7 +11,7 @@ import java.util.List;
  * fileName       : UserRVO
  * author         : hyeokchan
  * date           : 2022/10/24
- * description    :
+ * description    : 사용자정보 return VO
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------

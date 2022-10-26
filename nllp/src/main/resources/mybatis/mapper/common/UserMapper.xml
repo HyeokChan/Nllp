@@ -4,7 +4,7 @@
     <!--사용자체크-->
     <select id="checkUserInfo" parameterType="com.rg.nllp.common.vo.user.UserVO" resultType="int">
         select count(1)
-          from tb_user_info
+          from c##chan.tb_user_info
          where sgb_cd = #{sgbCd}
            and user_id = #{userId}
            and user_pw = #{userPw}

@@ -12,7 +12,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-
+/**
+ * packageName    : com.rg.nllp.common.controller
+ * fileName       : UserController
+ * author         : hyeokchan
+ * date           : 2022/10/26
+ * description    : 사용자정보 controller
+ * ===========================================================
+ * DATE              AUTHOR             NOTE
+ * -----------------------------------------------------------
+ * 2022/10/26        hyeokchan       최초 생성
+ */
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -22,7 +32,7 @@ public class UserController {
 
     /*로그인 처리*/
     @PostMapping(value = "/findUserInfo")
-    public @ResponseBody UserRVO findUserInfo(UserVO inVO) throws Exception {
+    public @ResponseBody UserRVO findUserInfo(@RequestBody UserVO inVO) throws Exception {
         UserRVO rvo = this.userService.findUserInfo(inVO);
         return rvo;
     }
