@@ -1,18 +1,20 @@
 
 ### 로그인
-POST http://localhost:8080/user/signin HTTP/1.1
-content-type: application/json; charset=UTF-8
-
-{
-    
-}
-### 사용자신청
-POST http://localhost:8080/user/joinReq HTTP/1.1
+POST http://localhost:8080/user/findUserInfo HTTP/1.1
 content-type: application/json; charset=UTF-8
 
 {
     "sgbCd" : "3550000",
-    "userId" : "enis0001",
+    "userId" : "user0001",
+    "userPw" : "1234"
+}
+### 사용자신청
+POST http://localhost:8080/user/instUserReqInfo HTTP/1.1
+content-type: application/json; charset=UTF-8
+
+{
+    "sgbCd" : "3550000",
+    "userId" : "user0001",
     "userPw" : "1234",
     "userNm" : "김길동"
 }
@@ -22,5 +24,5 @@ content-type: application/json; charset=UTF-8
 
 {
     "sgbCd" : "3550000",
-    "userId" : "enis0001"
+    "userId" : "user0001"
 }

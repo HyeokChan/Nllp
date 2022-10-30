@@ -1,3 +1,4 @@
+-- 기초자료 테이블
 create table tb_nllp_acb(
     sgb_cd char(7) not null,
     nllp_acb_key varchar(11) not null,
@@ -41,3 +42,13 @@ alter table tb_nllp_acb add constraint tb_nllp_acb_pk primary key (sgb_cd, nllp_
 comment on table tb_nllp_acb is '재산정보';
 
 select * from tb_nllp_acb;
+
+-- 기초자료 키 시퀀스
+create sequence sq_nllp_acb_key
+increment by 1
+start with 0000001
+minvalue 0000001
+maxvalue 9999999
+nocycle
+nocache;
+

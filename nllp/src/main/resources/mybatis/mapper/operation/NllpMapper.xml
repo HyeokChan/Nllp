@@ -162,8 +162,12 @@
     </select>
     <!--기초자료 등록-->
     <insert id="instNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
+        <selectKey resultType="string" keyProperty="nllpAcbKey" order="BEFORE">
+            select c##chan.fn_crt_acb_key('nllpAcb')
+              from dual
+        </selectKey>
         insert
-          into c##chan.tb.nllp_acb(
+          into c##chan.tb_nllp_acb(
                sgb_cd
              , nllp_acb_key
              , nllp_acb_no
@@ -201,11 +205,11 @@
              , updt_user_id
              , updt_date
           )
-          values(
+          values (
                #{sgbCd}
              , #{nllpAcbKey}
              , (select lpad(nvl(max(t1.nllp_acb_no), 0)+1, 6, '0')
-                  from tb_nllp_acb t1
+                  from c##chan.tb_nllp_acb t1
                  where t1.sgb_cd = #{sgbCd}
                    and t1.nllp_acb_se_cd = #{nllpAcbSeCd}
                    and t1.lgo_cd = #{lgoCd})
