@@ -160,4 +160,88 @@
         where a.sgb_cd = #{sgbCd}
           and a.nllp_acb_key = #{nllpAcbKey}
     </select>
+    <!--기초자료 등록-->
+    <insert id="instNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
+        insert
+          into c##chan.tb.nllp_acb(
+               sgb_cd
+             , nllp_acb_key
+             , nllp_acb_no
+             , nllp_acb_se_cd
+             , lgo_cd
+             , lvy_trgt_nm
+             , land_ar
+             , bldg_ar
+             , oalp
+             , oalp_yr
+             , std_amt
+             , std_yr
+             , lotno_road_addr_se_cd
+             , zip
+             , stdg_cd
+             , lotno_bac_addr
+             , lotno_daddr
+             , mtn_se_cd
+             , mno
+             , sno
+             , road_nm_cd
+             , road_nm_bac_addr
+             , road_nm_daddr
+             , udgd_yn
+             , bmno
+             , bsno
+             , spcl_dg
+             , spcl_ho
+             , ldcg_cd
+             , bldg_strc_cd
+             , roof_shpe_cd
+             , rm_cn
+             , init_user_id
+             , init_date
+             , updt_user_id
+             , updt_date
+          )
+          values(
+               #{sgbCd}
+             , #{nllpAcbKey}
+             , (select lpad(nvl(max(t1.nllp_acb_no), 0)+1, 6, '0')
+                  from tb_nllp_acb t1
+                 where t1.sgb_cd = #{sgbCd}
+                   and t1.nllp_acb_se_cd = #{nllpAcbSeCd}
+                   and t1.lgo_cd = #{lgoCd})
+             , #{nllpAcbSeCd}
+             , #{lgoCd}
+             , #{lvyTrgtNm}
+             , nvl(#{landAr}, 0)
+             , nvl(#{bldgAr}, 0)
+             , nvl(#{oalp}, 0)
+             , #{oalpYr}
+             , nvl(#{stdAmt}, 0)
+             , #{stdYr}
+             , nvl(#{lotnoRoadAddrSeCd}, '01')
+             , #{zip}
+             , #{stdgCd}
+             , #{lotnoBacAddr}
+             , #{lotnoDaddr}
+             , #{mtnSeCd}
+             , #{mno}
+             , #{sno}
+             , #{roadNmCd}
+             , #{roadNmBacAddr}
+             , #{roadNmDaddr}
+             , #{udgdYn}
+             , #{bmno}
+             , #{bsno}
+             , #{spclDg}
+             , #{spclHo}
+             , #{ldcgCd}
+             , #{bldgStrcCd}
+             , #{roofShpeCd}
+             , #{rmCn}
+             , #{initUserId}
+             , sysdate
+             , #{updtUserId}
+             , sysdate
+          )
+    </insert>
 </mapper>

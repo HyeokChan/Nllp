@@ -43,4 +43,11 @@ public class NllpController {
         return rvo;
     }
 
+    /*기초자료 등록*/
+    @PostMapping(value = "/instNllpInfo")
+    public @ResponseBody NllpRVO instNllpInfo(@RequestBody NllpVO inVO) throws Exception {
+        NllpRVO rvo = this.nllpService.instNllpInfo(inVO);
+        return rvo;
+    }
+
 }

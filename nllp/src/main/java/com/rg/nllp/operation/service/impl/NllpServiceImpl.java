@@ -64,4 +64,15 @@ public class NllpServiceImpl implements NllpService {
         rvo.setRData(rData);
         return rvo;
     }
+
+    /*기초자료 등록*/
+    @Override
+    public NllpRVO instNllpInfo(NllpVO inVO) throws Exception {
+        NllpRVO rvo = new NllpRVO();
+        int rst = this.nllpMapper.instNllpInfo(inVO);
+        if (rst == 0) {
+            throw new Exception("자료 등록에 실패했습니다.");
+        }
+        return rvo;
+    }
 }
