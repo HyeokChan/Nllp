@@ -1,26 +1,58 @@
 
-### 로그인
-POST http://localhost:8080/user/signin HTTP/1.1
-content-type: application/json; charset=UTF-8
-
-{
-    
-}
-### 사용자신청
-POST http://localhost:8080/user/joinReq HTTP/1.1
+### 기초자료토지 목록조회
+POST http://localhost:8080/nllp/findNllpList HTTP/1.1
 content-type: application/json; charset=UTF-8
 
 {
     "sgbCd" : "3550000",
-    "userId" : "enis0001",
-    "userPw" : "1234",
-    "userNm" : "김길동"
+    "nllpAcbSeCd" : "01"
 }
-### 사용자신청 허가
-POST http://localhost:8080/user/instUserInfo HTTP/1.1
+
+### 기초자료토지 상세조회
+POST http://localhost:8080/nllp/findNllpInfo HTTP/1.1
 content-type: application/json; charset=UTF-8
 
 {
     "sgbCd" : "3550000",
-    "userId" : "enis0001"
+    "nllpAcbKey" : "20220000001"
 }
+
+### 기초자료 등록
+POST http://localhost:8080/nllp/instNllpInfo HTTP/1.1
+content-type: application/json; charset=UTF-8
+
+{
+    "sgbCd":"3550000",
+    "nllpAcbSeCd":"01",
+    "lgoCd":"001",
+    "lvyTrgtNm":"마포구 구룡길 19",
+    "landAr":"1000",
+    "bldgAr":"",
+    "oalp":"10000",
+    "oalpYr":"2022",
+    "stdAmt":"",
+    "stdYr":"",
+    "lotnoRoadAddrSeCd":"02",
+    "zip":"102031",
+    "stdgCd":"3550213285",
+    "lotnoBacAddr":"서울특별시 마포구 상암동 2-26",
+    "lotnoDaddr":"상암한화오벨리스크",
+    "mtnSeCd":"01",
+    "mno":"2",
+    "sno":"26",
+    "roadNmCd":"235502132851",
+    "roadNmBacAddr":"서울특별시 마포구 구룡길 19",
+    "roadNmDaddr":"상암오벨리스크",
+    "udgdYn":"N",
+    "bmno":"1151",
+    "bsno":"220",
+    "spclDg":"",
+    "spclHo":"",
+    "ldcgCd":"01",
+    "bldgStrcCd":"",
+    "roofShpeCd":"",
+    "rmCn":"토지재산",
+    "initUserId":"user0001",
+    "updtUserId":"user0001"
+}
+
