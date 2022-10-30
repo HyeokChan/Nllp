@@ -54,7 +54,7 @@ public class NllpDVO extends DefaultVO {
     private String rmCn;
 
     private String totCnt;
-    private String lotno_al_addr;
-    private String road_nm_al_addr;
-    private String last_updt_date;
+    private String lotnoAlAddr;
+    private String roadNmAlAddr;
+    private String lastUpdtDate;
 }

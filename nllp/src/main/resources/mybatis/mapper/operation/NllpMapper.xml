@@ -27,6 +27,7 @@
              , to_char(a.updt_date, 'yyyymmdd') as last_updt_date
           from c##chan.tb_nllp_acb a
          where a.sgb_cd = #{sgbCd}
+           and a.del_yn = 'N'
            and a.nllp_acb_se_cd = #{nllpAcbSeCd}
         <if test="nllpAcbNo != '' and nllpAcbNo != null">
            and a.nllp_acb_no = #{nllpAcbNo}
@@ -62,7 +63,7 @@
              , trim(a.lotno_bac_addr) || ' ' || trim(a.lotno_daddr) as lotno_al_addr
              , a.mtn_se_cd
              , a.road_nm_cd
-             , trim(a.road_nm_addr) || ' ' || trim(a.road_nm_daddr) as road_nm_al_addr
+             , trim(a.road_nm_bac_addr) || ' ' || trim(a.road_nm_daddr) as road_nm_al_addr
              , a.udgd_yn
              , a.bldg_strc_cd
              , a.roof_shpe_cd
@@ -70,6 +71,7 @@
              , to_char(a.updt_date, 'yyyymmdd') as last_updt_date
           from c##chan.tb_nllp_acb a
          where a.sgb_cd = #{sgbCd}
+           and a.del_yn = 'N'
            and a.nllp_acb_se_cd = #{nllpAcbSeCd}
         <if test="nllpAcbNo != '' and nllpAcbNo != null">
            and a.nllp_acb_no = #{nllpAcbNo}
@@ -121,6 +123,7 @@
           from c##chan.tb_nllp_acb a
          where a.sgb_cd = #{sgbCd}
            and a.nllp_acb_key = #{nllpAcbKey}
+           and a.del_yn = 'N'
     </select>
 
     <!--기초자료건물 상세조회-->
@@ -162,6 +165,7 @@
         from c##chan.tb_nllp_acb a
         where a.sgb_cd = #{sgbCd}
           and a.nllp_acb_key = #{nllpAcbKey}
+          and a.del_yn = 'N'
     </select>
 
     <!--기초자료 등록-->
