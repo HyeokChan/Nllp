@@ -1,3 +1,4 @@
+drop table tb_nllp_acb;
 -- 기초자료 테이블
 create table tb_nllp_acb(
     sgb_cd char(7) not null,
@@ -32,6 +33,7 @@ create table tb_nllp_acb(
     bldg_strc_cd char(2),
     roof_shpe_cd char(2),
     rm_cn varchar(4000),
+    del_yn char(1) default 'N',
     init_user_id varchar(10) not null,
     init_date date not null,
     updt_user_id varchar(10) not null,
@@ -51,4 +53,19 @@ minvalue 0000001
 maxvalue 9999999
 nocycle
 nocache;
+
+-- 시퀀스 키 생성 function
+create or replace function fn_crt_acb_key(p_acbNm in varchar2) 
+    return varchar2 
+is
+    v_acbKey varchar2(11);
+begin
+    if p_acbNm = 'nllpAcb' then
+        select to_char(sysdate, 'yyyy') || lpad(sq_nllp_acb_key.nextval, 7, '0') 
+          into v_acbKey 
+          from dual;
+    end if;
+    return v_acbKey;
+end;
+
 

@@ -50,6 +50,21 @@ public class NllpController {
         return rvo;
     }
 
+    /*기초자료 수정*/
+    @PostMapping(value = "/updtNllpInfo")
+    public @ResponseBody NllpRVO updtNllpInfo(@RequestBody NllpVO inVO) throws Exception {
+        NllpRVO rvo = this.nllpService.updtNllpInfo(inVO);
+        return rvo;
+    }
+
+    /*기초자료 삭제*/
+    @PostMapping(value = "/deltNllpInfo")
+    public @ResponseBody NllpRVO deltNllpInfo(@RequestBody NllpVO inVO) throws Exception {
+        NllpRVO rvo = this.nllpService.deltNllpInfo(inVO);
+        return rvo;
+    }
+
+
 
 
 }

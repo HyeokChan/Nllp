@@ -41,6 +41,7 @@
            and a.road_nm_cd = #{roadNmCd}
         </if>
     </select>
+
     <!--기초자료건물 목록조회-->
     <select id="findNllpBldgList" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
         select count(*) over() as tot_cnt
@@ -83,6 +84,7 @@
            and a.road_nm_cd = #{roadNmCd}
         </if>
     </select>
+
     <!--기초자료토지 상세조회-->
     <select id="findNllpLandInfo" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
         select a.sgb_cd
@@ -120,6 +122,7 @@
          where a.sgb_cd = #{sgbCd}
            and a.nllp_acb_key = #{nllpAcbKey}
     </select>
+
     <!--기초자료건물 상세조회-->
     <select id="findNllpBldgInfo" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
         select a.sgb_cd
@@ -160,6 +163,7 @@
         where a.sgb_cd = #{sgbCd}
           and a.nllp_acb_key = #{nllpAcbKey}
     </select>
+
     <!--기초자료 등록-->
     <insert id="instNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
         <selectKey resultType="string" keyProperty="nllpAcbKey" order="BEFORE">
@@ -248,4 +252,49 @@
              , sysdate
           )
     </insert>
+
+    <!--기초자료 수정-->
+    <update id="updtNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
+        update c##chan.tb_nllp_acb
+           set lgo_cd = #{lgoCd}
+             , lvy_trgt_nm = #{lvyTrgtNm}
+             , land_ar = nvl(#{landAr}, 0)
+             , bldg_ar = nvl(#{bldgAr}, 0)
+             , oalp = nvl(#{oalp}, 0)
+             , oalp_yr = #{oalpYr}
+             , std_amt = nvl(#{stdAmt}, 0)
+             , std_yr = #{stdYr}
+             , lotno_road_addr_se_cd = nvl(#{lotnoRoadAddrSeCd}, '01')
+             , zip = #{zip}
+             , stdg_cd = #{stdgCd}
+             , lotno_bac_addr = #{lotnoBacAddr}
+             , lotno_daddr = #{lotnoDaddr}
+             , mtn_se_cd = #{mtnSeCd}
+             , mno = #{mno}
+             , sno = #{sno}
+             , road_nm_cd = #{roadNmCd}
+             , road_nm_bac_addr = #{roadNmBacAddr}
+             , road_nm_daddr = #{roadNmDaddr}
+             , udgd_yn = #{udgdYn}
+             , bmno = #{bmno}
+             , bsno = #{bsno}
+             , spcl_dg = #{spclDg}
+             , spcl_ho = #{spclHo}
+             , ldcg_cd = #{ldcgCd}
+             , bldg_strc_cd = #{bldgStrcCd}
+             , roof_shpe_cd = #{roofShpeCd}
+             , rm_cn = #{rmCn}
+             , updt_user_id = #{updtUserId}
+             , updt_date = sysdate
+         where sgb_cd = #{sgbCd}
+           and nllp_acb_key = #{nllpAcbKey}
+    </update>
+    <!--기초자료 삭제-->
+    <update id="deltNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
+        update c##chan.tb_nllp_acb
+           set del_yn = 'Y'
+         where sgb_cd = #{sgbCd}
+           and nllp_acb_key = #{nllpAcbKey}
+    </update>
+
 </mapper>

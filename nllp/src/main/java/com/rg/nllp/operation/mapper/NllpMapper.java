@@ -29,4 +29,9 @@ public interface NllpMapper {
     NllpDVO findNllpBldgInfo(NllpVO inVO) throws Exception;
     /*기초자료 등록*/
     int instNllpInfo(NllpVO inVO) throws Exception;
+    /*기초자료 수정*/
+    int updtNllpInfo(NllpVO inVO) throws Exception;
+    /*기초자료 삭제*/
+    int deltNllpInfo(NllpVO inVO) throws Exception;
+
 }

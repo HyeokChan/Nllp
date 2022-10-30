@@ -75,4 +75,24 @@ public class NllpServiceImpl implements NllpService {
         }
         return rvo;
     }
+    /*기초자료 수정*/
+    @Override
+    public NllpRVO updtNllpInfo(NllpVO inVO) throws Exception {
+        NllpRVO rvo = new NllpRVO();
+        int rst = this.nllpMapper.updtNllpInfo(inVO);
+        if (rst == 0) {
+            throw new Exception("자료 수정에 실패했습니다.");
+        }
+        return rvo;
+    }
+    /*기초자료 삭제*/
+    @Override
+    public NllpRVO deltNllpInfo(NllpVO inVO) throws Exception {
+        NllpRVO rvo = new NllpRVO();
+        int rst = this.nllpMapper.deltNllpInfo(inVO);
+        if (rst == 0) {
+            throw new Exception("자료 삭재에 실패했습니다.");
+        }
+        return rvo;
+    }
 }

@@ -55,4 +55,50 @@ content-type: application/json; charset=UTF-8
     "initUserId":"user0001",
     "updtUserId":"user0001"
 }
+### 기초자료 수정
+POST http://localhost:8080/nllp/updtNllpInfo HTTP/1.1
+content-type: application/json; charset=UTF-8
+
+{
+    "sgbCd" : "3550000",
+    "nllpAcbKey" : "20220000013",
+    "lgoCd":"002",
+    "lvyTrgtNm":"마포구 구룡길 19",
+    "landAr":"2000",
+    "bldgAr":"",
+    "oalp":"20000",
+    "oalpYr":"2022",
+    "stdAmt":"",
+    "stdYr":"",
+    "lotnoRoadAddrSeCd":"02",
+    "zip":"102031",
+    "stdgCd":"3550213285",
+    "lotnoBacAddr":"서울특별시 마포구 상암동 2-26",
+    "lotnoDaddr":"상암한화오벨리스크",
+    "mtnSeCd":"01",
+    "mno":"2",
+    "sno":"26",
+    "roadNmCd":"235502132851",
+    "roadNmBacAddr":"서울특별시 마포구 구룡길 19",
+    "roadNmDaddr":"상암오벨리스크",
+    "udgdYn":"N",
+    "bmno":"1151",
+    "bsno":"220",
+    "spclDg":"",
+    "spclHo":"",
+    "ldcgCd":"01",
+    "bldgStrcCd":"",
+    "roofShpeCd":"",
+    "rmCn":"토지재산",
+    "initUserId":"user0001",
+    "updtUserId":"user0001"
+}
+### 기초자료 삭제
+POST http://localhost:8080/nllp/deltNllpInfo HTTP/1.1
+content-type: application/json; charset=UTF-8
+
+{
+    "sgbCd" : "3550000",
+    "nllpAcbKey" : "20220000014"
+}
 

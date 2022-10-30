@@ -21,4 +21,8 @@ public interface NllpService {
     NllpRVO findNllpInfo(NllpVO inVO) throws Exception;
     /*기초자료 등록*/
     NllpRVO instNllpInfo(NllpVO inVO) throws Exception;
+    /*기초자료 수정*/
+    NllpRVO updtNllpInfo(NllpVO inVO) throws Exception;
+    /*기초자료 삭제*/
+    NllpRVO deltNllpInfo(NllpVO inVO) throws Exception;
 }
