@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * packageName    : com.rg.nllp.operation.controller
  * fileName       : NllpController
@@ -37,14 +35,32 @@ public class NllpController {
     }
 
     @GetMapping("/nllpList")
-    public String nllpList(Model model) throws Exception {
+    public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
         inVO.setSgbCd("3550000");
         inVO.setNllpAcbSeCd("01");
         NllpRVO rvo = this.nllpService.findNllpList(inVO);
-        model.addAttribute("items", rvo.getRList());
+        model.addAttribute("nllpList", rvo.getRList());
         return "nllpListForm";
     }
+    @GetMapping("/dtl/{itemId}")
+    public String findNllpInfo(@PathVariable("itemId") String nllpAcbKey, Model model) throws Exception{
+        NllpVO inVO = new NllpVO();
+        inVO.setSgbCd("3550000");
+        inVO.setNllpAcbSeCd("01");
+        inVO.setNllpAcbKey(nllpAcbKey);
+        NllpRVO rvo = this.nllpService.findNllpInfo(inVO);
+        model.addAttribute("nllpInfo", rvo.getRData());
+        return "nllpInfoForm";
+    }
+    @PostMapping("/dtl/{itemId}")
+    public String updateItem(@PathVariable String itemId, @ModelAttribute("nllpInfo") NllpVO inVO) throws Exception{
+        log.info("inVO Con : {}", inVO);
+        inVO.setSgbCd("3550000");
+        NllpRVO rvo = this.nllpService.updtNllpInfo(inVO);
+        return "redirect:/nllp/nllpList";
+    }
+
 
     /*기초자료 상세조회*/
     @PostMapping(value = "/findNllpInfo")

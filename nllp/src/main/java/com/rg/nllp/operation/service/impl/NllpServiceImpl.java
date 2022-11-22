@@ -79,6 +79,8 @@ public class NllpServiceImpl implements NllpService {
     @Override
     public NllpRVO updtNllpInfo(NllpVO inVO) throws Exception {
         NllpRVO rvo = new NllpRVO();
+        log.info("inVO ser : {}", inVO);
+        inVO.setLgoCd("001");
         int rst = this.nllpMapper.updtNllpInfo(inVO);
         if (rst == 0) {
             throw new Exception("자료 수정에 실패했습니다.");

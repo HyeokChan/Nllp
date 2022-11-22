@@ -1,26 +1,23 @@
 package com.rg.nllp.operation.vo;
 
-import com.rg.nllp.DefaultVO;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.List;
 
 /**
  * packageName    : com.rg.nllp.operation.vo
- * fileName       : NllpRVO
+ * fileName       : RchgRVO
  * author         : hyeokchan
- * date           : 2022/10/26
- * description    : 기초자료관리 return VO
+ * date           : 2022/10/31
+ * description    : 계약자료관리 return VO
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
- * 2022/10/26        hyeokchan       최초 생성
+ * 2022/10/31        hyeokchan       최초 생성
  */
 @Getter
 @Setter
-@ToString
 public class NllpRVO {
     private NllpDVO rData;
     private List<NllpDVO> rList;

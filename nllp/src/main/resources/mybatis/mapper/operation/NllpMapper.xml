@@ -11,8 +11,8 @@
              , a.nllp_acb_se_cd
              , a.lgo_cd
              , a.lvy_trgt_nm
-             , a.land_ar
-             , a.oalp
+             , to_char(nvl(a.land_ar, 0), '999,999,999,999,999') as land_ar
+             , to_char(nvl(a.oalp, 0), '999,999,999,999,999') as oalp
              , a.oalp_yr
              , a.lotno_road_addr_se_cd
              , a.zip
@@ -95,6 +95,8 @@
              , a.nllp_acb_se_cd
              , a.lgo_cd
              , a.lvy_trgt_nm
+--              , to_char(nvl(a.land_ar, 0), '999,999,999,999,999') as land_ar
+--              , to_char(nvl(a.oalp, 0), '999,999,999,999,999') as oalp
              , a.land_ar
              , a.oalp
              , a.oalp_yr
@@ -103,6 +105,7 @@
              , a.stdg_cd
              , a.lotno_bac_addr
              , a.lotno_daddr
+             , trim(a.lotno_bac_addr) || ' ' || trim(a.lotno_daddr) as lotno_al_addr
              , a.mtn_se_cd
              , a.mno
              , a.sno
@@ -260,35 +263,8 @@
     <!--기초자료 수정-->
     <update id="updtNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
         update c##chan.tb_nllp_acb
-           set lgo_cd = #{lgoCd}
-             , lvy_trgt_nm = #{lvyTrgtNm}
-             , land_ar = nvl(#{landAr}, 0)
-             , bldg_ar = nvl(#{bldgAr}, 0)
+           set land_ar = nvl(#{landAr}, 0)
              , oalp = nvl(#{oalp}, 0)
-             , oalp_yr = #{oalpYr}
-             , std_amt = nvl(#{stdAmt}, 0)
-             , std_yr = #{stdYr}
-             , lotno_road_addr_se_cd = nvl(#{lotnoRoadAddrSeCd}, '01')
-             , zip = #{zip}
-             , stdg_cd = #{stdgCd}
-             , lotno_bac_addr = #{lotnoBacAddr}
-             , lotno_daddr = #{lotnoDaddr}
-             , mtn_se_cd = #{mtnSeCd}
-             , mno = #{mno}
-             , sno = #{sno}
-             , road_nm_cd = #{roadNmCd}
-             , road_nm_bac_addr = #{roadNmBacAddr}
-             , road_nm_daddr = #{roadNmDaddr}
-             , udgd_yn = #{udgdYn}
-             , bmno = #{bmno}
-             , bsno = #{bsno}
-             , spcl_dg = #{spclDg}
-             , spcl_ho = #{spclHo}
-             , ldcg_cd = #{ldcgCd}
-             , bldg_strc_cd = #{bldgStrcCd}
-             , roof_shpe_cd = #{roofShpeCd}
-             , rm_cn = #{rmCn}
-             , updt_user_id = #{updtUserId}
              , updt_date = sysdate
          where sgb_cd = #{sgbCd}
            and nllp_acb_key = #{nllpAcbKey}
