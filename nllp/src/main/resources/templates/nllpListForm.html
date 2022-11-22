@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>재고수량</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="items" type="com.rg.nllp.operation.vo.NllpDVO"*/-->
+            <tr th:each="item : ${items}">
+                <td th:text="${item.sgbCd}"></td>
+                <td th:text="${item.nllpAcbKey}"></td>
+                <td th:text="${item.nllpAcbNo}"></td>
+                <td th:text="${item.nllpAcbSeCd}"></td>
+                <td>
+                    <a href="#" th:href="@{/items/{id}/edit (id=${item.nllpAcbKey})}"
+                       class="btn btn-primary" role="button">수정</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>
