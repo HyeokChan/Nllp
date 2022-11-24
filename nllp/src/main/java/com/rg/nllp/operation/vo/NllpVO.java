@@ -4,6 +4,7 @@ import com.rg.nllp.DefaultVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.ibatis.type.Alias;
 
 /**
  * packageName    : com.rg.nllp.operation.vo
@@ -19,6 +20,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Alias("nllpVO")
 public class NllpVO extends DefaultVO {
     private String sgbCd;
     private String nllpAcbKey;

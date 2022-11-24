@@ -21,10 +21,15 @@ spring:
       enabled: false
 
 mybatis:
+  # alias 설정을 사용할 수 있는 경로 설정
   type-aliases-package: com.rg.nllp
+  # resources 디렉토리 하위의 mapper 파일 경로
   mapper-locations: mybatis/mapper/**/*.xml
   configuration:
+    # 언더바에서 카멜케이스로 변환하여 결과값 전달
     map-underscore-to-camel-case: true
+
+
 
 
 

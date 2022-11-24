@@ -29,29 +29,25 @@ import java.util.List;
 @Slf4j
 public class NllpController {
     private final NllpService nllpService;
-
+    // 재산 목록 조회, 조회 화면으로 이동
     @GetMapping("/nllpList")
     public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
         List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
         model.addAttribute("nllpList", rList);
-        return "nllpListForm";
+        return "operation/nllpListForm";
     }
-    @GetMapping("/dtl/{itemId}")
+    @GetMapping("/nllpInfo/{itemId}")
     public String findNllpInfo(@PathVariable("itemId") String nllpAcbKey, Model model) throws Exception{
         NllpVO inVO = new NllpVO();
-        inVO.setSgbCd("3550000");
-        inVO.setNllpAcbSeCd("01");
         inVO.setNllpAcbKey(nllpAcbKey);
-        NllpRVO rvo = this.nllpService.findNllpInfo(inVO);
-        model.addAttribute("nllpInfo", rvo.getRData());
-        return "nllpInfoForm";
+        NllpDVO rData = this.nllpService.findNllpInfo(inVO);
+        model.addAttribute("nllpInfo", rData);
+        return "operation/nllpInfoUpdtForm";
     }
-    @PostMapping("/dtl/{itemId}")
-    public String updateItem(@PathVariable String itemId, @ModelAttribute("nllpInfo") NllpVO inVO) throws Exception{
-        log.info("inVO Con : {}", inVO);
-        inVO.setSgbCd("3550000");
-        NllpRVO rvo = this.nllpService.updtNllpInfo(inVO);
+    @PostMapping("/updtNllpInfo")
+    public String updtNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO) throws Exception{
+        this.nllpService.updtNllpInfo(inVO);
         return "redirect:/nllp/nllpList";
     }
     @GetMapping("/nllpInstForm")
@@ -61,24 +57,12 @@ public class NllpController {
 
 
 
-    /*기초자료 상세조회*/
-    @PostMapping(value = "/findNllpInfo")
-    public @ResponseBody NllpRVO findNllpInfo(@RequestBody NllpVO inVO) throws Exception {
-        NllpRVO rvo = this.nllpService.findNllpInfo(inVO);
-        return rvo;
-    }
+
 
     /*기초자료 등록*/
     @PostMapping(value = "/instNllpInfo")
     public @ResponseBody NllpRVO instNllpInfo(@RequestBody NllpVO inVO) throws Exception {
         NllpRVO rvo = this.nllpService.instNllpInfo(inVO);
-        return rvo;
-    }
-
-    /*기초자료 수정*/
-    @PostMapping(value = "/updtNllpInfo")
-    public @ResponseBody NllpRVO updtNllpInfo(@RequestBody NllpVO inVO) throws Exception {
-        NllpRVO rvo = this.nllpService.updtNllpInfo(inVO);
         return rvo;
     }
 

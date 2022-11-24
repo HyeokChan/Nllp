@@ -21,11 +21,11 @@ public interface NllpService {
     /*기초자료 목록조회*/
     List<NllpDVO> findNllpList(NllpVO inVO) throws Exception;
     /*기초자료 상세조회*/
-    NllpRVO findNllpInfo(NllpVO inVO) throws Exception;
+    NllpDVO findNllpInfo(NllpVO inVO) throws Exception;
     /*기초자료 등록*/
     NllpRVO instNllpInfo(NllpVO inVO) throws Exception;
     /*기초자료 수정*/
-    NllpRVO updtNllpInfo(NllpVO inVO) throws Exception;
+    int updtNllpInfo(NllpVO inVO) throws Exception;
     /*기초자료 삭제*/
     NllpRVO deltNllpInfo(NllpVO inVO) throws Exception;
 }

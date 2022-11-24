@@ -3,7 +3,7 @@
 <mapper namespace="com.rg.nllp.operation.mapper.NllpMapper">
 
     <!--재산자료 목록조회-->
-    <select id="findNllpList" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
+    <select id="findNllpList" parameterType="nllpVO" resultType="nllpDVO">
         select count(*) over() as tot_cnt
              , a.nllp_acb_key
              , a.nllp_acb_no
@@ -18,7 +18,7 @@
              , a.mtn_se_cd
              , a.ldcg_cd
              , a.rm_cn
-          from c##chan.tb_nllp_acb a
+          from tb_nllp_acb a
          where a.del_yn = 'N'
         <if test="nllpAcbNo != '' and nllpAcbNo != null">
            and a.nllp_acb_no = #{nllpAcbNo}
@@ -32,19 +32,14 @@
     </select>
 
     <!--기초자료토지 상세조회-->
-    <select id="findNllpLandInfo" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
-        select a.sgb_cd
-             , a.nllp_acb_key
+    <select id="findNllpInfo" parameterType="nllpVO" resultType="nllpDVO">
+        select a.nllp_acb_key
              , a.nllp_acb_no
-             , a.nllp_acb_se_cd
              , a.lgo_cd
              , a.lvy_trgt_nm
---              , to_char(nvl(a.land_ar, 0), '999,999,999,999,999') as land_ar
---              , to_char(nvl(a.oalp, 0), '999,999,999,999,999') as oalp
              , a.land_ar
              , a.oalp
              , a.oalp_yr
-             , a.lotno_road_addr_se_cd
              , a.zip
              , a.stdg_cd
              , a.lotno_bac_addr
@@ -53,12 +48,6 @@
              , a.mtn_se_cd
              , a.mno
              , a.sno
-             , a.road_nm_cd
-             , a.road_nm_bac_addr
-             , a.road_nm_daddr
-             , a.udgd_yn
-             , a.bmno
-             , a.bsno
              , a.spcl_dg
              , a.spcl_ho
              , a.ldcg_cd
@@ -67,53 +56,19 @@
              , a.init_date
              , a.updt_user_id
              , a.updt_date
-          from c##chan.tb_nllp_acb a
-         where a.sgb_cd = #{sgbCd}
-           and a.nllp_acb_key = #{nllpAcbKey}
+          from tb_nllp_acb a
+         where a.nllp_acb_key = #{nllpAcbKey}
            and a.del_yn = 'N'
     </select>
 
-    <!--기초자료건물 상세조회-->
-    <select id="findNllpBldgInfo" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
-        select a.sgb_cd
-             , a.nllp_acb_key
-             , a.nllp_acb_no
-             , a.nllp_acb_se_cd
-             , a.lgo_cd
-             , a.lvy_trgt_nm
-             , a.bldg_ar
-             , a.oalp
-             , a.oalp_yr
-             , a.std_amt
-             , a.std_yr
-             , a.lotno_road_addr_se_cd
-             , a.zip
-             , a.stdg_cd
-             , a.lotno_bac_addr
-             , a.lotno_daddr
-             , a.mtn_se_cd
-             , a.mno
-             , a.sno
-             , a.road_nm_cd
-             , a.road_nm_bac_addr
-             , a.road_nm_daddr
-             , a.udgd_yn
-             , a.bmno
-             , a.bsno
-             , a.spcl_dg
-             , a.spcl_ho
-             , a.bldg_strc_cd
-             , a.roof_shpe_cd
-             , a.rm_cn
-             , a.init_user_id
-             , a.init_date
-             , a.updt_user_id
-             , a.updt_date
-        from c##chan.tb_nllp_acb a
-        where a.sgb_cd = #{sgbCd}
-          and a.nllp_acb_key = #{nllpAcbKey}
-          and a.del_yn = 'N'
-    </select>
+    <!--기초자료 수정-->
+    <update id="updtNllpInfo" parameterType="nllpVO">
+        update tb_nllp_acb
+        set land_ar = nvl(#{landAr}, 0)
+          , oalp = nvl(#{oalp}, 0)
+          , updt_date = sysdate
+        where nllp_acb_key = #{nllpAcbKey}
+    </update>
 
     <!--기초자료 등록-->
     <insert id="instNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
@@ -204,15 +159,7 @@
           )
     </insert>
 
-    <!--기초자료 수정-->
-    <update id="updtNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
-        update c##chan.tb_nllp_acb
-           set land_ar = nvl(#{landAr}, 0)
-             , oalp = nvl(#{oalp}, 0)
-             , updt_date = sysdate
-         where sgb_cd = #{sgbCd}
-           and nllp_acb_key = #{nllpAcbKey}
-    </update>
+
     <!--기초자료 삭제-->
     <update id="deltNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
         update c##chan.tb_nllp_acb

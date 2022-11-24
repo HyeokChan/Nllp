@@ -29,7 +29,7 @@ import java.util.List;
 public class NllpServiceImpl implements NllpService {
     private final NllpMapper nllpMapper;
 
-    /*기초자료 목록조회*/
+    // 기초자료 목록조회
     @Override
     public List<NllpDVO> findNllpList(NllpVO inVO) throws Exception {
         List<NllpDVO> rList = this.nllpMapper.findNllpList(inVO);
@@ -39,22 +39,24 @@ public class NllpServiceImpl implements NllpService {
         return rList;
     }
 
-    /*기초자료 상세조회*/
+    // 기초자료 상세조회
     @Override
-    public NllpRVO findNllpInfo(NllpVO inVO) throws Exception {
-        NllpRVO rvo = new NllpRVO();
-        NllpDVO rData = new NllpDVO();
-        if ("01".equals(inVO.getNllpAcbSeCd())) {
-            rData = this.nllpMapper.findNllpLandInfo(inVO);
-        }
-        else if ("02".equals(inVO.getNllpAcbSeCd())) {
-            rData = this.nllpMapper.findNllpBldgInfo(inVO);
-        }
-        if (rData.getNllpAcbKey() == null) {
+    public NllpDVO findNllpInfo(NllpVO inVO) throws Exception {
+        NllpDVO rData = this.nllpMapper.findNllpInfo(inVO);
+        if (rData == null) {
             throw new Exception("자료 조회에 실패했습니다.");
         }
-        rvo.setRData(rData);
-        return rvo;
+        return rData;
+    }
+
+    // 기초자료 수정
+    @Override
+    public int updtNllpInfo(NllpVO inVO) throws Exception {
+        int rst = this.nllpMapper.updtNllpInfo(inVO);
+        if (rst == 0) {
+            throw new Exception("자료 수정에 실패했습니다.");
+        }
+        return rst;
     }
 
     /*기초자료 등록*/
@@ -67,18 +69,7 @@ public class NllpServiceImpl implements NllpService {
         }
         return rvo;
     }
-    /*기초자료 수정*/
-    @Override
-    public NllpRVO updtNllpInfo(NllpVO inVO) throws Exception {
-        NllpRVO rvo = new NllpRVO();
-        log.info("inVO ser : {}", inVO);
-        inVO.setLgoCd("001");
-        int rst = this.nllpMapper.updtNllpInfo(inVO);
-        if (rst == 0) {
-            throw new Exception("자료 수정에 실패했습니다.");
-        }
-        return rvo;
-    }
+
     /*기초자료 삭제*/
     @Override
     public NllpRVO deltNllpInfo(NllpVO inVO) throws Exception {
