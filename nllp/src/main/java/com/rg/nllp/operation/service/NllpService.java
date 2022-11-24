@@ -1,7 +1,10 @@
 package com.rg.nllp.operation.service;
 
+import com.rg.nllp.operation.vo.NllpDVO;
 import com.rg.nllp.operation.vo.NllpRVO;
 import com.rg.nllp.operation.vo.NllpVO;
+
+import java.util.List;
 
 /**
  * packageName    : com.rg.nllp.operation.service
@@ -16,7 +19,7 @@ import com.rg.nllp.operation.vo.NllpVO;
  */
 public interface NllpService {
     /*기초자료 목록조회*/
-    NllpRVO findNllpList(NllpVO inVO) throws Exception;
+    List<NllpDVO> findNllpList(NllpVO inVO) throws Exception;
     /*기초자료 상세조회*/
     NllpRVO findNllpInfo(NllpVO inVO) throws Exception;
     /*기초자료 등록*/

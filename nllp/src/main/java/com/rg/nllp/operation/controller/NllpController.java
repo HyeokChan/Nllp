@@ -1,6 +1,7 @@
 package com.rg.nllp.operation.controller;
 
 import com.rg.nllp.operation.service.NllpService;
+import com.rg.nllp.operation.vo.NllpDVO;
 import com.rg.nllp.operation.vo.NllpRVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * packageName    : com.rg.nllp.operation.controller
@@ -27,20 +30,11 @@ import org.springframework.web.bind.annotation.*;
 public class NllpController {
     private final NllpService nllpService;
 
-    /*기초자료 목록조회*/
-    @PostMapping(value = "/findNllpList")
-    public @ResponseBody NllpRVO findNllpList(@RequestBody NllpVO inVO) throws Exception {
-        NllpRVO rvo = this.nllpService.findNllpList(inVO);
-        return rvo;
-    }
-
     @GetMapping("/nllpList")
     public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
-        inVO.setSgbCd("3550000");
-        inVO.setNllpAcbSeCd("01");
-        NllpRVO rvo = this.nllpService.findNllpList(inVO);
-        model.addAttribute("nllpList", rvo.getRList());
+        List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
+        model.addAttribute("nllpList", rList);
         return "nllpListForm";
     }
     @GetMapping("/dtl/{itemId}")
@@ -60,6 +54,11 @@ public class NllpController {
         NllpRVO rvo = this.nllpService.updtNllpInfo(inVO);
         return "redirect:/nllp/nllpList";
     }
+    @GetMapping("/nllpInstForm")
+    public String nllpInstForm(Model model) throws Exception {
+        return "nllpInstForm";
+    }
+
 
 
     /*기초자료 상세조회*/

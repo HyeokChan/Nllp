@@ -68,4 +68,17 @@ begin
     return v_acbKey;
 end;
 
+-- 컬럼 수정
+alter table tb_nllp_acb
+drop constraints TB_NLLP_ACB_PK;
+
+alter table tb_nllp_acb
+add constraints TB_NLLP_ACB_PK
+primary key (nllp_acb_key);
+
+alter table tb_nllp_acb drop column sgb_cd;
+alter table tb_nllp_acb drop (nllp_acb_se_cd, bldg_ar, std_amt, std_yr, lotno_road_addr_se_cd, road_nm_cd, road_nm_bac_addr, road_nm_daddr, udgd_yn, bmno, bsno, bldg_strc_cd, roof_shpe_cd);
+select *
+from tb_nllp_acb;
+
 

@@ -1,14 +1,10 @@
 package com.rg.nllp.common.controller;
 
 import com.rg.nllp.common.service.UserService;
-import com.rg.nllp.common.vo.user.UserDVO;
 import com.rg.nllp.common.vo.user.UserRVO;
 import com.rg.nllp.common.vo.user.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

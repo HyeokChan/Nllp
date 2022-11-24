@@ -31,20 +31,12 @@ public class NllpServiceImpl implements NllpService {
 
     /*기초자료 목록조회*/
     @Override
-    public NllpRVO findNllpList(NllpVO inVO) throws Exception {
-        NllpRVO rvo = new NllpRVO();
-        List<NllpDVO> rList = new ArrayList<>();
-        if("01".equals(inVO.getNllpAcbSeCd())){
-            rList = this.nllpMapper.findNllpLandList(inVO);
-        }
-        else if("02".equals(inVO.getNllpAcbSeCd())){
-            rList = this.nllpMapper.findNllpBldgList(inVO);
-        }
+    public List<NllpDVO> findNllpList(NllpVO inVO) throws Exception {
+        List<NllpDVO> rList = this.nllpMapper.findNllpList(inVO);
         if(rList.isEmpty()){
             throw new Exception("조회된 자료가 없습니다.");
         }
-        rvo.setRList(rList);
-        return rvo;
+        return rList;
     }
 
     /*기초자료 상세조회*/

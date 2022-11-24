@@ -2,33 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rg.nllp.operation.mapper.NllpMapper">
 
-    <!--기초자료토지 목록조회-->
-    <select id="findNllpLandList" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
+    <!--재산자료 목록조회-->
+    <select id="findNllpList" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
         select count(*) over() as tot_cnt
-             , a.sgb_cd
              , a.nllp_acb_key
              , a.nllp_acb_no
-             , a.nllp_acb_se_cd
              , a.lgo_cd
              , a.lvy_trgt_nm
              , to_char(nvl(a.land_ar, 0), '999,999,999,999,999') as land_ar
              , to_char(nvl(a.oalp, 0), '999,999,999,999,999') as oalp
              , a.oalp_yr
-             , a.lotno_road_addr_se_cd
              , a.zip
              , a.stdg_cd
              , trim(a.lotno_bac_addr) || ' ' || trim(a.lotno_daddr) as lotno_al_addr
              , a.mtn_se_cd
-             , a.road_nm_cd
-             , trim(a.road_nm_bac_addr) || ' ' || trim(a.road_nm_daddr) as road_nm_al_addr
-             , a.udgd_yn
              , a.ldcg_cd
              , a.rm_cn
-             , to_char(a.updt_date, 'yyyymmdd') as last_updt_date
           from c##chan.tb_nllp_acb a
-         where a.sgb_cd = #{sgbCd}
-           and a.del_yn = 'N'
-           and a.nllp_acb_se_cd = #{nllpAcbSeCd}
+         where a.del_yn = 'N'
         <if test="nllpAcbNo != '' and nllpAcbNo != null">
            and a.nllp_acb_no = #{nllpAcbNo}
         </if>
@@ -37,53 +28,6 @@
         </if>
         <if test="stdgCd != '' and stdgCd != null">
            and a.stdg_cd = #{stdgCd}
-        </if>
-        <if test="roadNmCd != '' and roadNmCd != null">
-           and a.road_nm_cd = #{roadNmCd}
-        </if>
-    </select>
-
-    <!--기초자료건물 목록조회-->
-    <select id="findNllpBldgList" parameterType="com.rg.nllp.operation.vo.NllpVO" resultType="com.rg.nllp.operation.vo.NllpDVO">
-        select count(*) over() as tot_cnt
-             , a.sgb_cd
-             , a.nllp_acb_key
-             , a.nllp_acb_no
-             , a.nllp_acb_se_cd
-             , a.lgo_cd
-             , a.lvy_trgt_nm
-             , a.bldg_ar
-             , a.oalp
-             , a.oalp_yr
-             , a.std_amt
-             , a.std_yr
-             , a.lotno_road_addr_se_cd
-             , a.zip
-             , a.stdg_cd
-             , trim(a.lotno_bac_addr) || ' ' || trim(a.lotno_daddr) as lotno_al_addr
-             , a.mtn_se_cd
-             , a.road_nm_cd
-             , trim(a.road_nm_bac_addr) || ' ' || trim(a.road_nm_daddr) as road_nm_al_addr
-             , a.udgd_yn
-             , a.bldg_strc_cd
-             , a.roof_shpe_cd
-             , a.rm_cn
-             , to_char(a.updt_date, 'yyyymmdd') as last_updt_date
-          from c##chan.tb_nllp_acb a
-         where a.sgb_cd = #{sgbCd}
-           and a.del_yn = 'N'
-           and a.nllp_acb_se_cd = #{nllpAcbSeCd}
-        <if test="nllpAcbNo != '' and nllpAcbNo != null">
-           and a.nllp_acb_no = #{nllpAcbNo}
-        </if>
-        <if test="lgoCd != '' and lgoCd != null">
-           and a.lgo_cd = #{lgoCd}
-        </if>
-        <if test="stdgCd != '' and stdgCd != null">
-           and a.stdg_cd = #{stdgCd}
-        </if>
-        <if test="roadNmCd != '' and roadNmCd != null">
-           and a.road_nm_cd = #{roadNmCd}
         </if>
     </select>
 
