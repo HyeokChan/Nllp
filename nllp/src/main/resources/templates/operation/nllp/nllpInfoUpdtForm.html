@@ -31,6 +31,8 @@
             <label th:for="oalp">공시지가</label>
             <input type="number" th:field="*{oalp}" class="form-control fs-s" placeholder="공시지가를 입력하세요" />
         </div>
+        <input type="hidden" th:name="initUserId" th:value="${session.userId}">
+        <input type="hidden" th:name="updtUserId" th:value="${session.userId}">
         <p class="mt-2">
             <button type="submit" th:formaction="@{/nllp/updtNllpInfo}" class="btn btn-secondary fs-xs">저장</button>
             <button type="submit" th:formaction="@{/nllp/deltNllpInfo}" class="btn btn-secondary fs-xs">삭제</button>

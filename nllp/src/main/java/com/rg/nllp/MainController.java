@@ -22,13 +22,17 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class MainController {
     /***
-     * @discription 세션세팅, 홈화면이동
-     * @param httpSession
-     * @return 홈화면
+     * @discription 로그인화면 이동
+     * @param
+     * @return 로그인화면
      */
     @GetMapping("/")
-    public String home(HttpSession httpSession) {
-        httpSession.setAttribute("userId", "user0001");
-        return "home";
+    public String home() {
+        return "redirect:/user/login";
+    }
+
+    @GetMapping("/main")
+    public String main(){
+        return "main";
     }
 }

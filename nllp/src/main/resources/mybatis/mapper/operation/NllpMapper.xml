@@ -66,6 +66,7 @@
         update tb_nllp_acb
            set land_ar = nvl(#{landAr}, 0)
              , oalp = nvl(#{oalp}, 0)
+             , updt_user_id = #{updtUserId}
              , updt_date = sysdate
          where nllp_acb_key = #{nllpAcbKey}
     </update>

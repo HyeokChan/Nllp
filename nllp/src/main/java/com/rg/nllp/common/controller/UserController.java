@@ -14,6 +14,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -35,7 +36,7 @@ public class UserController {
     private final UserService userService;
 
     /***
-     * @discription 로그인화면 이동
+     * @description 로그인화면 이동
      * @return 로그인화면
      */
     @GetMapping("/login")
@@ -45,14 +46,15 @@ public class UserController {
     }
 
     /***
-     * @discription 로그인처리
+     * @description 로그인처리
      * @param inVO
      * @param result 검증 및 에러처리
+     * @param httpSession 세션처리
      * @return 로그인 성공시 메인화면, 실패시 로그인화면
      * @throws Exception
      */
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("userInfo") LoginVO inVO, BindingResult result) throws Exception{
+    public String login(@Valid @ModelAttribute("userInfo") LoginVO inVO, BindingResult result, HttpSession httpSession) throws Exception{
         if(result.hasErrors()){
             return "common/user/loginForm";
         }
@@ -61,11 +63,13 @@ public class UserController {
             result.addError(new FieldError("userInfo", "userPw", "사용자정보가 없습니다."));
             return "common/user/loginForm";
         }
-        return "common/user/loginForm";
+        // 세션처리
+        httpSession.setAttribute("userId", inVO.getUserId());
+        return "redirect:/main";
     }
 
     /**
-     * @discription 회원가입화면 이동
+     * @description 회원가입화면 이동
      * @param model
      * @return 회원가입화면
      */
@@ -76,7 +80,7 @@ public class UserController {
     }
 
     /***
-     * @discription 회원가입처리
+     * @description 회원가입처리
      * @param inVO
      * @param result 에러처리
      * @return 로그인화면
@@ -95,7 +99,6 @@ public class UserController {
             result.addError(new FieldError("userInfo", "userId", "이미 등록된 아이디가 존재합니다."));
             return "common/user/registerForm";
         }
-
         return "redirect:/user/login";
     }
 

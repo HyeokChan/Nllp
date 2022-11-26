@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class NllpController {
     private final NllpService nllpService;
 
     /***
-     * @discription 재산자료 목록조회
+     * @description 재산자료 목록조회
      * @param model
      * @return 조회된 재산자료 목록, 재산자료 조회화면으로 이동
      * @throws Exception
@@ -44,7 +45,7 @@ public class NllpController {
     }
 
     /***
-     * @discription 재산자료 상세조회
+     * @description 재산자료 상세조회
      * @param nllpAcbKey
      * @param model
      * @return 조회된 재산자료, 재산자료 상세화면으로 이동
@@ -60,7 +61,7 @@ public class NllpController {
     }
 
     /***
-     * @discription 재산자료 수정처리
+     * @description 재산자료 수정처리
      * @param inVO
      * @return 재산자료 재조회
      * @throws Exception
@@ -72,7 +73,7 @@ public class NllpController {
     }
 
     /**
-     * @discription 재산자료 삭제처리
+     * @description 재산자료 삭제처리
      * @param inVO
      * @return
      * @throws Exception
@@ -84,7 +85,7 @@ public class NllpController {
     }
 
     /***
-     * @discription 재산자료 등록화면 이동
+     * @description 재산자료 등록화면 이동
      * @return 재산자료 등록화면
      * @throws Exception
      */
@@ -95,7 +96,7 @@ public class NllpController {
     }
 
     /***
-     * @discription 재산자료 등록처리
+     * @description 재산자료 등록처리
      * @param inVO
      * @return
      * @throws Exception

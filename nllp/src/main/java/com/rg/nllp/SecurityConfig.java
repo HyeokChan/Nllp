@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * fileName       : SecurityConfig
  * author         : hyeokchan
  * date           : 2022/11/27
- * description    :
+ * description    : 스프링 시큐리티 설정파일
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------

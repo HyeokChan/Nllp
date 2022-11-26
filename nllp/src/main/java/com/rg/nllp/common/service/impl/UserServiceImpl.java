@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
     // 로그인 처리
     @Override
     public boolean isUserInfo(LoginVO inVO) throws Exception {
-        //inVO.setUserPw(passwordEncoder.encode(inVO.getUserPw()));
         String userPw = this.userMapper.findUserInfo(inVO);
         boolean isUser = passwordEncoder.matches(inVO.getUserPw(), userPw);
         return isUser;
