@@ -29,6 +29,7 @@
         <if test="stdgCd != '' and stdgCd != null">
            and a.stdg_cd = #{stdgCd}
         </if>
+      order by a.nllp_acb_no asc
     </select>
 
     <!--기초자료토지 상세조회-->
@@ -44,7 +45,6 @@
              , a.stdg_cd
              , a.lotno_bac_addr
              , a.lotno_daddr
-             , trim(a.lotno_bac_addr) || ' ' || trim(a.lotno_daddr) as lotno_al_addr
              , a.mtn_se_cd
              , a.mno
              , a.sno
@@ -64,33 +64,34 @@
     <!--기초자료 수정-->
     <update id="updtNllpInfo" parameterType="nllpVO">
         update tb_nllp_acb
-        set land_ar = nvl(#{landAr}, 0)
-          , oalp = nvl(#{oalp}, 0)
-          , updt_date = sysdate
-        where nllp_acb_key = #{nllpAcbKey}
+           set land_ar = nvl(#{landAr}, 0)
+             , oalp = nvl(#{oalp}, 0)
+             , updt_date = sysdate
+         where nllp_acb_key = #{nllpAcbKey}
+    </update>
+
+    <!--기초자료 삭제-->
+    <update id="deltNllpInfo" parameterType="nllpVO">
+        update tb_nllp_acb
+           set del_yn = 'Y'
+         where nllp_acb_key = #{nllpAcbKey}
     </update>
 
     <!--기초자료 등록-->
     <insert id="instNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
         <selectKey resultType="string" keyProperty="nllpAcbKey" order="BEFORE">
-            select c##chan.fn_crt_acb_key('nllpAcb')
+            select fn_crt_acb_key('nllpAcb')
               from dual
         </selectKey>
         insert
-          into c##chan.tb_nllp_acb(
-               sgb_cd
-             , nllp_acb_key
+          into tb_nllp_acb(
+               nllp_acb_key
              , nllp_acb_no
-             , nllp_acb_se_cd
              , lgo_cd
              , lvy_trgt_nm
              , land_ar
-             , bldg_ar
              , oalp
              , oalp_yr
-             , std_amt
-             , std_yr
-             , lotno_road_addr_se_cd
              , zip
              , stdg_cd
              , lotno_bac_addr
@@ -98,17 +99,9 @@
              , mtn_se_cd
              , mno
              , sno
-             , road_nm_cd
-             , road_nm_bac_addr
-             , road_nm_daddr
-             , udgd_yn
-             , bmno
-             , bsno
              , spcl_dg
              , spcl_ho
              , ldcg_cd
-             , bldg_strc_cd
-             , roof_shpe_cd
              , rm_cn
              , init_user_id
              , init_date
@@ -116,23 +109,14 @@
              , updt_date
           )
           values (
-               #{sgbCd}
-             , #{nllpAcbKey}
+               #{nllpAcbKey}
              , (select lpad(nvl(max(t1.nllp_acb_no), 0)+1, 6, '0')
-                  from c##chan.tb_nllp_acb t1
-                 where t1.sgb_cd = #{sgbCd}
-                   and t1.nllp_acb_se_cd = #{nllpAcbSeCd}
-                   and t1.lgo_cd = #{lgoCd})
-             , #{nllpAcbSeCd}
+                  from tb_nllp_acb t1)
              , #{lgoCd}
              , #{lvyTrgtNm}
              , nvl(#{landAr}, 0)
-             , nvl(#{bldgAr}, 0)
              , nvl(#{oalp}, 0)
              , #{oalpYr}
-             , nvl(#{stdAmt}, 0)
-             , #{stdYr}
-             , nvl(#{lotnoRoadAddrSeCd}, '01')
              , #{zip}
              , #{stdgCd}
              , #{lotnoBacAddr}
@@ -140,17 +124,9 @@
              , #{mtnSeCd}
              , #{mno}
              , #{sno}
-             , #{roadNmCd}
-             , #{roadNmBacAddr}
-             , #{roadNmDaddr}
-             , #{udgdYn}
-             , #{bmno}
-             , #{bsno}
              , #{spclDg}
              , #{spclHo}
              , #{ldcgCd}
-             , #{bldgStrcCd}
-             , #{roofShpeCd}
              , #{rmCn}
              , #{initUserId}
              , sysdate
@@ -160,12 +136,6 @@
     </insert>
 
 
-    <!--기초자료 삭제-->
-    <update id="deltNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
-        update c##chan.tb_nllp_acb
-           set del_yn = 'Y'
-         where sgb_cd = #{sgbCd}
-           and nllp_acb_key = #{nllpAcbKey}
-    </update>
+
 
 </mapper>

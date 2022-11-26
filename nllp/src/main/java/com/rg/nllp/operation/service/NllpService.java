@@ -18,14 +18,14 @@ import java.util.List;
  * 2022/10/26        hyeokchan       최초 생성
  */
 public interface NllpService {
-    /*기초자료 목록조회*/
+    // 재산자료 목록조회
     List<NllpDVO> findNllpList(NllpVO inVO) throws Exception;
-    /*기초자료 상세조회*/
+    // 재산자료 상세조회
     NllpDVO findNllpInfo(NllpVO inVO) throws Exception;
-    /*기초자료 등록*/
-    NllpRVO instNllpInfo(NllpVO inVO) throws Exception;
-    /*기초자료 수정*/
+    // 재산자료 수정처리
     int updtNllpInfo(NllpVO inVO) throws Exception;
-    /*기초자료 삭제*/
-    NllpRVO deltNllpInfo(NllpVO inVO) throws Exception;
+    // 재산자료 삭제처리
+    int deltNllpInfo(NllpVO inVO) throws Exception;
+    // 재산자료 등록처리
+    String instNllpInfo(NllpVO inVO) throws Exception;
 }

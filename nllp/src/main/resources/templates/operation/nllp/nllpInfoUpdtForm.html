@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form th:object="${nllpInfo}" method="post">
+        <!-- id -->
+        <input type="hidden" th:field="*{nllpAcbKey}" />
+        <div class="form-group">
+            <label th:for="nllpAcbNo">재산번호</label>
+            <input type="text" th:field="*{nllpAcbNo}" class="form-control fs-s" disabled/>
+        </div>
+        <div class="form-group">
+            <label th:for="lotnoBacAddr">기본주소</label>
+            <input type="text" th:field="*{lotnoBacAddr}" class="form-control fs-s"
+                   placeholder="기본주소를 입력하세요" />
+        </div>
+        <div class="form-group">
+            <label th:for="lotnoDaddr">상세주소</label>
+            <input type="text" th:field="*{lotnoDaddr}" class="form-control fs-s"
+                   placeholder="상세주소를 입력하세요" />
+        </div>
+        <div class="form-group">
+            <label th:for="landAr">면적</label>
+            <input type="number" th:field="*{landAr}" class="form-control fs-s" placeholder="면적을 입력하세요" />
+        </div>
+        <div class="form-group">
+            <label th:for="oalp">공시지가</label>
+            <input type="number" th:field="*{oalp}" class="form-control fs-s" placeholder="공시지가를 입력하세요" />
+        </div>
+        <p class="mt-2">
+            <button type="submit" th:formaction="@{/nllp/updtNllpInfo}" class="btn btn-secondary fs-xs">저장</button>
+            <button type="submit" th:formaction="@{/nllp/deltNllpInfo}" class="btn btn-secondary fs-xs">삭제</button>
+            <a type="button" th:href="@{/nllp/nllpList}" class="btn btn-secondary small fs-xs">닫기</a>
+        </p>
+    </form>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>

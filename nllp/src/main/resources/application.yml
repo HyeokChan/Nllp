@@ -28,6 +28,8 @@ mybatis:
   configuration:
     # 언더바에서 카멜케이스로 변환하여 결과값 전달
     map-underscore-to-camel-case: true
+    # mybatis 변수 #{xxx} null 허용
+    jdbc-type-for-null: varchar
 
 
 

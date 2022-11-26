@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * packageName    : com.rg.nllp
  * fileName       : HomeController
@@ -19,9 +21,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @Slf4j
 public class MainController {
-    //홈 화면으로 자동 이동
+    /***
+     * @discription 세션세팅, 홈화면이동
+     * @param httpSession
+     * @return 홈화면
+     */
     @GetMapping("/")
-    public String home() {
+    public String home(HttpSession httpSession) {
+        httpSession.setAttribute("userId", "user0001");
         return "home";
     }
 }

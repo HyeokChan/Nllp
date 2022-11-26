@@ -29,17 +29,13 @@ import java.util.List;
 public class NllpServiceImpl implements NllpService {
     private final NllpMapper nllpMapper;
 
-    // 기초자료 목록조회
+    // 재산자료 목록조회
     @Override
     public List<NllpDVO> findNllpList(NllpVO inVO) throws Exception {
         List<NllpDVO> rList = this.nllpMapper.findNllpList(inVO);
-        if(rList.isEmpty()){
-            throw new Exception("조회된 자료가 없습니다.");
-        }
         return rList;
     }
-
-    // 기초자료 상세조회
+    // 재산자료 상세조회
     @Override
     public NllpDVO findNllpInfo(NllpVO inVO) throws Exception {
         NllpDVO rData = this.nllpMapper.findNllpInfo(inVO);
@@ -48,8 +44,7 @@ public class NllpServiceImpl implements NllpService {
         }
         return rData;
     }
-
-    // 기초자료 수정
+    // 재산자료 수정처리
     @Override
     public int updtNllpInfo(NllpVO inVO) throws Exception {
         int rst = this.nllpMapper.updtNllpInfo(inVO);
@@ -58,26 +53,24 @@ public class NllpServiceImpl implements NllpService {
         }
         return rst;
     }
-
-    /*기초자료 등록*/
+    // 재산자료 삭제처리
     @Override
-    public NllpRVO instNllpInfo(NllpVO inVO) throws Exception {
-        NllpRVO rvo = new NllpRVO();
+    public int deltNllpInfo(NllpVO inVO) throws Exception {
+        int rst = this.nllpMapper.deltNllpInfo(inVO);
+        if (rst == 0) {
+            throw new Exception("자료 삭제에 실패했습니다.");
+        }
+        return rst;
+    }
+    // 재산자료 등록처리
+    @Override
+    public String instNllpInfo(NllpVO inVO) throws Exception {
         int rst = this.nllpMapper.instNllpInfo(inVO);
         if (rst == 0) {
             throw new Exception("자료 등록에 실패했습니다.");
         }
-        return rvo;
+        String nllpAcbKey = inVO.getNllpAcbKey();
+        return nllpAcbKey;
     }
 
-    /*기초자료 삭제*/
-    @Override
-    public NllpRVO deltNllpInfo(NllpVO inVO) throws Exception {
-        NllpRVO rvo = new NllpRVO();
-        int rst = this.nllpMapper.deltNllpInfo(inVO);
-        if (rst == 0) {
-            throw new Exception("자료 삭재에 실패했습니다.");
-        }
-        return rvo;
-    }
 }
