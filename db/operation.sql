@@ -55,25 +55,25 @@ nocycle
 nocache;
 
 -- 시퀀스 키 생성 function
-create or replace function fn_crt_acb_key(p_acbNm in varchar2) 
+create or replace function fn_crt_acb_key(p_acbnm in varchar2) 
     return varchar2 
 is
-    v_acbKey varchar2(11);
+    v_acbkey varchar2(11);
 begin
-    if p_acbNm = 'nllpAcb' then
+    if p_acbnm = 'nllpacb' then
         select to_char(sysdate, 'yyyy') || lpad(sq_nllp_acb_key.nextval, 7, '0') 
-          into v_acbKey 
+          into v_acbkey 
           from dual;
     end if;
-    return v_acbKey;
+    return v_acbkey;
 end;
 
 -- 컬럼 수정
 alter table tb_nllp_acb
-drop constraints TB_NLLP_ACB_PK;
+drop constraints tb_nllp_acb_pk;
 
 alter table tb_nllp_acb
-add constraints TB_NLLP_ACB_PK
+add constraints tb_nllp_acb_pk
 primary key (nllp_acb_key);
 
 alter table tb_nllp_acb drop column sgb_cd;

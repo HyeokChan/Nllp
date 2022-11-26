@@ -15,34 +15,44 @@
                             <div class="card-body">
                                 <form method="post" th:object="${userInfo}">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="userNm" type="email" placeholder="name@example.com" />
-                                        <label for="inputEmail">이름</label>
+                                        <input class="form-control" th:field="*{userNm}" type="text" placeholder="name@example.com"
+                                               th:class="${#fields.hasErrors('userNm')} ? 'form-control border-danger' : 'form-control'"/>
+                                        <p th:if="${#fields.hasErrors('userNm')}" th:errors="*{userNm}" class="text-danger">Incorrect data</p>
+                                        <label th:for="userNm">사용자명</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                        <label for="inputEmail">Email address</label>
+                                        <input class="form-control" th:field="*{userId}" type="email" placeholder="name@example.com"
+                                               th:class="${#fields.hasErrors('userId')} ? 'form-control border-danger' : 'form-control'"/>
+                                        <p th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="text-danger">Incorrect data</p>
+                                        <label th:for="userId">아이디</label>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                                <label for="inputPassword">Password</label>
+                                                <input class="form-control" th:field="*{userPw}" type="password" placeholder="Create a password"
+                                                       th:class="${#fields.hasErrors('userPw')} ? 'form-control border-danger' : 'form-control'"/>
+                                                <p th:if="${#fields.hasErrors('userPw')}" th:errors="*{userPw}" class="text-danger">Incorrect data</p>
+                                                <label th:for="userPw">비밀번호</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
-                                                <label for="inputPasswordConfirm">Confirm Password</label>
+                                                <input class="form-control" th:field="*{userPwCf}" type="password" placeholder="Confirm password"
+                                                       th:class="${#fields.hasErrors('userPwCf')} ? 'form-control border-danger' : 'form-control'"/>
+                                                <p th:if="${#fields.hasErrors('userPwCf')}" th:errors="*{userPwCf}" class="text-danger">Incorrect data</p>
+                                                <label th:for="userPwCf">비밀번호 확인</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-4 mb-0">
-                                        <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
+                                        <div class="d-grid">
+                                            <button type="submit" th:formaction="@{/user/register}" class="btn btn-primary btn-block">회원가입</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="card-footer text-center py-3">
-                                <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                                <div class="small"><a th:href="@{/user/login}">계정이 있으신가요? 로그인</a></div>
                             </div>
                         </div>
                     </div>

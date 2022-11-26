@@ -7,28 +7,28 @@ import lombok.ToString;
 import org.apache.ibatis.type.Alias;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 /**
  * packageName    : com.rg.nllp.common.vo.user
- * fileName       : UserVO
+ * fileName       : RegisterVO
  * author         : hyeokchan
- * date           : 2022/10/24
- * description    : 사용자정보 inVO
+ * date           : 2022/11/27
+ * description    : 회원가입처리를 위한 VO
  * ===========================================================
  * DATE              AUTHOR             NOTE
  * -----------------------------------------------------------
- * 2022/10/24        hyeokchan       최초 생성
+ * 2022/11/27        hyeokchan       최초 생성
  */
 @Getter
 @Setter
 @ToString
-@Alias("userVO")
-public class UserVO extends DefaultVO {
+@Alias("registerVO")
+public class RegisterVO extends DefaultVO {
     @NotBlank(message = "아이디를 입력해주세요")
     private String userId;
     @NotBlank(message = "비밀번호를 입력해주세요")
     private String userPw;
+    @NotBlank(message = "사용자명을 입력해주세요")
     private String userNm;
     private String userPwCf;
 }

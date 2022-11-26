@@ -1,6 +1,8 @@
 package com.rg.nllp.common.controller;
 
 import com.rg.nllp.common.service.UserService;
+import com.rg.nllp.common.vo.user.LoginVO;
+import com.rg.nllp.common.vo.user.RegisterVO;
 import com.rg.nllp.common.vo.user.UserRVO;
 import com.rg.nllp.common.vo.user.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -50,34 +52,51 @@ public class UserController {
      * @throws Exception
      */
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("userInfo") UserVO inVO, BindingResult result) throws Exception{
+    public String login(@Valid @ModelAttribute("userInfo") LoginVO inVO, BindingResult result) throws Exception{
         if(result.hasErrors()){
             return "common/user/loginForm";
         }
-        int rst = this.userService.findUserInfo(inVO);
-        if(rst == 0){
+        boolean isUser = this.userService.isUserInfo(inVO);
+        if(!isUser){
             result.addError(new FieldError("userInfo", "userPw", "사용자정보가 없습니다."));
+            return "common/user/loginForm";
         }
         return "common/user/loginForm";
     }
 
+    /**
+     * @discription 회원가입화면 이동
+     * @param model
+     * @return 회원가입화면
+     */
     @GetMapping("/register")
     public String register(Model model){
         model.addAttribute("userInfo", new UserVO());
         return "common/user/registerForm";
     }
 
+    /***
+     * @discription 회원가입처리
+     * @param inVO
+     * @param result 에러처리
+     * @return 로그인화면
+     * @throws Exception
+     */
+    @PostMapping("/register")
+    public String register(@Valid @ModelAttribute("userInfo") RegisterVO inVO, BindingResult result) throws Exception{
+        if(!inVO.getUserPw().equals(inVO.getUserPwCf())){
+            result.addError(new FieldError("userInfo", "userPwCf", "비밀번호와 다릅니다."));
+        }
+        if(result.hasErrors()){
+            return "common/user/registerForm";
+        }
+        int rst = this.userService.instUserInfo(inVO);
+        if(rst == 0){
+            result.addError(new FieldError("userInfo", "userId", "이미 등록된 아이디가 존재합니다."));
+            return "common/user/registerForm";
+        }
 
-    /*사용자 신청 처리*/
-    @PostMapping(value = "/instUserReqInfo")
-    public @ResponseBody UserRVO instUserReq(@RequestBody UserVO inVO) throws Exception {
-        UserRVO rvo = this.userService.instUserReqInfo(inVO);
-        return rvo;
+        return "redirect:/user/login";
     }
-    /*사용자신청허가(관리자)*/
-    @PostMapping(value = "/instUserInfo")
-    public @ResponseBody UserRVO instUserInfo(@RequestBody UserVO inVO) throws Exception {
-        UserRVO rvo = this.userService.instUserInfo(inVO);
-        return rvo;
-    }
+
 }

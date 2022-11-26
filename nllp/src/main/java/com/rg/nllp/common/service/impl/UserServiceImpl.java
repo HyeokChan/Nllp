@@ -2,10 +2,13 @@ package com.rg.nllp.common.service.impl;
 
 import com.rg.nllp.common.mapper.UserMapper;
 import com.rg.nllp.common.service.UserService;
+import com.rg.nllp.common.vo.user.LoginVO;
+import com.rg.nllp.common.vo.user.RegisterVO;
 import com.rg.nllp.common.vo.user.UserRVO;
 import com.rg.nllp.common.vo.user.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,34 +27,21 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
+    private final BCryptPasswordEncoder passwordEncoder;
     // 로그인 처리
     @Override
-    public int findUserInfo(UserVO inVO) throws Exception {
-        int rst = this.userMapper.findUserInfo(inVO);
+    public boolean isUserInfo(LoginVO inVO) throws Exception {
+        //inVO.setUserPw(passwordEncoder.encode(inVO.getUserPw()));
+        String userPw = this.userMapper.findUserInfo(inVO);
+        boolean isUser = passwordEncoder.matches(inVO.getUserPw(), userPw);
+        return isUser;
+    }
+    // 회원가입 처리
+    @Override
+    public int instUserInfo(RegisterVO inVO) throws Exception {
+        inVO.setUserPw(passwordEncoder.encode(inVO.getUserPw()));
+        int rst = this.userMapper.instUserInfo(inVO);
         return rst;
     }
-    /*사용자신청 처리*/
-    @Override
-    public UserRVO instUserReqInfo(UserVO inVO) throws Exception {
-        UserRVO rvo = new UserRVO();
-        log.info("inVO ::::: {}", inVO);
-        /*기 신청된 아이디 체크*/
-        int chkRst = this.userMapper.checkDupUserReqInfo(inVO);
-        if(chkRst > 0){
-            throw new Exception("이미 신청된 아이디입니다.");
-        }
-        int rst = this.userMapper.instUserReqInfo(inVO);
-        return rvo;
-    }
-    /*사용자신청허가(관리자)*/
-    @Override
-    public UserRVO instUserInfo(UserVO inVO) throws Exception {
-        UserRVO rvo = new UserRVO();
-        int instRst = this.userMapper.instUserInfo(inVO);
-        if(instRst > 0){
-            /*신청테이블 반영처리*/
-            this.userMapper.updtUserReqInfo(inVO);
-        }
-        return rvo;
-    }
+
 }

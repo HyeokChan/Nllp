@@ -31,3 +31,11 @@ comment on table tb_user_req is '사용자신청정보';
 select * from tb_user_req;
 
 select count(1) from tb_user_req where sgb_cd = '3550000' and user_id = 'enis0001'
+
+create sequence sq_user_key
+increment by 1
+start with 00000000001
+minvalue 00000000001
+maxvalue 99999999999
+nocycle
+nocache;
