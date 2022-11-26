@@ -3,13 +3,11 @@ package com.rg.nllp.operation.service.impl;
 import com.rg.nllp.operation.mapper.NllpMapper;
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
-import com.rg.nllp.operation.vo.NllpRVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

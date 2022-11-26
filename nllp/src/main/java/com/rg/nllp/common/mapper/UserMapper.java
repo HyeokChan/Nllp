@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
     /*사용자 체크*/
-    int checkUserInfo(UserVO inVO) throws Exception;
+    int findUserInfo(UserVO inVO) throws Exception;
     /*기 신청된 사용자 아이디 체크*/
     int checkDupUserReqInfo(UserVO inVO) throws Exception;
     /*사용자신청 처리*/

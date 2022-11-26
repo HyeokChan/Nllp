@@ -81,4 +81,4 @@ alter table tb_nllp_acb drop (nllp_acb_se_cd, bldg_ar, std_amt, std_yr, lotno_ro
 select *
 from tb_nllp_acb;
 
-
+alter table tb_nllp_acb modify updt_user_id varchar(50);

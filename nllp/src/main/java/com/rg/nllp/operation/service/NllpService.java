@@ -1,7 +1,6 @@
 package com.rg.nllp.operation.service;
 
 import com.rg.nllp.operation.vo.NllpDVO;
-import com.rg.nllp.operation.vo.NllpRVO;
 import com.rg.nllp.operation.vo.NllpVO;
 
 import java.util.List;

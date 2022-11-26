@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header" />
 <body>
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
 <div class="container">
-    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <div>
         <table class="table table-striped fs-xs">
             <thead>
@@ -22,13 +22,13 @@
                 <td th:text="${nllpInfo.landAr}"></td>
                 <td th:text="${nllpInfo.oalp}"></td>
                 <td>
-                    <a href="#" th:href="@{/nllp/nllpInfo/{id} (id=${nllpInfo.nllpAcbKey})}" class="btn btn-secondary fs-xs">상세</a>
+                    <a href="#" th:href="@{/nllp/findNllpInfo/{id} (id=${nllpInfo.nllpAcbKey})}" class="btn btn-secondary fs-xs">상세</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
+<div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

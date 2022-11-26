@@ -4,6 +4,10 @@ import com.rg.nllp.DefaultVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.ibatis.type.Alias;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * packageName    : com.rg.nllp.common.vo.user
@@ -19,9 +23,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Alias("userVO")
 public class UserVO extends DefaultVO {
-    private String sgbCd;
+    @NotBlank(message = "아이디를 입력해주세요")
     private String userId;
+    @NotBlank(message = "비밀번호를 입력해주세요")
     private String userPw;
     private String userNm;
+    private String notFoundUser;
 }

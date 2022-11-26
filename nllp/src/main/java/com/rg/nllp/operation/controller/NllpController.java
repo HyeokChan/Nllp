@@ -2,7 +2,6 @@ package com.rg.nllp.operation.controller;
 
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
-import com.rg.nllp.operation.vo.NllpRVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ public class NllpController {
      * @return 조회된 재산자료 목록, 재산자료 조회화면으로 이동
      * @throws Exception
      */
-    @GetMapping("/nllpList")
+    @GetMapping("/findNllpList")
     public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
         List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
@@ -51,7 +50,7 @@ public class NllpController {
      * @return 조회된 재산자료, 재산자료 상세화면으로 이동
      * @throws Exception
      */
-    @GetMapping("/nllpInfo/{itemId}")
+    @GetMapping("/findNllpInfo/{itemId}")
     public String findNllpInfo(@PathVariable("itemId") String nllpAcbKey, Model model) throws Exception{
         NllpVO inVO = new NllpVO();
         inVO.setNllpAcbKey(nllpAcbKey);
@@ -69,7 +68,7 @@ public class NllpController {
     @PostMapping("/updtNllpInfo")
     public String updtNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO) throws Exception{
         int rst = this.nllpService.updtNllpInfo(inVO);
-        return "redirect:/nllp/nllpList";
+        return "redirect:/nllp/findNllpList";
     }
 
     /**
@@ -81,7 +80,7 @@ public class NllpController {
     @PostMapping(value = "/deltNllpInfo")
     public String deltNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO) throws Exception {
         int rst = this.nllpService.deltNllpInfo(inVO);
-        return "redirect:/nllp/nllpList";
+        return "redirect:/nllp/findNllpList";
     }
 
     /***
@@ -89,8 +88,8 @@ public class NllpController {
      * @return 재산자료 등록화면
      * @throws Exception
      */
-    @GetMapping("/nllpInfo")
-    public String nllpInstForm(Model model) throws Exception {
+    @GetMapping("/instNllpInfo")
+    public String instNllpInfo(Model model) throws Exception {
         model.addAttribute("nllpInfo", new NllpVO());
         return "operation/nllp/nllpInfoInstForm";
     }
@@ -104,7 +103,7 @@ public class NllpController {
     @PostMapping("instNllpInfo")
     public String instNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO) throws Exception{
         String nllpAcbKey = this.nllpService.instNllpInfo(inVO);
-        return "redirect:/nllp/nllpInfo/" + nllpAcbKey;
+        return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
     }
 
 }

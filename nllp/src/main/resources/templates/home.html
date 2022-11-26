@@ -5,19 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div th:replace="fragments/bodyHeader :: bodyHeader" />
 <div class="container">
-    <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <div class="jumbotron">
         <h1>재산계약시스템</h1>
         <p class="lead">사용자</p>
         <p>
-            <a class="btn btn-lg btn-secondary" href="/members/new">회원 가입</a>
-            <a class="btn btn-lg btn-secondary" href="/members">회원 목록</a>
+            <a class="btn btn-lg btn-secondary" th:href="@{/user/login}">로그인</a>
+            <a class="btn btn-lg btn-secondary" href="/members">회원가입</a>
         </p>
         <p class="lead">재산</p>
         <p>
-            <a class="btn btn-lg btn-secondary" th:href="@{/nllp/nllpInfo}">재산 등록</a>
-            <a class="btn btn-lg btn-secondary" th:href="@{/nllp/nllpList}">재산 목록</a>
+            <a class="btn btn-lg btn-secondary" th:href="@{/nllp/instNllpInfo}">재산 등록</a>
+            <a class="btn btn-lg btn-secondary" th:href="@{/nllp/findNllpList}">재산 목록</a>
         </p>
         <p class="lead">계약</p>
         <p>
@@ -25,7 +25,7 @@
             <a class="btn btn-lg btn-secondary" href="/orders">계약 목록</a>
         </p>
     </div>
-    <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
+<div th:replace="fragments/footer :: footer" />
 </body>
 </html>

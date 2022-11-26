@@ -2,11 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rg.nllp.common.mapper.UserMapper">
     <!--사용자체크-->
-    <select id="checkUserInfo" parameterType="com.rg.nllp.common.vo.user.UserVO" resultType="int">
+    <select id="findUserInfo" parameterType="userVO" resultType="int">
         select count(1)
-          from c##chan.tb_user_info
-         where sgb_cd = #{sgbCd}
-           and user_id = #{userId}
+          from tb_user_info
+         where user_id = #{userId}
            and user_pw = #{userPw}
     </select>
     <!--기 신청된 사용자 아이디 체크-->

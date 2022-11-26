@@ -24,15 +24,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
-    /*로그인 처리*/
+    // 로그인 처리
     @Override
-    public UserRVO findUserInfo(UserVO inVO) throws Exception {
-        UserRVO rvo = new UserRVO();
-        int rst = this.userMapper.checkUserInfo(inVO);
-        if(rst < 1){
-            throw new Exception("등록된 사용자가 아닙니다.");
-        }
-        return rvo;
+    public int findUserInfo(UserVO inVO) throws Exception {
+        int rst = this.userMapper.findUserInfo(inVO);
+        return rst;
     }
     /*사용자신청 처리*/
     @Override

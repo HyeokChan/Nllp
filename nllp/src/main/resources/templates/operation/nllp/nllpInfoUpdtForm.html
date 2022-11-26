@@ -4,8 +4,8 @@
     <div th:replace="fragments/header :: header" />
 </head>
 <body>
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
 <div class="container">
-    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <form th:object="${nllpInfo}" method="post">
         <!-- id -->
         <input type="hidden" th:field="*{nllpAcbKey}" />
@@ -34,10 +34,10 @@
         <p class="mt-2">
             <button type="submit" th:formaction="@{/nllp/updtNllpInfo}" class="btn btn-secondary fs-xs">저장</button>
             <button type="submit" th:formaction="@{/nllp/deltNllpInfo}" class="btn btn-secondary fs-xs">삭제</button>
-            <a type="button" th:href="@{/nllp/nllpList}" class="btn btn-secondary small fs-xs">닫기</a>
+            <a type="button" th:href="@{/nllp/findNllpList}" class="btn btn-secondary small fs-xs">닫기</a>
         </p>
     </form>
-    <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
+<div th:replace="fragments/footer :: footer" />
 </body>
 </html>

@@ -1,15 +1,15 @@
 drop table tb_user_info;
 create table tb_user_info(
-    sgb_cd char(7) not null,
-    user_id varchar(10) not null,
-    user_pw varchar(30),
+    user_key char(11) not null,
+    user_id varchar(50) not null,
+    user_pw varchar(50),
     user_nm varchar(10),
-    init_user_id varchar(10) not null,
+    init_user_id varchar(50) not null,
     init_date date not null,
-    updt_user_id varchar(10) not null,
+    updt_user_id varchar(50) not null,
     updt_date date not null
 );    
-alter table tb_user_info add constraint tb_user_info_pk primary key (sgb_cd, user_id);    
+alter table tb_user_info add constraint tb_user_info_pk primary key (user_key);
 comment on table tb_user_info is '사용자정보';
 select * from tb_user_info;
 
