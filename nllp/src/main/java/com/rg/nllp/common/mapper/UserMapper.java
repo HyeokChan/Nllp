@@ -1,9 +1,8 @@
 package com.rg.nllp.common.mapper;
 
-import com.rg.nllp.common.vo.user.LoginVO;
 import com.rg.nllp.common.vo.user.RegisterVO;
-import com.rg.nllp.common.vo.user.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * packageName    : com.rg.nllp.common.controller
@@ -18,8 +17,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper {
-    // 사용자 체크
-    String findUserInfo(LoginVO inVO) throws Exception;
+    // 스프링시큐리티 사용자정보 조회
+    UserDetails findUserDetails(String userId);
     // 회원가입 처리
     int instUserInfo(RegisterVO inVO) throws Exception;
 }

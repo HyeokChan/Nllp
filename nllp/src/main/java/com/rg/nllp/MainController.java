@@ -1,6 +1,8 @@
 package com.rg.nllp;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,18 +23,19 @@ import javax.servlet.http.HttpSession;
 @Controller
 @Slf4j
 public class MainController {
-    /***
-     * @discription 로그인화면 이동
-     * @param
-     * @return 로그인화면
-     */
+
     @GetMapping("/")
     public String home() {
         return "redirect:/user/login";
     }
 
+    /***
+     * @description 메인화면으로 이동
+     * @return 메인화면
+     */
     @GetMapping("/main")
     public String main(){
         return "main";
     }
+
 }

@@ -2,10 +2,7 @@ package com.rg.nllp.common.service.impl;
 
 import com.rg.nllp.common.mapper.UserMapper;
 import com.rg.nllp.common.service.UserService;
-import com.rg.nllp.common.vo.user.LoginVO;
 import com.rg.nllp.common.vo.user.RegisterVO;
-import com.rg.nllp.common.vo.user.UserRVO;
-import com.rg.nllp.common.vo.user.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,13 +25,6 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
-    // 로그인 처리
-    @Override
-    public boolean isUserInfo(LoginVO inVO) throws Exception {
-        String userPw = this.userMapper.findUserInfo(inVO);
-        boolean isUser = passwordEncoder.matches(inVO.getUserPw(), userPw);
-        return isUser;
-    }
     // 회원가입 처리
     @Override
     public int instUserInfo(RegisterVO inVO) throws Exception {

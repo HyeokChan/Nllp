@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rg.nllp.common.mapper.UserMapper">
-    <!--사용자체크-->
-    <select id="findUserInfo" parameterType="loginVO" resultType="string">
-        SELECT user_pw
-          from tb_user_info
-         where user_id = #{userId}
+    <!--스프링시큐리티 사용자정보 조회-->
+    <select id="findUserDetails" parameterType="string" resultType="customUserDetails">
+        select user_id as username
+             , user_pw as password
+        from tb_user_info
+        where user_id = #{username}
     </select>
 
     <!--회원가입 처리-->
@@ -34,5 +35,7 @@
                             from tb_user_info
                            where user_Id = #{userId})
     </insert>
+
+
 
 </mapper>

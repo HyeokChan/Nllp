@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div class="header" th:fragment="bodyHeader">
-    <!--<ul class="nav nav-pills pull-right ms-3">
-        <li><a href="/">Home</a></li>
-    </ul>
-    <a href="/"><h3 class="text-muted ms-3">재산계약시스템</h3></a>-->
     <script th:src="@{/js/scripts.js}"></script>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -23,7 +19,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" th:href="@{/user/login}">로그아웃</a></li>
+                    <li><a class="dropdown-item" th:href="@{/user/logout}">로그아웃</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li><a class="dropdown-item" href="#!">설정</a></li>
                 </ul>

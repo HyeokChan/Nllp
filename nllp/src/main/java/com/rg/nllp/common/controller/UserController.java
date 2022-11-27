@@ -1,9 +1,7 @@
 package com.rg.nllp.common.controller;
 
 import com.rg.nllp.common.service.UserService;
-import com.rg.nllp.common.vo.user.LoginVO;
 import com.rg.nllp.common.vo.user.RegisterVO;
-import com.rg.nllp.common.vo.user.UserRVO;
 import com.rg.nllp.common.vo.user.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,10 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -37,36 +33,32 @@ public class UserController {
 
     /***
      * @description 로그인화면 이동
+     * @param error 로그인 실패시 실패 원인 구분
+     * @param exception 실패 메시지
      * @return 로그인화면
      */
     @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("userInfo", new UserVO());
+    public String login(Model model, @RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "exception", required = false) String exception){
+        model.addAttribute("userInfo", new UserVO())
+                .addAttribute("error", error)
+                .addAttribute("exception", exception);
         return "common/user/loginForm";
     }
 
     /***
-     * @description 로그인처리
-     * @param inVO
-     * @param result 검증 및 에러처리
-     * @param httpSession 세션처리
-     * @return 로그인 성공시 메인화면, 실패시 로그인화면
-     * @throws Exception
+     * @description 로그인처리 -> security
+     * @loginProcessingUrl /user/login
+     * @success response.sendRedirect("/main");
+     * @fail response.sendRedirect("/user/login?error="+error+"&exception="+ URLEncoder.encode(exception.getMessage(),"UTF-8"));
      */
-    @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("userInfo") LoginVO inVO, BindingResult result, HttpSession httpSession) throws Exception{
-        if(result.hasErrors()){
-            return "common/user/loginForm";
-        }
-        boolean isUser = this.userService.isUserInfo(inVO);
-        if(!isUser){
-            result.addError(new FieldError("userInfo", "userPw", "사용자정보가 없습니다."));
-            return "common/user/loginForm";
-        }
-        // 세션처리
-        httpSession.setAttribute("userId", inVO.getUserId());
-        return "redirect:/main";
-    }
+
+    /***
+     * @description 로그아웃처리 -> security
+     * @logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+     * @logoutSuccessUrl("/user/login")
+     */
+
 
     /**
      * @description 회원가입화면 이동
