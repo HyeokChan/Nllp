@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script th:src="@{/js/scripts.js}"></script>
 <div class="header" th:fragment="bodyHeader">
-    <script th:src="@{/js/scripts.js}"></script>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">재산계약시스템</a>
+        <a class="navbar-brand ps-3" th:href="@{/main}">재산계약시스템</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->

@@ -3,6 +3,7 @@ package com.rg.nllp;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 /**
  * packageName    : com.rg.nllp.common.vo.user
@@ -23,4 +24,5 @@ public class DefaultVO {
     private String initDate;
     private String updtUserId;
     private String updtDate;
+
 }

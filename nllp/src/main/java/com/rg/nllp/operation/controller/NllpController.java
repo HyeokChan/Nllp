@@ -3,13 +3,17 @@ package com.rg.nllp.operation.controller;
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
 import com.rg.nllp.operation.vo.NllpVO;
+import com.rg.nllp.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -24,10 +28,11 @@ import java.util.List;
  * 2022/10/26        hyeokchan       최초 생성
  */
 @Controller
-@RequestMapping("nllp")
+@RequestMapping("/nllp")
 @RequiredArgsConstructor
 @Slf4j
 public class NllpController {
+
     private final NllpService nllpService;
 
     /***
@@ -67,7 +72,8 @@ public class NllpController {
      * @throws Exception
      */
     @PostMapping("/updtNllpInfo")
-    public String updtNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO) throws Exception{
+    public String updtNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO, @AuthenticationPrincipal String username) throws Exception{
+
         int rst = this.nllpService.updtNllpInfo(inVO);
         return "redirect:/nllp/findNllpList";
     }
