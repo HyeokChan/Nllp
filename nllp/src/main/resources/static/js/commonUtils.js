@@ -34,3 +34,19 @@ CommonUtil.ajaxSend = function(url, json, callback){
         }
     });
 }
+
+/*toJson*/
+CommonUtil.convertFormToJSON = function (form) {
+    return $(form)
+        .serializeArray()
+        .reduce(function (json, { name, value }) {
+            json[name] = value;
+            return json;
+        }, {});
+}
+/*Form reset*/
+CommonUtil.resetForm = function (form){
+    form.each(function (){
+        this.reset();
+    })
+}

@@ -40,4 +40,6 @@ public class NllpVO extends DefaultVO {
     private String spclHo;
     private String ldcgCd;
     private String rmCn;
+    private String nllpAcbNoFrom;
+    private String nllpAcbNoTo;
 }

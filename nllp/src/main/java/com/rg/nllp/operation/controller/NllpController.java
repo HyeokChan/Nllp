@@ -45,9 +45,17 @@ public class NllpController {
     public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
         List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
+        model.addAttribute("nllpSearchInfo", inVO);
         model.addAttribute("nllpList", rList);
         return "operation/nllp/nllpListForm";
     }
+
+    @PostMapping("/findNllpList")
+    public @ResponseBody List<NllpDVO> findNllpList(@ModelAttribute("json") NllpVO inVO) throws Exception {
+        List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
+        return rList;
+    }
+
 
     /***
      * @description 재산자료 상세조회

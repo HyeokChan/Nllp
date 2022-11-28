@@ -20,8 +20,11 @@
              , a.rm_cn
           from tb_nllp_acb a
          where a.del_yn = 'N'
-        <if test="nllpAcbNo != '' and nllpAcbNo != null">
-           and a.nllp_acb_no = #{nllpAcbNo}
+        <if test="nllpAcbNoFrom != '' and nllpAcbNoFrom != null">
+           and a.nllp_acb_no <![CDATA[ >= ]]> #{nllpAcbNoFrom}
+        </if>
+        <if test="nllpAcbNoTo != '' and nllpAcbNoTo != null">
+            and a.nllp_acb_no <![CDATA[ <= ]]> #{nllpAcbNoTo}
         </if>
         <if test="lgoCd != '' and lgoCd != null">
            and a.lgo_cd = #{lgoCd}
