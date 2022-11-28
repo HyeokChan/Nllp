@@ -17,36 +17,25 @@ function setLayout(){
 
     dataTable = $(TAG_VAR.dataTableNllpAcb).DataTable( {
         data: [],
-        columns: [
-            { data: 'nllpAcbKey' },
-            { data: 'nllpAcbNo' },
-            { data: 'lgoCd' },
-            { data: 'lotnoAlAddr' },
-            { data: 'mtnSeCd' },
-            { data: 'mno' },
-            { data: 'sno' },
-            { data: 'landAr' },
-            { data: 'oalp' },
-            { data: 'oalpYr' },
-            { data: 'rmCn' }
-        ],
         columnDefs: [
-            { targets: 0, width: 200, visible: false},
-            { targets: 1, width: 200 },
-            { targets: 2, width: 200 },
-            { targets: 3, width: 600 },
-            { targets: 4, width: 200 },
-            { targets: 5, width: 200 },
-            { targets: 6, width: 200 },
-            { targets: 7, width: 200 },
-            { targets: 8, width: 200 },
-            { targets: 9, width: 200 },
-            { targets: 10, width: 600 }
+            { targets: 0, data: 'nllpAcbKey', width: 200, visible: false},
+            { targets: 1, data: 'nllpAcbNo', width: 200 },
+            { targets: 2, data: 'lgoCd', width: 200 },
+            { targets: 3, data: 'lotnoAlAddr', width: 600 },
+            { targets: 4, data: 'mtnSeCd', width: 200 },
+            { targets: 5, data: 'mno', width: 200 },
+            { targets: 6, data: 'sno', width: 200 },
+            { targets: 7, data: 'landAr', width: 200 },
+            { targets: 8, data: 'oalp', width: 200 },
+            { targets: 9, data: 'oalpYr', width: 200 },
+            { targets: 10, data: 'rmCn',  width: 600 }
         ] ,
         scrollY: 300,
         scrollX: true,
         paging: false,
-        searching: false
+        searching: false,
+        stateSave: true,
+
     } );
 }
 /***
