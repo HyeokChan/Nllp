@@ -25,7 +25,7 @@ public class NllpVO extends DefaultVO {
     private String nllpAcbKey;
     private String nllpAcbNo;
     private String lgoCd;
-    private String lvyTrgtNm;
+    private String nllpNm;
     private String landAr;
     private String oalp;
     private String oalpYr;

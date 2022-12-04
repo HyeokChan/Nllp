@@ -2,6 +2,7 @@ package com.rg.nllp.operation.controller;
 
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
+import com.rg.nllp.operation.vo.NllpInstVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import com.rg.nllp.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +11,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -58,6 +61,36 @@ public class NllpController {
     public @ResponseBody List<NllpDVO> findNllpList(@ModelAttribute("json") NllpVO inVO) throws Exception {
         List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
         return rList;
+    }
+
+    /***
+     * @description 재산자료 신규등록 화면으로 이동
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/moveNllpInfoInst")
+    public String moveNllpInfoInst(Model model) throws Exception {
+        NllpInstVO inVO = new NllpInstVO();
+        model.addAttribute("nllpInfo", inVO);
+        return "operation/nllp/nllpInfoInstForm";
+    }
+
+    /***
+     * @description 재산자료 등록처리
+     * @param inVO
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("instNllpInfo")
+    public String instNllpInfo(@Valid @ModelAttribute("nllpInfo") NllpInstVO inVO, BindingResult result) throws Exception{
+        log.info("result ::::: {}", result);
+        if(result.hasErrors()){
+            return "operation/nllp/nllpInfoInstForm";
+        }
+        return "operation/nllp/nllpInfoInstForm";
+//        String nllpAcbKey = this.nllpService.instNllpInfo(inVO);
+//        return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
     }
 
 
@@ -113,16 +146,6 @@ public class NllpController {
         return "operation/nllp/nllpInfoInstForm";
     }
 
-    /***
-     * @description 재산자료 등록처리
-     * @param inVO
-     * @return
-     * @throws Exception
-     */
-    @PostMapping("instNllpInfo")
-    public String instNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO) throws Exception{
-        String nllpAcbKey = this.nllpService.instNllpInfo(inVO);
-        return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
-    }
+
 
 }

@@ -8,7 +8,7 @@
              , a.nllp_acb_key
              , a.nllp_acb_no
              , a.lgo_cd
-             , a.lvy_trgt_nm
+             , a.nllp_nm
              , nvl(a.land_ar, 0) as land_ar
              , nvl(a.oalp, 0) as oalp
              , a.oalp_yr

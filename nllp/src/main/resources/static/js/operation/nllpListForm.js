@@ -53,6 +53,14 @@ function setLayout(){
             }
         },
         responsive: true,
+        footerCallback: function(){
+            var api = this.api();
+            var result = 0;
+            api.column(7, {page:'current'}).data().each(function(data){
+                result += parseFloat(data);
+            });
+            $(api.column(3).footer()).html(result.toLocaleString()+'원');
+        },
     } );
 }
 /***

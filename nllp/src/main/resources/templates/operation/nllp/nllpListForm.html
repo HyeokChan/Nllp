@@ -28,6 +28,7 @@
                                 </div>
                                 <div class="col-md-6 d-md-inline text-end">
                                     <button type="button" id="btnNllpListSearch" class="btn btn-primary btn-sm">조회</button>
+                                    <a type="button" id="btnNllpInfoInstMove" th:href="@{/nllp/moveNllpInfoInst}" class="btn btn-primary btn-sm">신규</a>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -113,6 +114,12 @@
                             </thead>
                             <tbody>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2" style="text-align:right;white-space:nowrap;">총 면적 : </th>
+                                    <th colspan="6" style="text-align:left;white-space:nowrap;"></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

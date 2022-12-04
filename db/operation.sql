@@ -82,3 +82,5 @@ select *
 from tb_nllp_acb;
 
 alter table tb_nllp_acb modify updt_user_id varchar(50);
+
+alter table tb_nllp_acb rename column lvy_trgt_nm to nllp_nm;
