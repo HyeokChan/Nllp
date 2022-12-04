@@ -38,18 +38,22 @@ public class NllpController {
     /***
      * @description 재산자료 목록조회
      * @param model
-     * @return 조회된 재산자료 목록, 재산자료 조회화면으로 이동
+     * @return 재산자료 조회화면으로 이동, 조회조건 VO 전달
      * @throws Exception
      */
     @GetMapping("/findNllpList")
     public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
-        List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
         model.addAttribute("nllpSearchInfo", inVO);
-        model.addAttribute("nllpList", rList);
         return "operation/nllp/nllpListForm";
     }
 
+    /***
+     * @description 재산자료 목록조회 datatables
+     * @param inVO
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/findNllpList")
     public @ResponseBody List<NllpDVO> findNllpList(@ModelAttribute("json") NllpVO inVO) throws Exception {
         List<NllpDVO> rList = this.nllpService.findNllpList(inVO);

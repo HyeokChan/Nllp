@@ -9,8 +9,8 @@
              , a.nllp_acb_no
              , a.lgo_cd
              , a.lvy_trgt_nm
-             , to_char(nvl(a.land_ar, 0), '999,999,999,999,999') as land_ar
-             , to_char(nvl(a.oalp, 0), '999,999,999,999,999') as oalp
+             , nvl(a.land_ar, 0) as land_ar
+             , nvl(a.oalp, 0) as oalp
              , a.oalp_yr
              , a.zip
              , a.stdg_cd
@@ -30,6 +30,7 @@
            and a.lgo_cd = #{lgoCd}
         </if>
         <if test="stdgCd != '' and stdgCd != null">
+           and a.stdg_cd = #{stdgCd}
            and a.stdg_cd = #{stdgCd}
         </if>
       order by a.nllp_acb_no asc

@@ -35,7 +35,7 @@ public class UserController {
      * @description 로그인화면 이동
      * @param error 로그인 실패시 실패 원인 구분
      * @param exception 실패 메시지
-     * @return 로그인화면
+     * @return 로그인화면으로 이동, 로그인 실패에 대한 에러 전달
      */
     @GetMapping("/login")
     public String login(Model model, @RequestParam(value = "error", required = false) String error,

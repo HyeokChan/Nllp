@@ -92,7 +92,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        재산자료목록 DataTables
+                        재산자료목록
                     </div>
                     <div class="card-body">
                         <table id="dataTableNllpAcb" class="dataTable-table hover compact nowrap row-border cell-border">
@@ -112,37 +112,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        재산자료목록
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                            <tr>
-                                <th>재산번호</th>
-                                <th>주소</th>
-                                <th>면적</th>
-                                <th>공시지가</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="nllpInfo : ${nllpList}">
-                                <td th:text="${nllpInfo.nllpAcbNo}">Tiger Nixon</td>
-                                <td th:text="${nllpInfo.lotnoAlAddr}">System Architect</td>
-                                <td th:text="${nllpInfo.landAr}">Edinburgh</td>
-                                <td th:text="${nllpInfo.oalp}">61</td>
-                                <td>
-                                    <a href="#" th:href="@{/nllp/findNllpInfo/{id} (id=${nllpInfo.nllpAcbKey})}" class="btn btn-secondary fs-xs">상세</a>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>

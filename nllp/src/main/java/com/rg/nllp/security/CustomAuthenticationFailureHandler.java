@@ -31,7 +31,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     /***
      * @description 로그인 실패 시 로그인 화면으로 리다이렉트
      * @param request
-     * @param response
+     * @param response 로그인화면으로 리다이렉트하면서, username, password에 따른 예외 전달 GET
      * @param exception
      * @throws IOException
      * @throws ServletException

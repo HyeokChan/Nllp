@@ -33,7 +33,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     /***
      * @description 로그인 성공 시 메인화면으로 리다이렉트
-     * @param request
+     * @param request 세션에 사용자계정 저장
      * @param response
      * @param authentication
      * @throws IOException

@@ -29,17 +29,28 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class CustomAuthenticationProvider implements AuthenticationProvider {
+    // 사용자정보 체크 서비스
     private final UserDetailsService userDetailsService;
+    // 암복호화 처리 클래스
     private final BCryptPasswordEncoder passwordEncoder;
+
+    /***
+     * @description 인증 처리 로직
+     * @param authentication 전달된 username(userId), password(userPw)에 대한 데이터 VO
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
         CustomUserDetails customUserDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(username);
+        // 넘겨받은 password와 암호화된 password 비교, 일치하지 않으면 예외처리
         if(!passwordEncoder.matches(password, customUserDetails.getPassword())){
             throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
         }
         List<GrantedAuthority> authorities = new ArrayList<>();
+        // 로그인 성공시 USER 권한 부여
         authorities.add(new SimpleGrantedAuthority("USER"));
         return new UsernamePasswordAuthenticationToken(username, password, authorities);
     }

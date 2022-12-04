@@ -41,21 +41,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/user/login", "/user/register", "/css/**", "/js/**", "/assets/**", "/nllp/findNllpList").permitAll()
+                .antMatchers("/", "/user/login", "/user/register", "/css/**", "/js/**", "/assets/**", "/nllp/findNllpList").permitAll() // 위 경로 호출들은 인증(로그인) 없이 허용
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/user/login")
-                .loginProcessingUrl("/user/login")
-                .usernameParameter("userId")
-                .passwordParameter("userPw")
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler)
+                .loginPage("/user/login") // 로그인 페이지를 열때, /user/login GET 호출 -> UserController에서 loginForm.html 호출
+                .loginProcessingUrl("/user/login")  // loginForm.html에서 로그인 버튼 클릭 시 /user/login POST 호출
+                .usernameParameter("userId")    // spring security 처리 시 username를 변수로 사용하는데 인자로 userId 사용
+                .passwordParameter("userPw")    // spring security 처리 시 password를 변수로 사용하는데 인자로 userPw 사용
+                .successHandler(authenticationSuccessHandler)   // 인증 성공시 호출되는 핸들러
+                .failureHandler(authenticationFailureHandler)   // 인증 실패시 호출되는 핸들러
                 .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                .logoutSuccessUrl("/user/login")
+                .logout()   // 로그아웃 설정
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))    // /user/logout이 호출되었을 때 로그아웃 처리, bodyHeader.html에서 호출
+                .logoutSuccessUrl("/user/login")    // 로그아웃 성공시 호출하는 경로, UserController에 의해 loginForm.html로 이동
                 .invalidateHttpSession(true);
     }
 }

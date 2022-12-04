@@ -24,6 +24,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CustomUserDetailServiceImpl implements UserDetailsService {
     private final UserMapper userMapper;
+
+    /***
+     * @description 인증 처리 로직 커스텀 서비스
+     * 사용자계정으로 비밀번호 조회
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDetails userDetails = this.userMapper.findUserDetails(username);
