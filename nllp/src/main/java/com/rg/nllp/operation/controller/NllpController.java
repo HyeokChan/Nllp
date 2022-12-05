@@ -3,6 +3,7 @@ package com.rg.nllp.operation.controller;
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
 import com.rg.nllp.operation.vo.NllpInstVO;
+import com.rg.nllp.operation.vo.NllpUpdtVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import com.rg.nllp.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -114,11 +115,14 @@ public class NllpController {
      * @return 재산자료 재조회
      * @throws Exception
      */
-    @PostMapping("/updtNllpInfo")
-    public String updtNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO, @AuthenticationPrincipal String username) throws Exception{
-
+    @PostMapping("/updtNllpInfo/{itemId}")
+    public String updtNllpInfo(@PathVariable("itemId") String nllpAcbKey, @Valid @ModelAttribute("nllpInfo") NllpUpdtVO inVO, BindingResult result) throws Exception{
+        if (result.hasErrors()) {
+            return "operation/nllp/nllpInfoUpdtForm";
+        }
+        inVO.setNllpAcbKey(nllpAcbKey);
         int rst = this.nllpService.updtNllpInfo(inVO);
-        return "redirect:/nllp/findNllpList";
+        return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
     }
 
     /**

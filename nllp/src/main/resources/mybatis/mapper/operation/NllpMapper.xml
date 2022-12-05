@@ -124,10 +124,20 @@
     </select>
 
     <!--기초자료 수정-->
-    <update id="updtNllpInfo" parameterType="nllpVO">
+    <update id="updtNllpInfo" parameterType="nllpUpdtVO">
         update tb_nllp_acb
-           set land_ar = nvl(#{landAr}, 0)
+           set lotno_bac_addr = #{lotnoBacAddr}
+             , lotno_daddr = #{lotnoDaddr}
+             , mtn_se_cd = #{mtnSeCd}
+             , mno = #{mno}
+             , sno = #{sno}
+             , land_ar = nvl(#{landAr}, 0)
+             , oalp_yr = #{oalpYr}
              , oalp = nvl(#{oalp}, 0)
+             , lgo_cd = #{lgoCd}
+             , ldcg_cd = #{ldcgCd}
+             , nllp_nm = #{nllpNm}
+             , rm_cn = #{rmCn}
              , updt_user_id = #{updtUserId}
              , updt_date = sysdate
          where nllp_acb_key = #{nllpAcbKey}

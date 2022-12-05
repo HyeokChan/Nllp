@@ -22,16 +22,17 @@
                         <form th:object="${nllpInfo}" method="post">
                             <div class="row">
                                 <div class="col-md-6 d-md-inline">
-                                    <button type="button" id="btnNllpInfoInstInit" class="btn btn-secondary btn-sm">초기화</button>
+                                    <button type="button" id="btnNllpInfoUpdtInit" class="btn btn-secondary btn-sm">초기화</button>
                                 </div>
                                 <div class="col-md-6 d-md-inline text-end">
-<!--                                    <button type="submit" id="btnNllpInfoInst" th:formaction="@{/nllp/updtNllpInfo/(nllpAcbKey)}" class="btn btn-primary btn-sm">저장</button>-->
+                                    <button type="submit" id="btnNllpInfoUpdt" th:formaction="@{/nllp/updtNllpInfo/{nllpAcbKey} (nllpAcbKey = ${nllpInfo.nllpAcbKey})}" class="btn btn-primary btn-sm">저장</button>
+                                    <a type="text" id="btnNllpInfoUpdtClose" th:href="@{/nllp/findNllpList}" class="btn btn-primary btn-sm">닫기</a>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="form-group col-md-3">
                                     <label th:for="nllpAcbNo" class="d-inline">재산번호</label>
-                                    <input type="text" th:field="*{nllpAcbNo}" class="form-control fs-s d-md-inline" disabled/>
+                                    <input type="text" th:field="*{nllpAcbNo}" class="form-control fs-s d-md-inline" readonly/>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -95,13 +96,13 @@
                             <div class="row mt-2">
                                 <div class="form-group col-md-3">
                                     <label th:for="lgoCd">소관청</label>
-                                    <input type="text" th:field="*{lgoCd}" class="form-control fs-s" placeholder="소관청을 입력하세요" disabled
+                                    <input type="text" th:field="*{lgoCd}" class="form-control fs-s" placeholder="소관청을 입력하세요" readonly
                                            th:classappend="${#fields.hasErrors('lgoCd')} ? 'border-danger'"/>
                                     <p th:if="${#fields.hasErrors('lgoCd')}" th:errors="*{lgoCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="ldcgCd">지목</label>
-                                    <input type="text" th:field="*{ldcgCd}" class="form-control fs-s" placeholder="지목을 입력하세요" disabled
+                                    <input type="text" th:field="*{ldcgCd}" class="form-control fs-s" placeholder="지목을 입력하세요" readonly
                                            th:classappend="${#fields.hasErrors('ldcgCd')} ? 'border-danger'"/>
                                     <p th:if="${#fields.hasErrors('ldcgCd')}" th:errors="*{ldcgCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>

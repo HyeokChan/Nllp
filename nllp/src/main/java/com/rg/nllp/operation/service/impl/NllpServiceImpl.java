@@ -5,6 +5,7 @@ import com.rg.nllp.operation.mapper.NllpMapper;
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
 import com.rg.nllp.operation.vo.NllpInstVO;
+import com.rg.nllp.operation.vo.NllpUpdtVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,7 +62,7 @@ public class NllpServiceImpl implements NllpService {
     }
     // 재산자료 수정처리
     @Override
-    public int updtNllpInfo(NllpVO inVO) throws Exception {
+    public int updtNllpInfo(NllpUpdtVO inVO) throws Exception {
         int rst = this.nllpMapper.updtNllpInfo(inVO);
         if (rst == 0) {
             throw new Exception("자료 수정에 실패했습니다.");

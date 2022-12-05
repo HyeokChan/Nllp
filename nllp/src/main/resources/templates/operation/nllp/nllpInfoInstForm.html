@@ -26,12 +26,13 @@
                                 </div>
                                 <div class="col-md-6 d-md-inline text-end">
                                     <button type="submit" id="btnNllpInfoInst" th:formaction="@{/nllp/instNllpInfo}" class="btn btn-primary btn-sm">저장</button>
+                                    <a type="text" id="btnNllpInfoInstClose" th:href="@{/nllp/findNllpList}" class="btn btn-primary btn-sm">닫기</a>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="form-group col-md-3">
                                     <label th:for="nllpAcbNo" class="d-inline">재산번호</label>
-                                    <input type="text" value="000000" class="form-control fs-s d-md-inline" disabled/>
+                                    <input type="text" value="000000" class="form-control fs-s d-md-inline" readonly/>
                                 </div>
                             </div>
                             <div class="row mt-2">

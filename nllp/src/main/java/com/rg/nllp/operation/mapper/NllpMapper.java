@@ -2,6 +2,7 @@ package com.rg.nllp.operation.mapper;
 
 import com.rg.nllp.operation.vo.NllpDVO;
 import com.rg.nllp.operation.vo.NllpInstVO;
+import com.rg.nllp.operation.vo.NllpUpdtVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -22,12 +23,13 @@ import java.util.List;
 public interface NllpMapper {
     // 기초자료토지 목록조회
     List<NllpDVO> findNllpList(NllpVO inVO) throws Exception;
+    /*기초자료 등록*/
+    int instNllpInfo(NllpInstVO inVO) throws Exception;
     // 기초자료토지 상세조회
     NllpDVO findNllpInfo(NllpVO inVO) throws Exception;
     // 기초자료 수정
-    int updtNllpInfo(NllpVO inVO) throws Exception;
-    /*기초자료 등록*/
-    int instNllpInfo(NllpInstVO inVO) throws Exception;
+    int updtNllpInfo(NllpUpdtVO inVO) throws Exception;
+
 
     /*기초자료 삭제*/
     int deltNllpInfo(NllpVO inVO) throws Exception;
