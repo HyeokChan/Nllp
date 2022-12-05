@@ -73,8 +73,7 @@ public class NllpController {
     public String moveNllpInfoInst(Model model) throws Exception {
         NllpInstVO inVO = new NllpInstVO();
         model.addAttribute("nllpInfo", inVO);
-//        return "operation/nllp/nllpInfoInstForm";
-        return "redirect:/nllp/findNllpInfo/" + "20220000014";
+        return "operation/nllp/nllpInfoInstForm";
     }
 
     /***
