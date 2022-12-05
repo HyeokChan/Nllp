@@ -1,6 +1,7 @@
 package com.rg.nllp.operation.service;
 
 import com.rg.nllp.operation.vo.NllpDVO;
+import com.rg.nllp.operation.vo.NllpInstVO;
 import com.rg.nllp.operation.vo.NllpVO;
 
 import java.util.List;
@@ -21,10 +22,11 @@ public interface NllpService {
     List<NllpDVO> findNllpList(NllpVO inVO) throws Exception;
     // 재산자료 상세조회
     NllpDVO findNllpInfo(NllpVO inVO) throws Exception;
+    // 재산자료 등록처리
+    String instNllpInfo(NllpInstVO inVO) throws Exception;
     // 재산자료 수정처리
     int updtNllpInfo(NllpVO inVO) throws Exception;
     // 재산자료 삭제처리
     int deltNllpInfo(NllpVO inVO) throws Exception;
-    // 재산자료 등록처리
-    String instNllpInfo(NllpVO inVO) throws Exception;
+
 }

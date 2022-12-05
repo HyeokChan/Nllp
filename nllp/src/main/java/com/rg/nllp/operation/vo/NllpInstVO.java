@@ -28,10 +28,11 @@ import javax.validation.constraints.Size;
 @ToString
 @Alias("nllpInstVO")
 public class NllpInstVO extends DefaultVO {
+    private String nllpAcbKey;
     @NotBlank(message = "기본주소를 입력해주세요")
     @Size(max = 300, message = "기본주소 길이를 확인해주세요(300)")
     private String lotnoBacAddr;
-    @Max(value = 300, message = "상세주소 길이를 확인해주세요(300)")
+    @Size(max = 300, message = "상세주소 길이를 확인해주세요(300)")
     private String lotnoDaddr;
     @NotBlank(message = "산을 입력해주세요")
     @Size(max = 2, message = "산 길이를 확인해주세요(2)")
@@ -59,4 +60,9 @@ public class NllpInstVO extends DefaultVO {
     private String nllpNm;
     @Size(max = 4000, message = "비고 길이를 확인해주세요(4000)")
     private String rmCn;
+    private String zip;
+    private String nllpAcbNo;
+    private String stdgCd;
+    private String spclDg;
+    private String spclHo;
 }

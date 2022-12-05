@@ -73,7 +73,8 @@ public class NllpController {
     public String moveNllpInfoInst(Model model) throws Exception {
         NllpInstVO inVO = new NllpInstVO();
         model.addAttribute("nllpInfo", inVO);
-        return "operation/nllp/nllpInfoInstForm";
+//        return "operation/nllp/nllpInfoInstForm";
+        return "redirect:/nllp/findNllpInfo/" + "20220000014";
     }
 
     /***
@@ -84,13 +85,11 @@ public class NllpController {
      */
     @PostMapping("instNllpInfo")
     public String instNllpInfo(@Valid @ModelAttribute("nllpInfo") NllpInstVO inVO, BindingResult result) throws Exception{
-        log.info("result ::::: {}", result);
         if(result.hasErrors()){
             return "operation/nllp/nllpInfoInstForm";
         }
-        return "operation/nllp/nllpInfoInstForm";
-//        String nllpAcbKey = this.nllpService.instNllpInfo(inVO);
-//        return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
+        String nllpAcbKey = this.nllpService.instNllpInfo(inVO);
+        return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
     }
 
 

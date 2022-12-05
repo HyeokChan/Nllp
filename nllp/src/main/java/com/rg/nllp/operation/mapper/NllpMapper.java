@@ -1,6 +1,7 @@
 package com.rg.nllp.operation.mapper;
 
 import com.rg.nllp.operation.vo.NllpDVO;
+import com.rg.nllp.operation.vo.NllpInstVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -26,7 +27,7 @@ public interface NllpMapper {
     // 기초자료 수정
     int updtNllpInfo(NllpVO inVO) throws Exception;
     /*기초자료 등록*/
-    int instNllpInfo(NllpVO inVO) throws Exception;
+    int instNllpInfo(NllpInstVO inVO) throws Exception;
 
     /*기초자료 삭제*/
     int deltNllpInfo(NllpVO inVO) throws Exception;

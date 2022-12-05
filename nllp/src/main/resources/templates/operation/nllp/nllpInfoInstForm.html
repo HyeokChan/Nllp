@@ -39,13 +39,13 @@
                                     <label th:for="lotnoBacAddr">기본주소</label>
                                     <input type="text" th:field="*{lotnoBacAddr}" class="form-control fs-s" placeholder="기본주소를 입력하세요"
                                            th:classappend="${#fields.hasErrors('lotnoBacAddr')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('lotnoBacAddr')}" th:errors="*{lotnoBacAddr}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('lotnoBacAddr')}" th:errors="*{lotnoBacAddr}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="mtnSeCd">산</label>
                                     <input type="text" th:field="*{mtnSeCd}" class="form-control fs-s" placeholder="산을 입력하세요"
                                            th:classappend="${#fields.hasErrors('mtnSeCd')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('mtnSeCd')}" th:errors="*{mtnSeCd}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('mtnSeCd')}" th:errors="*{mtnSeCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -53,19 +53,19 @@
                                     <label th:for="lotnoDaddr">상세주소</label>
                                     <input type="text" th:field="*{lotnoDaddr}" class="form-control fs-s" placeholder="상세주소를 입력하세요"
                                     th:classappend="${#fields.hasErrors('lotnoDaddr')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('lotnoDaddr')}" th:errors="*{lotnoDaddr}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('lotnoDaddr')}" th:errors="*{lotnoDaddr}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="mno">본번</label>
                                     <input type="text" th:field="*{mno}" class="form-control fs-s" placeholder="본번을 입력하세요"
                                            th:classappend="${#fields.hasErrors('mno')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('mno')}" th:errors="*{mno}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('mno')}" th:errors="*{mno}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="sno">부번</label>
                                     <input type="text" th:field="*{sno}" class="form-control fs-s" placeholder="부번을 입력하세요"
                                            th:classappend="${#fields.hasErrors('sno')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('sno')}" th:errors="*{sno}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('sno')}" th:errors="*{sno}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -73,19 +73,19 @@
                                     <label th:for="landAr">면적</label>
                                     <input type="number" th:field="*{landAr}" class="form-control fs-s" placeholder="면적을 입력하세요"
                                            th:classappend="${#fields.hasErrors('landAr')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('landAr')}" th:errors="*{landAr}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('landAr')}" th:errors="*{landAr}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="oalpYr">공시지가연도</label>
                                     <input type="number" th:field="*{oalpYr}" class="form-control fs-s" placeholder="공시지가연도를 입력하세요"
                                            th:classappend="${#fields.hasErrors('oalpYr')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('oalpYr')}" th:errors="*{oalpYr}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('oalpYr')}" th:errors="*{oalpYr}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="oalp">공시지가</label>
                                     <input type="number" th:field="*{oalp}" class="form-control fs-s" placeholder="공시지가를 입력하세요"
                                            th:classappend="${#fields.hasErrors('oalp')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('oalp')}" th:errors="*{oalp}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('oalp')}" th:errors="*{oalp}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>공시지가조회</label>
@@ -97,13 +97,13 @@
                                     <label th:for="lgoCd">소관청</label>
                                     <input type="text" th:field="*{lgoCd}" class="form-control fs-s" placeholder="소관청을 입력하세요"
                                            th:classappend="${#fields.hasErrors('lgoCd')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('lgoCd')}" th:errors="*{lgoCd}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('lgoCd')}" th:errors="*{lgoCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="ldcgCd">지목</label>
                                     <input type="text" th:field="*{ldcgCd}" class="form-control fs-s" placeholder="지목을 입력하세요"
                                            th:classappend="${#fields.hasErrors('ldcgCd')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('ldcgCd')}" th:errors="*{ldcgCd}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('ldcgCd')}" th:errors="*{ldcgCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -111,7 +111,7 @@
                                     <label th:for="nllpNm">재산명</label>
                                     <input type="text" th:field="*{nllpNm}" class="form-control fs-s" placeholder="재산명을 입력하세요"
                                            th:classappend="${#fields.hasErrors('nllpNm')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('nllpNm')}" th:errors="*{nllpNm}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('nllpNm')}" th:errors="*{nllpNm}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
 
                             </div>
@@ -120,7 +120,7 @@
                                     <label th:for="rmCn">비고내용</label>
                                     <textarea th:field="*{rmCn}" class="form-control fs-s" placeholder="비고내용을 입력하세요" aria-label="With textarea"
                                               th:classappend="${#fields.hasErrors('rmCn')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('rmCn')}" th:errors="*{rmCn}" class="text-danger">Incorrect data</p>
+                                    <p th:if="${#fields.hasErrors('rmCn')}" th:errors="*{rmCn}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                             </div>
                             <input type="hidden" th:name="initUserId" th:value="${session.userId}">

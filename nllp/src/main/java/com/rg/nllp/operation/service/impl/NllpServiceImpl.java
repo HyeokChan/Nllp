@@ -1,8 +1,10 @@
 package com.rg.nllp.operation.service.impl;
 
+import com.rg.nllp.UtilsClass;
 import com.rg.nllp.operation.mapper.NllpMapper;
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
+import com.rg.nllp.operation.vo.NllpInstVO;
 import com.rg.nllp.operation.vo.NllpVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,12 +28,27 @@ import java.util.List;
 @Slf4j
 public class NllpServiceImpl implements NllpService {
     private final NllpMapper nllpMapper;
+    private final UtilsClass utils;
 
     // 재산자료 목록조회
     @Override
     public List<NllpDVO> findNllpList(NllpVO inVO) throws Exception {
         List<NllpDVO> rList = this.nllpMapper.findNllpList(inVO);
         return rList;
+    }
+    // 재산자료 등록처리
+    @Override
+    public String instNllpInfo(NllpInstVO inVO) throws Exception {
+        if("".equals(inVO.getNllpNm())){
+            String nllpNm = utils.blankConcat(utils.nvl(inVO.getLotnoBacAddr(), "").trim(), utils.nvl(inVO.getLotnoDaddr(), "").trim());
+            inVO.setNllpNm(nllpNm);
+        }
+        int rst = this.nllpMapper.instNllpInfo(inVO);
+        if (rst == 0) {
+            throw new Exception("자료 등록에 실패했습니다.");
+        }
+        String nllpAcbKey = inVO.getNllpAcbKey();
+        return nllpAcbKey;
     }
     // 재산자료 상세조회
     @Override
@@ -60,15 +77,6 @@ public class NllpServiceImpl implements NllpService {
         }
         return rst;
     }
-    // 재산자료 등록처리
-    @Override
-    public String instNllpInfo(NllpVO inVO) throws Exception {
-        int rst = this.nllpMapper.instNllpInfo(inVO);
-        if (rst == 0) {
-            throw new Exception("자료 등록에 실패했습니다.");
-        }
-        String nllpAcbKey = inVO.getNllpAcbKey();
-        return nllpAcbKey;
-    }
+
 
 }

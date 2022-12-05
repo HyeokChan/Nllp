@@ -36,14 +36,72 @@
       order by a.nllp_acb_no asc
     </select>
 
+    <!--재산자료 등록-->
+    <insert id="instNllpInfo" parameterType="nllpInstVO">
+        <selectKey resultType="string" keyProperty="nllpAcbKey" order="BEFORE">
+            select fn_crt_acb_key('nllpAcb')
+            from dual
+        </selectKey>
+        insert
+        into tb_nllp_acb(
+        nllp_acb_key
+        , nllp_acb_no
+        , lgo_cd
+        , nllp_nm
+        , land_ar
+        , oalp
+        , oalp_yr
+        , zip
+        , stdg_cd
+        , lotno_bac_addr
+        , lotno_daddr
+        , mtn_se_cd
+        , mno
+        , sno
+        , spcl_dg
+        , spcl_ho
+        , ldcg_cd
+        , rm_cn
+        , init_user_id
+        , init_date
+        , updt_user_id
+        , updt_date
+        )
+        values (
+        #{nllpAcbKey}
+        , (select lpad(nvl(max(t1.nllp_acb_no), 0)+1, 6, '0')
+        from tb_nllp_acb t1)
+        , #{lgoCd}
+        , #{nllpNm}
+        , nvl(#{landAr}, 0)
+        , nvl(#{oalp}, 0)
+        , #{oalpYr}
+        , #{zip}
+        , #{stdgCd}
+        , #{lotnoBacAddr}
+        , #{lotnoDaddr}
+        , #{mtnSeCd}
+        , #{mno}
+        , #{sno}
+        , #{spclDg}
+        , #{spclHo}
+        , #{ldcgCd}
+        , #{rmCn}
+        , #{initUserId}
+        , sysdate
+        , #{updtUserId}
+        , sysdate
+        )
+    </insert>
+
     <!--기초자료토지 상세조회-->
     <select id="findNllpInfo" parameterType="nllpVO" resultType="nllpDVO">
         select a.nllp_acb_key
              , a.nllp_acb_no
              , a.lgo_cd
-             , a.lvy_trgt_nm
-             , a.land_ar
-             , a.oalp
+             , a.nllp_nm
+             , nvl(a.land_ar, 0) as land_ar
+             , nvl(a.oalp, 0) as oalp
              , a.oalp_yr
              , a.zip
              , a.stdg_cd
@@ -82,63 +140,7 @@
          where nllp_acb_key = #{nllpAcbKey}
     </update>
 
-    <!--기초자료 등록-->
-    <insert id="instNllpInfo" parameterType="com.rg.nllp.operation.vo.NllpVO">
-        <selectKey resultType="string" keyProperty="nllpAcbKey" order="BEFORE">
-            select fn_crt_acb_key('nllpAcb')
-              from dual
-        </selectKey>
-        insert
-          into tb_nllp_acb(
-               nllp_acb_key
-             , nllp_acb_no
-             , lgo_cd
-             , lvy_trgt_nm
-             , land_ar
-             , oalp
-             , oalp_yr
-             , zip
-             , stdg_cd
-             , lotno_bac_addr
-             , lotno_daddr
-             , mtn_se_cd
-             , mno
-             , sno
-             , spcl_dg
-             , spcl_ho
-             , ldcg_cd
-             , rm_cn
-             , init_user_id
-             , init_date
-             , updt_user_id
-             , updt_date
-          )
-          values (
-               #{nllpAcbKey}
-             , (select lpad(nvl(max(t1.nllp_acb_no), 0)+1, 6, '0')
-                  from tb_nllp_acb t1)
-             , #{lgoCd}
-             , #{lvyTrgtNm}
-             , nvl(#{landAr}, 0)
-             , nvl(#{oalp}, 0)
-             , #{oalpYr}
-             , #{zip}
-             , #{stdgCd}
-             , #{lotnoBacAddr}
-             , #{lotnoDaddr}
-             , #{mtnSeCd}
-             , #{mno}
-             , #{sno}
-             , #{spclDg}
-             , #{spclHo}
-             , #{ldcgCd}
-             , #{rmCn}
-             , #{initUserId}
-             , sysdate
-             , #{updtUserId}
-             , sysdate
-          )
-    </insert>
+
 
 
 

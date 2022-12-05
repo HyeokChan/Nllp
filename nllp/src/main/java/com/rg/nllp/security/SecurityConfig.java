@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/user/login", "/user/register", "/css/**", "/js/**", "/assets/**", "/nllp/findNllpList", "/nllp/moveNllpInfoInst").permitAll() // 위 경로 호출들은 인증(로그인) 없이 허용
+                .antMatchers("/", "/user/login", "/user/register", "/css/**", "/js/**", "/assets/**", "/nllp/moveNllpInfoInst", "/nllp/instNllpInfo").permitAll() // 위 경로 호출들은 인증(로그인) 없이 허용
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

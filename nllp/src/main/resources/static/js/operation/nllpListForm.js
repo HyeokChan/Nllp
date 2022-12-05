@@ -2,7 +2,7 @@
 TAG_VAR = {
     "btnNllpListSearch" : "#btnNllpListSearch",
     "btnNllpListInit" : "#btnNllpListInit",
-    "dataTableNllpAcb" : "#dataTableNllpAcb",
+    "datatableNllpAcb" : "#datatableNllpAcb",
     "nllpSearchForm" : "#nllpSearchForm",
 };
 var dataTable = {};
@@ -15,7 +15,7 @@ $(document).ready(function(){
 // 화면세팅
 function setLayout(){
     // 데이터테이블 설정
-    dataTable = $(TAG_VAR.dataTableNllpAcb).DataTable( {
+    dataTable = $(TAG_VAR.datatableNllpAcb).DataTable( {
         data: [],
         columnDefs: [
             { targets: 0, data: 'nllpAcbKey', width: 0, visible: false},
@@ -66,23 +66,30 @@ function setLayout(){
 /***
  * 컨트롤러
  */
-// 조회버튼 클릭
+// 조회버튼 클릭 이벤트
 function fn_onClickNllpListSearchBtn(){
     var json = CommonUtil.convertFormToJSON($(TAG_VAR.nllpSearchForm));
     return CommonUtil.ajaxSend("/nllp/findNllpList", json, fn_findNllpListCallback);
 }
-// 조회버튼 클릭 콜백
+// 조회버튼 클릭 콜백 이벤트
 function fn_findNllpListCallback(result){
     // 조회된 데이터로 새로 그리기
     dataTable.clear().draw();
     dataTable.rows.add(result).draw();
 }
-// 초기화버튼 클릭
+// 초기화버튼 클릭 이벤트
 function fn_onClickNllpListInitBtn(){
     // form 초기화
     CommonUtil.resetForm($(TAG_VAR.nllpSearchForm));
     // 데이터테이블 초기화
     dataTable.clear().draw();
+}
+// 데이터테이블 더블클릭 이벤트
+function fn_onClickNllpAcbDatatable(){
+    var rowData = $(TAG_VAR.datatableNllpAcb).DataTable().row($(this)).data();
+    var nllpAcbKey = rowData.nllpAcbKey;
+    // GET 방식 호출
+    location.href = "/nllp/findNllpInfo/" + nllpAcbKey;
 }
 
 /***
@@ -93,4 +100,6 @@ function setEventListener(){
     $(TAG_VAR.btnNllpListSearch).on("click", fn_onClickNllpListSearchBtn);
     // 초기화버튼클릭
     $(TAG_VAR.btnNllpListInit).on("click", fn_onClickNllpListInitBtn);
+    // 데이터테이블 더블클릭 이벤트
+    $(TAG_VAR.datatableNllpAcb).on('dblclick', 'tbody tr', fn_onClickNllpAcbDatatable)
 }
