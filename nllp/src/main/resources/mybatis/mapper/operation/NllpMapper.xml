@@ -143,16 +143,11 @@
          where nllp_acb_key = #{nllpAcbKey}
     </update>
 
-    <!--기초자료 삭제-->
+    <!--재산자료 삭제-->
     <update id="deltNllpInfo" parameterType="nllpVO">
         update tb_nllp_acb
            set del_yn = 'Y'
          where nllp_acb_key = #{nllpAcbKey}
     </update>
-
-
-
-
-
 
 </mapper>

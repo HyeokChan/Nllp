@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header" />
+    <script th:src="@{/js/common/codeInfoInstForm.js}"></script>
+    <script th:src="@{/js/commonUtils.js}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+</head>
+<body class="sb-nav-fixed">
+<div th:replace="fragments/bodyHeader :: bodyHeader"/>
+<div id="layoutSidenav">
+    <div th:replace="fragments/sideBar :: sideBar"/>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="">시스템관리</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/main}">Main</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);" onclick="$('#collapseCode').slideToggle();">코드관리</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/code/findCodeList}">목록조회</a></li>
+                    <li class="breadcrumb-item active">신규등록</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form id="codeInstForm" th:object="${codeInfo}" method="post">
+                            <div class="row">
+                                <div class="col-md-6 d-md-inline">
+                                    <button type="button" id="btnCodeInfoInstInit" class="btn btn-secondary btn-sm">초기화</button>
+                                </div>
+                                <div class="col-md-6 d-md-inline text-end">
+                                    <button type="submit" id="btnCodeInfoInst" th:formaction="@{/code/instCodeInfo}" class="btn btn-primary btn-sm">저장</button>
+                                    <a type="text" id="btnCodeInfoInstClose" th:href="@{/code/findCodeList}" class="btn btn-primary btn-sm">닫기</a>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="form-group col-md-4">
+                                    <label th:for="cdSeNm">코드구분</label>
+                                    <input type="text" th:field="*{cdSeNm}" class="form-control fs-s" placeholder="코드구분을 입력하세요"
+                                           th:classappend="${#fields.hasErrors('cdSeNm')} ? 'border-danger'"/>
+                                    <p th:if="${#fields.hasErrors('cdSeNm')}" th:errors="*{cdSeNm}" class="text-danger fs-s">Incorrect data</p>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label th:for="cdNm">코드명</label>
+                                    <input type="text" th:field="*{cdNm}" class="form-control fs-s" placeholder="코드명을 입력하세요"
+                                           th:classappend="${#fields.hasErrors('cdNm')} ? 'border-danger'"/>
+                                    <p th:if="${#fields.hasErrors('cdNm')}" th:errors="*{cdNm}" class="text-danger fs-s">Incorrect data</p>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label th:for="useYn">사용여부</label>
+                                    <input type="text" th:field="*{useYn}" class="form-control fs-s" placeholder="사용여부를 입력하세요"
+                                           th:classappend="${#fields.hasErrors('useYn')} ? 'border-danger'"/>
+                                    <p th:if="${#fields.hasErrors('useYn')}" th:errors="*{useYn}" class="text-danger fs-s">Incorrect data</p>
+                                </div>
+                            </div>
+                            <input type="hidden" th:name="initUserId" th:value="${session.userId}">
+                            <input type="hidden" th:name="updtUserId" th:value="${session.userId}">
+                        </form>
+                        <form id="dtlCodeInstForm" method="post">
+                            <div class="row mt-4">
+                                <div class="form-group col-md-4">
+                                    <label>추가상세코드</label>
+                                    <input type="text" name="dtlCdId" class="form-control fs-s" placeholder="추가상세코드를 입력하세요"/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>추가상세코드명</label>
+                                    <input type="text" name="dtlCdNm" class="form-control fs-s" placeholder="추가상세코드명을 입력하세요"/>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="mt-2">
+                            <div class="row">
+                                <div class="col-md-6 d-md-inline">
+                                    <label>상세코드목록</label>
+                                </div>
+                                <div class="col-md-6 d-md-inline text-end">
+                                    <button type="button" id="btnDtlCodeInst" class="btn btn-success btn-sm">추가</button>
+                                    <button type="button" id="btnDtlCodeDelt" class="btn btn-success btn-sm">삭제</button>
+                                </div>
+                            </div>
+                            <table id="datatableDtlCode" class="dataTable-table hover compact nowrap row-border cell-border">
+                                <thead>
+                                <tr>
+                                    <th>상세코드ID</th>
+                                    <th>상세코드명</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div th:replace="fragments/footer :: footer"/>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+</body>
+</html>

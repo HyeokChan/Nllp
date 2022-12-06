@@ -26,6 +26,7 @@
                                 </div>
                                 <div class="col-md-6 d-md-inline text-end">
                                     <button type="submit" id="btnNllpInfoUpdt" th:formaction="@{/nllp/updtNllpInfo/{nllpAcbKey} (nllpAcbKey = ${nllpInfo.nllpAcbKey})}" class="btn btn-primary btn-sm">저장</button>
+                                    <button type="submit" id="btnNllpInfoDelt" th:formaction="@{/nllp/deltNllpInfo/{nllpAcbKey} (nllpAcbKey = ${nllpInfo.nllpAcbKey})}" class="btn btn-primary btn-sm">삭제</button>
                                     <a type="text" id="btnNllpInfoUpdtClose" th:href="@{/nllp/findNllpList}" class="btn btn-primary btn-sm">닫기</a>
                                 </div>
                             </div>

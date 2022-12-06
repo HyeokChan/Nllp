@@ -1,5 +1,5 @@
 // 변수
-TAG_VAR = {
+var TAG_VAR_NLLP_LIST = {
     "btnNllpListSearch" : "#btnNllpListSearch",
     "btnNllpListInit" : "#btnNllpListInit",
     "datatableNllpAcb" : "#datatableNllpAcb",
@@ -15,7 +15,7 @@ $(document).ready(function(){
 // 화면세팅
 function setLayout(){
     // 데이터테이블 설정
-    dataTable = $(TAG_VAR.datatableNllpAcb).DataTable( {
+    dataTable = $(TAG_VAR_NLLP_LIST.datatableNllpAcb).DataTable( {
         data: [],
         columnDefs: [
             { targets: 0, data: 'nllpAcbKey', width: 0, visible: false},
@@ -68,7 +68,7 @@ function setLayout(){
  */
 // 조회버튼 클릭 이벤트
 function fn_onClickNllpListSearchBtn(){
-    var json = CommonUtil.convertFormToJSON($(TAG_VAR.nllpSearchForm));
+    var json = CommonUtil.convertFormToJSON($(TAG_VAR_NLLP_LIST.nllpSearchForm));
     return CommonUtil.ajaxSend("/nllp/findNllpList", json, fn_findNllpListCallback);
 }
 // 조회버튼 클릭 콜백 이벤트
@@ -80,13 +80,13 @@ function fn_findNllpListCallback(result){
 // 초기화버튼 클릭 이벤트
 function fn_onClickNllpListInitBtn(){
     // form 초기화
-    CommonUtil.resetForm($(TAG_VAR.nllpSearchForm));
+    CommonUtil.resetForm($(TAG_VAR_NLLP_LIST.nllpSearchForm));
     // 데이터테이블 초기화
     dataTable.clear().draw();
 }
 // 데이터테이블 더블클릭 이벤트
-function fn_onClickNllpAcbDatatable(){
-    var rowData = $(TAG_VAR.datatableNllpAcb).DataTable().row($(this)).data();
+function fn_onDblclickNllpAcbDatatable(){
+    var rowData = $(TAG_VAR_NLLP_LIST.datatableNllpAcb).DataTable().row($(this)).data();
     var nllpAcbKey = rowData.nllpAcbKey;
     // GET 방식 호출
     location.href = "/nllp/findNllpInfo/" + nllpAcbKey;
@@ -97,9 +97,9 @@ function fn_onClickNllpAcbDatatable(){
  */
 function setEventListener(){
     // 조회버튼 클릭
-    $(TAG_VAR.btnNllpListSearch).on("click", fn_onClickNllpListSearchBtn);
+    $(TAG_VAR_NLLP_LIST.btnNllpListSearch).on("click", fn_onClickNllpListSearchBtn);
     // 초기화버튼클릭
-    $(TAG_VAR.btnNllpListInit).on("click", fn_onClickNllpListInitBtn);
+    $(TAG_VAR_NLLP_LIST.btnNllpListInit).on("click", fn_onClickNllpListInitBtn);
     // 데이터테이블 더블클릭 이벤트
-    $(TAG_VAR.datatableNllpAcb).on('dblclick', 'tbody tr', fn_onClickNllpAcbDatatable)
+    $(TAG_VAR_NLLP_LIST.datatableNllpAcb).on('dblclick', 'tbody tr', fn_onDblclickNllpAcbDatatable)
 }

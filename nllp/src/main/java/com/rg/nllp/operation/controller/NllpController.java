@@ -127,27 +127,16 @@ public class NllpController {
 
     /**
      * @description 재산자료 삭제처리
-     * @param inVO
+     * @param nllpAcbKey
      * @return
      * @throws Exception
      */
-    @PostMapping(value = "/deltNllpInfo")
-    public String deltNllpInfo(@ModelAttribute("nllpInfo") NllpVO inVO) throws Exception {
+    @PostMapping(value = "/deltNllpInfo/{itemId}")
+    public String deltNllpInfo(@PathVariable("itemId") String nllpAcbKey) throws Exception {
+        NllpVO inVO = new NllpVO();
+        inVO.setNllpAcbKey(nllpAcbKey);
         int rst = this.nllpService.deltNllpInfo(inVO);
         return "redirect:/nllp/findNllpList";
     }
-
-    /***
-     * @description 재산자료 등록화면 이동
-     * @return 재산자료 등록화면
-     * @throws Exception
-     */
-    @GetMapping("/instNllpInfo")
-    public String instNllpInfo(Model model) throws Exception {
-        model.addAttribute("nllpInfo", new NllpVO());
-        return "operation/nllp/nllpInfoInstForm";
-    }
-
-
 
 }

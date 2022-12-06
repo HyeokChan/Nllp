@@ -39,3 +39,31 @@ minvalue 00000000001
 maxvalue 99999999999
 nocycle
 nocache;
+
+drop table tb_code_info;
+create table tb_code_info(
+    cd_id char(7) not null,
+    cd_nm varchar(50) not null,
+    use_yn char(1) default 'Y' not null,
+    init_user_id varchar(50) default 'admin' not null,
+    init_date date not null,
+    updt_user_id varchar(50) default 'admin' not null,
+    updt_date date not null
+);
+
+alter table tb_code_info add constraint tb_code_info_pk primary key (cd_id);
+comment on table tb_code_info is '코드정보';
+
+drop table tb_dtl_code_info;
+create table tb_dtl_code_info(
+    cd_id char(7) not null,
+    dtl_cd_id varchar(3) not null,
+    dtl_cd_nm varchar(50) not null,
+    init_user_id varchar(50) default 'admin' not null,
+    init_date date not null,
+    updt_user_id varchar(50) default 'admin' not null,
+    updt_date date not null
+);
+
+alter table tb_dtl_code_info add constraint tb_dtl_code_info_pk primary key (cd_id, dtl_cd_id);
+comment on table tb_dtl_code_info is '상세코드정보';
