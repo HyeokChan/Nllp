@@ -47,7 +47,8 @@
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text">사용여부</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{useYn}" placeholder="사용여부">
+                                        <select id="codeCLFcom0002" th:field="*{useYn}" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -66,6 +67,8 @@
                             <tr>
                                 <th>코드ID</th>
                                 <th>코드명</th>
+                                <th>상세코드ID</th>
+                                <th>상세코드명</th>
                                 <th>사용여부</th>
                             </tr>
                             </thead>

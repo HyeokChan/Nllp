@@ -11,16 +11,34 @@ $(document).ready(function(){
     setLayout();
     // 이벤트 리스너 등록
     setEventListener();
+    // 코드정보 조회
+    findCodeList();
 });
+// 코드정보 조회
+function findCodeList(){
+    var json = {
+        cdIdList : ['com0002'],
+        useYn : 'Y'
+    }
+    CommonUtil.ajaxSend("/code/findDtlCodeList", json, fn_findDtlCodeListCallback)
+}
+// 코드정보 조회 콜백
+function fn_findDtlCodeListCallback(result){
+    for(var i=0; i<result.length; i++){
+        $("#codeCLF" + result[i].cdId).append(new Option(result[i].dtlCdNm, result[i].dtlCdId, false, false));
+    }
+}
 // 화면세팅
 function setLayout(){
     // 데이터테이블 설정
     dataTable = $(TAG_VAR_CODE_LIST.datatableCode).DataTable( {
         data: [],
         columnDefs: [
-            { targets: 0, data: 'cdId', width: 150, className: "dt-head-center dt-body-center" },
-            { targets: 1, data: 'cdNm', width: 150, className: "dt-head-center dt-body-center" },
-            { targets: 2, data: 'useYn', width: 100, className: "dt-head-center dt-body-center" },
+            { targets: 0, data: 'cdId', width: 100, className: "dt-head-center dt-body-left" },
+            { targets: 1, data: 'cdNm', width: 100, className: "dt-head-center dt-body-left" },
+            { targets: 2, data: 'dtlCdId', width: 100, className: "dt-head-center dt-body-left" },
+            { targets: 3, data: 'dtlCdNm', width: 100, className: "dt-head-center dt-body-left" },
+            { targets: 4, data: 'useYnNm', width: 100, className: "dt-head-center dt-body-center" },
         ],
         scrollY: 180,
         paging: false,
@@ -44,7 +62,7 @@ function setLayout(){
 // 조회버튼 클릭 이벤트
 function fn_onClickCodeListSearchBtn(){
     var json = CommonUtil.convertFormToJSON($(TAG_VAR_CODE_LIST.codeSearchForm));
-    return CommonUtil.ajaxSend("/nllp/findCodeList", json, fn_findCodeListCallback);
+    return CommonUtil.ajaxSend("/code/findCodeList", json, fn_findCodeListCallback);
 }
 // 조회버튼 클릭 콜백 이벤트
 function fn_findCodeListCallback(result){

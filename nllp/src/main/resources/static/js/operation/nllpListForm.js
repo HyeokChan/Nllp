@@ -68,8 +68,8 @@ function setLayout(){
  */
 // 조회버튼 클릭 이벤트
 function fn_onClickNllpListSearchBtn(){
-    var json = CommonUtil.convertFormToJSON($(TAG_VAR_NLLP_LIST.nllpSearchForm));
-    return CommonUtil.ajaxSend("/nllp/findNllpList", json, fn_findNllpListCallback);
+    var nllpSearchInfo = CommonUtil.convertFormToJSON($(TAG_VAR_NLLP_LIST.nllpSearchForm));
+    return CommonUtil.ajaxSend("/nllp/findNllpList", nllpSearchInfo, fn_findNllpListCallback);
 }
 // 조회버튼 클릭 콜백 이벤트
 function fn_findNllpListCallback(result){

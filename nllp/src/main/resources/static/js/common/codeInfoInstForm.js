@@ -3,10 +3,9 @@ TAG_VAR_CODE_INFO_INST = {
     "btnCodeInfoInstInit" : "#btnCodeInfoInstInit",
     "btnCodeInfoInst" : "#btnCodeInfoInst",
     "datatableDtlCode" : "#datatableDtlCode",
-    "codeInstForm" : "#codeInstForm",
+    "codeInfoInstForm" : "#codeInfoInstForm",
     "dtlCodeInstForm" : "#dtlCodeInstForm",
     "btnDtlCodeInst" : "#btnDtlCodeInst",
-    "btnDtlCodeDelt" : "#btnDtlCodeDelt",
 };
 
 var dataTable = {};
@@ -15,7 +14,24 @@ $(document).ready(function(){
     setLayout();
     // 이벤트 리스너 등록
     setEventListener();
+    // 코드정보 조회
+    findCodeList();
 });
+// 코드정보 조회
+function findCodeList(){
+    var json = {
+        cdIdList : ['com0001', 'com0002'],
+        useYn : 'Y'
+    }
+    CommonUtil.ajaxSend("/code/findDtlCodeList", json, fn_findDtlCodeListCallback)
+}
+// 코드정보 조회 콜백
+function fn_findDtlCodeListCallback(result){
+    for(var i=0; i<result.length; i++){
+        $("#codeCIIF" + result[i].cdId).append(new Option(result[i].dtlCdNm, result[i].dtlCdId, false, false));
+    }
+}
+
 // 화면세팅
 function setLayout(){
     // 데이터테이블 설정
@@ -47,15 +63,37 @@ function setLayout(){
 // 초기화버튼 클릭 이벤트
 function fn_onClickCodeInfoInstInitBtn(){
     // form 초기화
-    CommonUtil.resetForm($(TAG_VAR_CODE_INFO_INST.codeInstForm));
+    CommonUtil.resetForm($(TAG_VAR_CODE_INFO_INST.codeInfoInstForm));
     // 데이터테이블 초기화
     dataTable.clear().draw();
+}
+//저장버튼 클릭 이벤트
+function fn_onClickCodeInfoInstBtn(){
+    var codeInfoInstForm = CommonUtil.convertFormToJSON($(TAG_VAR_CODE_INFO_INST.codeInfoInstForm));
+    var datatableData = $(TAG_VAR_CODE_INFO_INST.datatableDtlCode).DataTable().rows().data();
+    for(var i=0; i<datatableData.length; i++){
+        codeInfoInstForm['dtlCdList[' + i + '].dtlCdId'] = datatableData[i].dtlCdId;
+        codeInfoInstForm['dtlCdList[' + i + '].dtlCdNm'] = datatableData[i].dtlCdNm;
+    }
+    return CommonUtil.ajaxSend("/code/instCodeInfo", codeInfoInstForm, null);
 }
 // 추가버튼 클릭 이벤트
 function fn_onClickDtlCodeInfoInstInitBtn(){
     var json = CommonUtil.convertFormToJSON($(TAG_VAR_CODE_INFO_INST.dtlCodeInstForm));
-    $($(TAG_VAR_CODE_INFO_INST.datatableDtlCode)).DataTable()
-        .row.add(json).draw();
+    var datatableData = $(TAG_VAR_CODE_INFO_INST.datatableDtlCode).DataTable().rows().data();
+    if(datatableData.length == 0){
+        $($(TAG_VAR_CODE_INFO_INST.datatableDtlCode)).DataTable()
+            .row.add(json).draw();
+    }
+    else if(datatableData.length != 0){
+        for(var i=0; i<datatableData.length; i++){
+            if(datatableData[i].dtlCdId == json.dtlCdId){
+                return;
+            }
+        }
+        $($(TAG_VAR_CODE_INFO_INST.datatableDtlCode)).DataTable()
+            .row.add(json).draw();
+    }
 }
 
 /***
@@ -64,6 +102,8 @@ function fn_onClickDtlCodeInfoInstInitBtn(){
 function setEventListener(){
     // 초기화버튼 클릭 이벤트
     $(TAG_VAR_CODE_INFO_INST.btnCodeInfoInstInit).on("click", fn_onClickCodeInfoInstInitBtn);
+    // 저장버튼 클릭 이벤트
+    $(TAG_VAR_CODE_INFO_INST.btnCodeInfoInst).on("click", fn_onClickCodeInfoInstBtn);
     // 추가버튼 클릭 이벤트
     $(TAG_VAR_CODE_INFO_INST.btnDtlCodeInst).on("click", fn_onClickDtlCodeInfoInstInitBtn);
 }

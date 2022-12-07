@@ -6,9 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.apache.ibatis.type.Alias;
 
-import javax.validation.constraints.NotBlank;
-import java.util.List;
-
 /**
  * packageName    : com.rg.nllp.common.vo.code
  * fileName       : CmCdVO
@@ -23,17 +20,13 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Alias("codeVO")
-public class CodeVO extends DefaultVO {
+@Alias("codeDVO")
+public class CodeDVO extends DefaultVO {
     private String cdId;
-    @NotBlank(message = "코드명을 입력해주세요.")
     private String cdNm;
-    @NotBlank(message = "사용여부를 선택해주세요.")
     private String useYn;
     private String dtlCdId;
     private String dtlCdNm;
-    @NotBlank(message = "코드구분을 선택해주세요.")
     private String cdSeCd;
-    private List<String> cdIdList;
-    private List<CodeVO> dtlCdList;
+    private String useYnNm;
 }

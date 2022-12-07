@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.apache.ibatis.type.Alias;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * packageName    : com.rg.nllp.operation.vo
  * fileName       : NllpVO

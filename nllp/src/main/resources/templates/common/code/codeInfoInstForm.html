@@ -22,22 +22,23 @@
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form id="codeInstForm" th:object="${codeInfo}" method="post">
+                        <form id="codeInfoInstForm" th:object="${codeInfoInstForm}" method="post">
                             <div class="row">
                                 <div class="col-md-6 d-md-inline">
                                     <button type="button" id="btnCodeInfoInstInit" class="btn btn-secondary btn-sm">초기화</button>
                                 </div>
                                 <div class="col-md-6 d-md-inline text-end">
-                                    <button type="submit" id="btnCodeInfoInst" th:formaction="@{/code/instCodeInfo}" class="btn btn-primary btn-sm">저장</button>
-                                    <a type="text" id="btnCodeInfoInstClose" th:href="@{/code/findCodeList}" class="btn btn-primary btn-sm">닫기</a>
+                                    <button type="button" id="btnCodeInfoInst" class="btn btn-primary btn-sm">저장</button>
+                                    <a type="text" id="btnCodeInfoInstClose" th:href="@{/code/moveCodeList}" class="btn btn-primary btn-sm">닫기</a>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="form-group col-md-4">
-                                    <label th:for="cdSeNm">코드구분</label>
-                                    <input type="text" th:field="*{cdSeNm}" class="form-control fs-s" placeholder="코드구분을 입력하세요"
-                                           th:classappend="${#fields.hasErrors('cdSeNm')} ? 'border-danger'"/>
-                                    <p th:if="${#fields.hasErrors('cdSeNm')}" th:errors="*{cdSeNm}" class="text-danger fs-s">Incorrect data</p>
+                                    <label th:for="cdSeCd">코드구분</label>
+                                    <select id="codeCIIFcom0001" th:field="*{cdSeCd}" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                            th:classappend="${#fields.hasErrors('cdSeCd')} ? 'border-danger'">
+                                    </select>
+                                    <p th:if="${#fields.hasErrors('cdSeCd')}" th:errors="*{cdSeCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label th:for="cdNm">코드명</label>
@@ -45,10 +46,12 @@
                                            th:classappend="${#fields.hasErrors('cdNm')} ? 'border-danger'"/>
                                     <p th:if="${#fields.hasErrors('cdNm')}" th:errors="*{cdNm}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
+                                <p th:if="${#fields.hasErrors('cdNm')}" th:errors="*{cdNm}" class="text-danger fs-s">Incorrect data</p>
                                 <div class="form-group col-md-4">
                                     <label th:for="useYn">사용여부</label>
-                                    <input type="text" th:field="*{useYn}" class="form-control fs-s" placeholder="사용여부를 입력하세요"
-                                           th:classappend="${#fields.hasErrors('useYn')} ? 'border-danger'"/>
+                                    <select id="codeCIIFcom0002" th:field="*{useYn}" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                            th:classappend="${#fields.hasErrors('useYn')} ? 'border-danger'">
+                                    </select>
                                     <p th:if="${#fields.hasErrors('useYn')}" th:errors="*{useYn}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                             </div>
@@ -74,7 +77,6 @@
                                 </div>
                                 <div class="col-md-6 d-md-inline text-end">
                                     <button type="button" id="btnDtlCodeInst" class="btn btn-success btn-sm">추가</button>
-                                    <button type="button" id="btnDtlCodeDelt" class="btn btn-success btn-sm">삭제</button>
                                 </div>
                             </div>
                             <table id="datatableDtlCode" class="dataTable-table hover compact nowrap row-border cell-border">

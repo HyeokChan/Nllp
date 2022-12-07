@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rg.nllp.common.mapper.CodeMapper">
+    <!--화면별 코드정보 조회-->
+    <select id="findDtlCodeList" parameterType="codeVO" resultType="codeDVO">
+        select a.cd_id
+             , b.dtl_cd_id
+             , b.dtl_cd_nm
+          from tb_code_info a
+             , tb_dtl_code_info b
+         where a.cd_id = b.cd_id
+         <if test="useYn != '' and useYn != null">
+           and a.use_yn = #{useYn}
+         </if>
+         <if test="cdIdList.size != 0">
+           and a.cd_id in
+           <foreach collection="cdIdList" item="item" index="index" open="(" separator="," close=")">
+               #{item}
+           </foreach>
+         </if>
+    </select>
+    <!--코드정보 저장-->
+    <insert id="instCodeInfo" parameterType="codeVO">
+        <selectKey resultType="string" keyProperty="cdId" order="BEFORE">
+            select #{cdSeCd} || lpad(nvl(max(substr(cd_id,4,4)),0)+1, 4, '0')
+              from tb_code_info
+            where substr(cd_id,1,3) = #{cdSeCd}
+        </selectKey>
+        insert
+          into tb_code_info(
+               cd_id
+             , cd_nm
+             , use_yn
+             , init_user_id
+             , init_date
+             , updt_user_id
+             , updt_date
+          ) values(
+               #{cdId}
+             , #{cdNm}
+             , #{useYn}
+             , #{initUserId}
+             , sysdate
+             , #{updtUserId}
+             , sysdate
+          )
+    </insert>
+    <!--상세코드목록 저장-->
+    <insert id="instDtlCodeList" parameterType="codeVO">
+        <foreach collection="dtlCdList" item="item" index="index" open="insert all" separator=" " close="select * from dual">
+          into tb_dtl_code_info(
+               cd_id
+             , dtl_cd_id
+             , dtl_cd_nm
+             , init_user_id
+             , init_date
+             , updt_user_id
+             , updt_date
+          ) values (
+               #{cdId}
+             , #{item.dtlCdId}
+             , #{item.dtlCdNm}
+             , #{initUserId}
+             , sysdate
+             , #{updtUserId}
+             , sysdate
+          )
+        </foreach>
+    </insert>
+    <!--코드정보 목록 조회-->
+    <select id="findCodeList" parameterType="codeVO" resultType="codeDVO">
+        select a.cd_id
+             , a.cd_nm
+             , b.dtl_cd_id
+             , b.dtl_cd_nm
+             , decode(a.use_yn, 'Y', '사용', '미사용') as use_yn_nm
+          from tb_code_info a
+             , tb_dtl_code_info b
+         where a.cd_id = b.cd_id
+         <if test="cdId != '' and cdId != null">
+           and a.cd_id = #{cdId}
+         </if>
+         <if test="cdNm != '' and cdNm != null">
+           and a.cd_nm = #{cdNm}
+         </if>
+         <if test="useYn != '' and useYn != null">
+           and a.use_yn = #{useYn}
+         </if>
+    </select>
+
+</mapper>
