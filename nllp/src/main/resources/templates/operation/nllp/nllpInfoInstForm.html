@@ -44,8 +44,10 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="mtnSeCd">산</label>
-                                    <input type="text" th:field="*{mtnSeCd}" class="form-control fs-s" placeholder="산을 입력하세요"
-                                           th:classappend="${#fields.hasErrors('mtnSeCd')} ? 'border-danger'"/>
+                                    <select th:field="*{mtnSeCd}" class="form-select form-select-sm">
+                                        <option th:each="code : *{codes}" th:if="${code.cdId == 'biz0001'}"
+                                                th:value="${code.dtlCdId}" th:text="${code.dtlCdNm}">code</option>
+                                    </select>
                                     <p th:if="${#fields.hasErrors('mtnSeCd')}" th:errors="*{mtnSeCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                             </div>
@@ -96,8 +98,10 @@
                             <div class="row mt-2">
                                 <div class="form-group col-md-3">
                                     <label th:for="lgoCd">소관청</label>
-                                    <input type="text" th:field="*{lgoCd}" class="form-control fs-s" placeholder="소관청을 입력하세요"
-                                           th:classappend="${#fields.hasErrors('lgoCd')} ? 'border-danger'"/>
+                                    <select th:field="*{lgoCd}" class="form-select form-select-sm">
+                                        <option th:each="code : *{codes}" th:if="${code.cdId == 'biz0002'}"
+                                                th:value="${code.dtlCdId}" th:text="${code.dtlCdNm}">code</option>
+                                    </select>
                                     <p th:if="${#fields.hasErrors('lgoCd')}" th:errors="*{lgoCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                                 <div class="form-group col-md-3">

@@ -70,7 +70,10 @@
                                 <div class="col-md-3">
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text">산</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{mtnSeCd}" placeholder="">
+                                        <select th:field="*{mtnSeCd}" class="form-select form-select-sm">
+                                            <option th:each="code : *{codes}" th:if="${code.cdId == 'biz0001'}" th:value="${code.dtlCdId}"
+                                                    th:text="${code.dtlCdNm}">code</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

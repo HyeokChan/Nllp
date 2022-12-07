@@ -1,12 +1,14 @@
 package com.rg.nllp.operation.vo;
 
 import com.rg.nllp.DefaultVO;
+import com.rg.nllp.common.vo.code.CodeDVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.apache.ibatis.type.Alias;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 /**
  * packageName    : com.rg.nllp.operation.vo

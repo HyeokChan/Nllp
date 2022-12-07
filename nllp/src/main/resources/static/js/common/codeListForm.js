@@ -11,23 +11,7 @@ $(document).ready(function(){
     setLayout();
     // 이벤트 리스너 등록
     setEventListener();
-    // 코드정보 조회
-    findCodeList();
 });
-// 코드정보 조회
-function findCodeList(){
-    var json = {
-        cdIdList : ['com0002'],
-        useYn : 'Y'
-    }
-    CommonUtil.ajaxSend("/code/findDtlCodeList", json, fn_findDtlCodeListCallback)
-}
-// 코드정보 조회 콜백
-function fn_findDtlCodeListCallback(result){
-    for(var i=0; i<result.length; i++){
-        $("#codeCLF" + result[i].cdId).append(new Option(result[i].dtlCdNm, result[i].dtlCdId, false, false));
-    }
-}
 // 화면세팅
 function setLayout(){
     // 데이터테이블 설정

@@ -7,7 +7,7 @@
         select count(*) over() as tot_cnt
              , a.nllp_acb_key
              , a.nllp_acb_no
-             , a.lgo_cd
+             , fn_get_code_name('biz0002', a.lgo_cd) as lgo_nm
              , a.nllp_nm
              , nvl(a.land_ar, 0) as land_ar
              , nvl(a.oalp, 0) as oalp
@@ -15,7 +15,7 @@
              , a.zip
              , a.stdg_cd
              , trim(a.lotno_bac_addr) || ' ' || trim(a.lotno_daddr) as lotno_al_addr
-             , a.mtn_se_cd
+             , fn_get_code_name('biz0001', a.mtn_se_cd) as mtn_se_nm
              , a.ldcg_cd
              , a.rm_cn
           from tb_nllp_acb a
@@ -26,12 +26,23 @@
         <if test="nllpAcbNoTo != '' and nllpAcbNoTo != null">
             and a.nllp_acb_no <![CDATA[ <= ]]> #{nllpAcbNoTo}
         </if>
-        <if test="lgoCd != '' and lgoCd != null">
-           and a.lgo_cd = #{lgoCd}
+        <if test="landAr != '' and landAr != null">
+            and a.land_ar = #{landAr}
         </if>
-        <if test="stdgCd != '' and stdgCd != null">
-           and a.stdg_cd = #{stdgCd}
-           and a.stdg_cd = #{stdgCd}
+        <if test="lotnoBacAddr != '' and lotnoBacAddr != null">
+            and a.lotno_bac_addr = #{lotnoBacAddr}
+        </if>
+        <if test="lotnoDaddr != '' and lotnoDaddr != null">
+            and a.lotno_daddr = #{lotnoDaddr}
+        </if>
+        <if test="mtnSeCd != '' and mtnSeCd != null">
+            and a.mtn_se_cd = #{mtnSeCd}
+        </if>
+        <if test="mno != '' and mno != null">
+            and a.mno = #{mno}
+        </if>
+        <if test="sno != '' and sno != null">
+            and a.sno = #{sno}
         </if>
       order by a.nllp_acb_no asc
     </select>

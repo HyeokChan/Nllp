@@ -47,7 +47,9 @@
                                 <div class="col-md-4">
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text">사용여부</span>
-                                        <select id="codeCLFcom0002" th:field="*{useYn}" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <select th:field="*{useYn}" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                            <option th:each="code : *{codes}" th:if="${code.cdId == 'com0002'}"
+                                                    th:value="${code.dtlCdId}" th:text="${code.dtlCdNm}">code</option>
                                         </select>
                                     </div>
                                 </div>

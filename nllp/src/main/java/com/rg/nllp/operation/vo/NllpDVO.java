@@ -43,4 +43,6 @@ public class NllpDVO extends DefaultVO {
     private String rmCn;
     private String totCnt;
     private String lotnoAlAddr;
+    private String lgoNm;
+    private String mtnSeNm;
 }

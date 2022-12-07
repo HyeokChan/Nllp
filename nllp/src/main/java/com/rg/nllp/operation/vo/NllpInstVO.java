@@ -1,6 +1,7 @@
 package com.rg.nllp.operation.vo;
 
 import com.rg.nllp.DefaultVO;
+import com.rg.nllp.common.vo.code.CodeDVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * packageName    : com.rg.nllp.operation.vo

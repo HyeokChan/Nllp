@@ -67,3 +67,18 @@ create table tb_dtl_code_info(
 
 alter table tb_dtl_code_info add constraint tb_dtl_code_info_pk primary key (cd_id, dtl_cd_id);
 comment on table tb_dtl_code_info is '상세코드정보';
+
+
+create or replace function fn_get_code_name(p_cdId in varchar2, p_dtlCdId in varchar2) 
+    return varchar2 
+is
+    v_dtlCdNm varchar2(50);
+begin
+    select dtl_cd_nm
+      into v_dtlCdNm
+      from tb_code_info a, tb_dtl_code_info b 
+     where a.cd_id = b.cd_id
+       and a.cd_id = p_cdId
+       and b.dtl_cd_id = p_dtlCdId;
+    return v_dtlCdNm;
+end;

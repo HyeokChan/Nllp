@@ -1,9 +1,12 @@
 package com.rg.nllp;
 
+import com.rg.nllp.common.vo.code.CodeDVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
+import java.util.List;
 
 /**
  * packageName    : com.rg.nllp.common.vo.user
@@ -24,5 +27,5 @@ public class DefaultVO {
     private String initDate;
     private String updtUserId;
     private String updtDate;
-
+    private List<CodeDVO> codes;
 }

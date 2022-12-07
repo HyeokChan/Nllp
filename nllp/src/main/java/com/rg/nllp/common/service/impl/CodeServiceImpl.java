@@ -29,9 +29,11 @@ public class CodeServiceImpl implements CodeService {
 
     // 화면별 코드정보 조회
     @Override
-    public List<CodeDVO> findDtlCodeList(CodeVO inVO) throws Exception {
-        log.info("inVO:::::{}", inVO);
-        return this.codeMapper.findDtlCodeList(inVO);
+    public List<CodeDVO> findCodes(List<String> cdIdList) throws Exception {
+        CodeVO codeVO = new CodeVO();
+        codeVO.setUseYn("Y");
+        codeVO.setCdIdList(cdIdList);
+        return this.codeMapper.findDtlCodeList(codeVO);
     }
     // 코드정보 신규저장
     @Override

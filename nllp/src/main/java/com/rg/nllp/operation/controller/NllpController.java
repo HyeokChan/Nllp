@@ -1,5 +1,8 @@
 package com.rg.nllp.operation.controller;
 
+import com.rg.nllp.common.service.CodeService;
+import com.rg.nllp.common.vo.code.CodeDVO;
+import com.rg.nllp.common.vo.code.CodeVO;
 import com.rg.nllp.operation.service.NllpService;
 import com.rg.nllp.operation.vo.NllpDVO;
 import com.rg.nllp.operation.vo.NllpInstVO;
@@ -18,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,6 +44,7 @@ import java.util.List;
 public class NllpController {
 
     private final NllpService nllpService;
+    private final CodeService codeService;
 
     /***
      * @description 재산자료 목록조회
@@ -48,6 +55,7 @@ public class NllpController {
     @GetMapping("/findNllpList")
     public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
+        inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001")));
         model.addAttribute("nllpSearchInfo", inVO);
         return "operation/nllp/nllpListForm";
     }
@@ -73,6 +81,7 @@ public class NllpController {
     @GetMapping("/moveNllpInfoInst")
     public String moveNllpInfoInst(Model model) throws Exception {
         NllpInstVO inVO = new NllpInstVO();
+        inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002")));
         model.addAttribute("nllpInfo", inVO);
         return "operation/nllp/nllpInfoInstForm";
     }
@@ -105,6 +114,7 @@ public class NllpController {
         NllpVO inVO = new NllpVO();
         inVO.setNllpAcbKey(nllpAcbKey);
         NllpDVO rData = this.nllpService.findNllpInfo(inVO);
+        rData.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002")));
         model.addAttribute("nllpInfo", rData);
         return "operation/nllp/nllpInfoUpdtForm";
     }

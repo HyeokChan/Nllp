@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,8 +38,9 @@ public class CodeController {
      * @return
      */
     @GetMapping("/moveCodeList")
-    public String moveCodeList(Model model){
+    public String moveCodeList(Model model) throws Exception{
         CodeVO inVO = new CodeVO();
+        inVO.setCodes(this.codeService.findCodes(Arrays.asList("com0002")));
         model.addAttribute("codeSearchInfo", inVO);
         return "common/code/codeListForm";
     }
@@ -49,22 +51,11 @@ public class CodeController {
      * @return
      */
     @GetMapping("/moveCodeInfoInst")
-    public String moveCodeInfoInst(Model model){
+    public String moveCodeInfoInst(Model model) throws Exception{
         CodeVO inVO = new CodeVO();
+        inVO.setCodes(this.codeService.findCodes(Arrays.asList("com0001", "com0002")));
         model.addAttribute("codeInfoInstForm", inVO);
         return "common/code/codeInfoInstForm";
-    }
-
-    /**
-     * @description 화면별 코드정보 조회
-     * @param inVO
-     * @return
-     * @throws Exception
-     */
-    @PostMapping("/findDtlCodeList")
-    public @ResponseBody List<CodeDVO> findDtlCodeList(@ModelAttribute("json") CodeVO inVO) throws Exception {
-        List<CodeDVO> rList = this.codeService.findDtlCodeList(inVO);
-        return rList;
     }
 
     /**

@@ -17,7 +17,7 @@ import java.util.List;
  * 2022/12/07        hyeokchan       최초 생성
  */
 public interface CodeService {
-    List<CodeDVO> findDtlCodeList(CodeVO inVO) throws Exception;
+    List<CodeDVO> findCodes(List<String> cdIdList) throws Exception;
     int instCodeInfo(CodeVO inVO) throws Exception;
     List<CodeDVO> findCodeList(CodeVO inVO) throws Exception;
 }

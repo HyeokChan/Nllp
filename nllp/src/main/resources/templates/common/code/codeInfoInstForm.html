@@ -35,8 +35,9 @@
                             <div class="row mt-2">
                                 <div class="form-group col-md-4">
                                     <label th:for="cdSeCd">코드구분</label>
-                                    <select id="codeCIIFcom0001" th:field="*{cdSeCd}" class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                            th:classappend="${#fields.hasErrors('cdSeCd')} ? 'border-danger'">
+                                    <select th:field="*{cdSeCd}" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <option th:each="code : *{codes}" th:if="${code.cdId == 'com0001'}"
+                                                th:value="${code.dtlCdId}" th:text="${code.dtlCdNm}">code</option>
                                     </select>
                                     <p th:if="${#fields.hasErrors('cdSeCd')}" th:errors="*{cdSeCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
@@ -49,8 +50,9 @@
                                 <p th:if="${#fields.hasErrors('cdNm')}" th:errors="*{cdNm}" class="text-danger fs-s">Incorrect data</p>
                                 <div class="form-group col-md-4">
                                     <label th:for="useYn">사용여부</label>
-                                    <select id="codeCIIFcom0002" th:field="*{useYn}" class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                            th:classappend="${#fields.hasErrors('useYn')} ? 'border-danger'">
+                                    <select th:field="*{useYn}" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <option th:each="code : *{codes}" th:if="${code.cdId == 'com0002'}"
+                                                th:value="${code.dtlCdId}" th:text="${code.dtlCdNm}">code</option>
                                     </select>
                                     <p th:if="${#fields.hasErrors('useYn')}" th:errors="*{useYn}" class="text-danger fs-s">Incorrect data</p>
                                 </div>

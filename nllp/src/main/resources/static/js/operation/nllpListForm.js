@@ -20,9 +20,9 @@ function setLayout(){
         columnDefs: [
             { targets: 0, data: 'nllpAcbKey', width: 0, visible: false},
             { targets: 1, data: 'nllpAcbNo', width: 150, className: "dt-head-center dt-body-center" },
-            { targets: 2, data: 'lgoCd', width: 100, className: "dt-head-center" },
+            { targets: 2, data: 'lgoNm', width: 100, className: "dt-head-center" },
             { targets: 3, data: 'lotnoAlAddr', width: 400, className: "dt-head-center" },
-            { targets: 4, data: 'mtnSeCd', width: 100, className: "dt-head-center" },
+            { targets: 4, data: 'mtnSeNm', width: 100, className: "dt-head-center" },
             { targets: 5, data: 'mno', width: 100, className: "dt-head-center" },
             { targets: 6, data: 'sno', width: 100, className: "dt-head-center" },
             { targets: 7, data: 'landAr', width: 150 , render: $.fn.dataTable.render.number( ',' ), className: "dt-head-center dt-body-right" },
@@ -69,6 +69,7 @@ function setLayout(){
 // 조회버튼 클릭 이벤트
 function fn_onClickNllpListSearchBtn(){
     var nllpSearchInfo = CommonUtil.convertFormToJSON($(TAG_VAR_NLLP_LIST.nllpSearchForm));
+    console.log("nllpSearchInfo", nllpSearchInfo);
     return CommonUtil.ajaxSend("/nllp/findNllpList", nllpSearchInfo, fn_findNllpListCallback);
 }
 // 조회버튼 클릭 콜백 이벤트
