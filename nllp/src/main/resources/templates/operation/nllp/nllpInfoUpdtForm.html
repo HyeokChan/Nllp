@@ -107,8 +107,10 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label th:for="ldcgCd">지목</label>
-                                    <input type="text" th:field="*{ldcgCd}" class="form-control fs-s" placeholder="지목을 입력하세요" readonly
-                                           th:classappend="${#fields.hasErrors('ldcgCd')} ? 'border-danger'"/>
+                                    <select th:field="*{ldcgCd}" class="form-select form-select-sm">
+                                        <option th:each="code : *{codes}" th:if="${code.cdId == 'biz0003'}"
+                                                th:value="${code.dtlCdId}" th:text="${code.dtlCdNm}">code</option>
+                                    </select>
                                     <p th:if="${#fields.hasErrors('ldcgCd')}" th:errors="*{ldcgCd}" class="text-danger fs-s">Incorrect data</p>
                                 </div>
                             </div>

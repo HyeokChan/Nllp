@@ -16,6 +16,8 @@
              , a.stdg_cd
              , trim(a.lotno_bac_addr) || ' ' || trim(a.lotno_daddr) as lotno_al_addr
              , fn_get_code_name('biz0001', a.mtn_se_cd) as mtn_se_nm
+             , a.mno
+             , a.sno
              , a.ldcg_cd
              , a.rm_cn
           from tb_nllp_acb a

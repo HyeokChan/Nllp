@@ -81,7 +81,7 @@ public class NllpController {
     @GetMapping("/moveNllpInfoInst")
     public String moveNllpInfoInst(Model model) throws Exception {
         NllpInstVO inVO = new NllpInstVO();
-        inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002")));
+        inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002", "biz0003")));
         model.addAttribute("nllpInfo", inVO);
         return "operation/nllp/nllpInfoInstForm";
     }
@@ -93,8 +93,10 @@ public class NllpController {
      * @throws Exception
      */
     @PostMapping("instNllpInfo")
-    public String instNllpInfo(@Valid @ModelAttribute("nllpInfo") NllpInstVO inVO, BindingResult result) throws Exception{
+    public String instNllpInfo(@Valid @ModelAttribute("nllpInfo") NllpInstVO inVO, BindingResult result, Model model) throws Exception{
         if(result.hasErrors()){
+            inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002", "biz0003")));
+            model.addAttribute("nllpInfo", inVO);
             return "operation/nllp/nllpInfoInstForm";
         }
         String nllpAcbKey = this.nllpService.instNllpInfo(inVO);
@@ -114,7 +116,7 @@ public class NllpController {
         NllpVO inVO = new NllpVO();
         inVO.setNllpAcbKey(nllpAcbKey);
         NllpDVO rData = this.nllpService.findNllpInfo(inVO);
-        rData.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002")));
+        rData.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002", "biz0003")));
         model.addAttribute("nllpInfo", rData);
         return "operation/nllp/nllpInfoUpdtForm";
     }
@@ -126,8 +128,10 @@ public class NllpController {
      * @throws Exception
      */
     @PostMapping("/updtNllpInfo/{itemId}")
-    public String updtNllpInfo(@PathVariable("itemId") String nllpAcbKey, @Valid @ModelAttribute("nllpInfo") NllpUpdtVO inVO, BindingResult result) throws Exception{
+    public String updtNllpInfo(@PathVariable("itemId") String nllpAcbKey, @Valid @ModelAttribute("nllpInfo") NllpUpdtVO inVO, BindingResult result, Model model) throws Exception{
         if (result.hasErrors()) {
+            inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002", "biz0003")));
+            model.addAttribute("nllpInfo", inVO);
             return "operation/nllp/nllpInfoUpdtForm";
         }
         inVO.setNllpAcbKey(nllpAcbKey);
