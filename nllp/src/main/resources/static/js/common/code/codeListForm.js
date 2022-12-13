@@ -61,13 +61,6 @@ function fn_onClickCodeListInitBtn(){
     // 데이터테이블 초기화
     dataTable.clear().draw();
 }
-// 데이터테이블 더블클릭 이벤트
-function fn_onDblclickCodeDatatable(){
-    var rowData = $(TAG_VAR_CODE_LIST.datatableCode).DataTable().row($(this)).data();
-    var cdId = rowData.cdId;
-    // GET 방식 호출
-    location.href = "/nllp/findCodeInfo/" + cdId;
-}
 
 /***
  * 이벤트리스너
@@ -77,6 +70,4 @@ function setEventListener(){
     $(TAG_VAR_CODE_LIST.btnCodeListSearch).on("click", fn_onClickCodeListSearchBtn);
     // 초기화버튼클릭
     $(TAG_VAR_CODE_LIST.btnCodeListInit).on("click", fn_onClickCodeListInitBtn);
-    // 데이터테이블 더블클릭 이벤트
-    $(TAG_VAR_CODE_LIST.datatableCode).on('dblclick', 'tbody tr', fn_onDblclickCodeDatatable)
 }

@@ -65,9 +65,11 @@ public class CodeController {
      * @throws Exception
      */
     @PostMapping("/instCodeInfo")
-    public String instCodeInfo(@Valid @ModelAttribute("codeInfoInstForm") CodeVO inVO) throws Exception {
+    public String instCodeInfo(@Valid @ModelAttribute("codeInfoInstForm") CodeVO inVO, Model model) throws Exception {
         int rst = this.codeService.instCodeInfo(inVO);
-        return "redirect:/code/moveCodeList";
+        inVO.setCodes(this.codeService.findCodes(Arrays.asList("com0002")));
+        model.addAttribute("codeSearchInfo", inVO);
+        return "common/code/codeListForm";
     }
 
     /***
