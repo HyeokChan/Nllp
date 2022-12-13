@@ -82,3 +82,68 @@ begin
        and b.dtl_cd_id = p_dtlCdId;
     return v_dtlCdNm;
 end;
+
+
+-- 납부자정보 테이블
+create table tb_pyr_info(
+    pyr_mng_no varchar(11) not null,
+    pyr_se_cd char(2) not null,
+    pyr_stt_cd char(2) not null,
+    pyr_nm varchar(50),
+    pyr_no varchar(50),
+    pyr_brth_ymd char(8),
+    del_yn char(1) default 'N',
+    init_user_id varchar(50) not null,
+    init_date date not null,
+    updt_user_id varchar(50) not null,
+    updt_date date not null
+);
+
+alter table tb_pyr_info add constraint tb_pyr_info_pk primary key (pyr_mng_no);
+comment on table tb_pyr_info is '납부자정보';
+
+-- 납부자주소정보 테이블
+create table tb_pyr_addr_info(
+    pyr_mng_no varchar(11) not null,
+    pyr_addr_sn char(6) not null,
+    pyr_zip varchar(6),
+    pyr_stdg_cd varchar(10),
+    pyr_lotno_bac_addr varchar(300),
+    pyr_lotno_daddr varchar(300),
+    pyr_mtn_se_cd char(2),
+    pyr_mno number(4),
+    pyr_sno number(4),
+    pyr_spcl_dg varchar(15),
+    pyr_spcl_ho varchar(30),
+    init_user_id varchar(50) not null,
+    init_date date not null,
+    updt_user_id varchar(50) not null,
+    updt_date date not null
+);
+
+alter table tb_pyr_addr_info add constraint tb_pyr_addr_info_pk primary key (pyr_mng_no, pyr_addr_sn);
+comment on table tb_pyr_addr_info is '납부자주소정보';
+
+
+-- 물건지정보 테이블
+create table tb_gl_info(
+    gl_mng_no varchar(11) not null,
+    gl_nm varchar(50) not null,
+    gl_se_cd char(2),
+    gl_zip varchar(6),
+    gl_stdg_cd varchar(10),
+    gl_lotno_bac_addr varchar(300),
+    gl_lotno_daddr varchar(300),
+    gl_mtn_se_cd char(2),
+    gl_mno number(4),
+    gl_sno number(4),
+    gl_spcl_dg varchar(15),
+    gl_spcl_ho varchar(30),
+    init_user_id varchar(50) not null,
+    init_date date not null,
+    updt_user_id varchar(50) not null,
+    updt_date date not null
+);
+
+alter table tb_gl_info add constraint tb_gl_info_pk primary key (gl_mng_no);
+comment on table tb_gl_info is '물건지정보';

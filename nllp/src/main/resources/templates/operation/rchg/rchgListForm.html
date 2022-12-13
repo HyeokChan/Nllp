@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header" />
-    <script th:src="@{/js/operation/nllp/nllpListForm.js}"></script>
+    <script th:src="@{/js/operation/nllpListForm.js}"></script>
     <script th:src="@{/js/commonUtils.js}"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -15,27 +15,27 @@
                 <h1 class="">업무처리</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a th:href="@{/main}">Main</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);" onclick="$('#collapseNllp').slideToggle();">재산자료관리</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);" onclick="$('#collapseRchg').slideToggle();">계약자료관리</a></li>
                     <li class="breadcrumb-item active">목록조회</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <form id="nllpSearchForm" method="post" th:object="${nllpSearchInfo}">
+                        <form id="rchgSearchForm" method="post" th:object="${rchgSearchInfo}">
                             <div class="row">
                                 <div class="col-md-6 d-md-inline">
-                                    <button type="button" id="btnNllpListInit" class="btn btn-secondary btn-sm">초기화</button>
+                                    <button type="button" id="btnRchgListInit" class="btn btn-secondary btn-sm">초기화</button>
                                 </div>
                                 <div class="col-md-6 d-md-inline text-end">
-                                    <button type="button" id="btnNllpListSearch" class="btn btn-primary btn-sm">조회</button>
-                                    <a type="button" id="btnNllpInfoInstMove" th:href="@{/nllp/moveNllpInfoInst}" class="btn btn-primary btn-sm">신규</a>
+                                    <button type="button" id="btnRchgListSearch" class="btn btn-primary btn-sm">조회</button>
+                                    <a type="button" id="btnRchgInfoInstMove" th:href="@{/rchg/moveRchgInfoInst}" class="btn btn-primary btn-sm">신규</a>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm">
-                                        <span class="input-group-text">재산번호</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{nllpAcbNoFrom}" placeholder="재산번호시작">
-                                        <input type="text" class="form-control form-control-sm" th:field="*{nllpAcbNoTo}" placeholder="재산번호종료">
+                                        <span class="input-group-text">계약번호</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{rchgAcbNoFrom}" placeholder="계약번호시작">
+                                        <input type="text" class="form-control form-control-sm" th:field="*{rchgAcbNoTo}" placeholder="계약번호종료">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
