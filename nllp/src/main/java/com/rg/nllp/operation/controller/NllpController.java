@@ -52,7 +52,7 @@ public class NllpController {
      * @return 재산자료 조회화면으로 이동, 조회조건 VO 전달
      * @throws Exception
      */
-    @GetMapping("/findNllpList")
+    @GetMapping("/moveNllpList")
     public String findNllpList(Model model) throws Exception {
         NllpVO inVO = new NllpVO();
         inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001")));
@@ -150,7 +150,7 @@ public class NllpController {
         NllpVO inVO = new NllpVO();
         inVO.setNllpAcbKey(nllpAcbKey);
         int rst = this.nllpService.deltNllpInfo(inVO);
-        return "redirect:/nllp/findNllpList";
+        return "redirect:/nllp/moveNllpList";
     }
 
 }

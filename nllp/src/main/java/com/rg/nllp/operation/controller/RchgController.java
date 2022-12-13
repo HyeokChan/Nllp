@@ -37,10 +37,10 @@ public class RchgController {
      * @return 계약자료 조회화면으로 이동, 조회조건 VO 전달
      * @throws Exception
      */
-    @GetMapping("/findRchgList")
+    @GetMapping("/moveRchgList")
     public String findRchgList(Model model) throws Exception {
         RchgVO inVO = new RchgVO();
-        inVO.setCodes(this.codeService.findCodes(Arrays.asList("biz0001")));
+        inVO.setCodes(this.codeService.findCodes(Arrays.asList("com0003", "biz0005")));
         model.addAttribute("rchgSearchInfo", inVO);
         return "operation/rchg/rchgListForm";
     }

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header" />
-    <script th:src="@{/js/operation/nllpListForm.js}"></script>
+    <script th:src="@{/js/operation/rchg/rchgListForm.js}"></script>
     <script th:src="@{/js/commonUtils.js}"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -28,10 +28,34 @@
                                 <div class="col-md-6 d-md-inline text-end">
                                     <button type="button" id="btnRchgListSearch" class="btn btn-primary btn-sm">조회</button>
                                     <a type="button" id="btnRchgInfoInstMove" th:href="@{/rchg/moveRchgInfoInst}" class="btn btn-primary btn-sm">신규</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                                        Launch static backdrop modal
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Understood</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mt-2">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text">계약번호</span>
                                         <input type="text" class="form-control form-control-sm" th:field="*{rchgAcbNoFrom}" placeholder="계약번호시작">
@@ -44,59 +68,64 @@
                                     <div class="input-group input-group-sm">
                                         <span class="input-group-text">납부자구분</span>
                                         <select th:field="*{pyrSeCd}" class="form-select form-select-sm">
-                                            <option th:each="code : *{codes}" th:if="${code.cdId == 'biz0001'}" th:value="${code.dtlCdId}"
+                                            <option th:each="code : *{codes}" th:if="${code.cdId == 'com0003'}" th:value="${code.dtlCdId}"
                                                     th:text="${code.dtlCdNm}">code</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group input-group-sm">
-                                        <span class="input-group-text">본번</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{mno}" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="input-group input-group-sm">
-                                        <span class="input-group-text">부번</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{sno}" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-2">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-sm">
-                                        <span class="input-group-text">기본주소</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{lotnoBacAddr}" placeholder="마포구 상암동 2-26">
+                                        <span class="input-group-text">납부자명</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{pyrNm}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-sm">
-                                        <span class="input-group-text">상세주소</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{lotnoDaddr}" placeholder="상암 한화오벨리스크">
+                                        <span class="input-group-text">납부자번호</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{pyrNo}" placeholder="">
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-3">
                                     <div class="input-group input-group-sm">
-                                        <span class="input-group-text">산</span>
-                                        <select th:field="*{mtnSeCd}" class="form-select form-select-sm">
-                                            <option th:each="code : *{codes}" th:if="${code.cdId == 'biz0001'}" th:value="${code.dtlCdId}"
+                                        <span class="input-group-text">계약방법</span>
+                                        <select th:field="*{ctrtMtdCd}" class="form-select form-select-sm">
+                                            <option th:each="code : *{codes}" th:if="${code.cdId == 'biz0005'}" th:value="${code.dtlCdId}"
                                                     th:text="${code.dtlCdNm}">code</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group input-group-sm">
-                                        <span class="input-group-text">본번</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{mno}" placeholder="">
+                                        <span class="input-group-text">계약일자</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{ctrtYmd}" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group input-group-sm">
-                                        <span class="input-group-text">부번</span>
-                                        <input type="text" class="form-control form-control-sm" th:field="*{sno}" placeholder="">
+                                        <span class="input-group-text">허가시작일자</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{prmsnBgngYmd}" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">허가종료일자</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{prmsnEndYmd}" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">물건지기본주소</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{glLotnoBacAddr}" placeholder="마포구 상암동 2-26">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">물건지상세주소</span>
+                                        <input type="text" class="form-control form-control-sm" th:field="*{glLotnoDaddr}" placeholder="상암 한화오벨리스크">
                                     </div>
                                 </div>
                             </div>
@@ -107,22 +136,24 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
-                        재산자료목록
+                        계약자료목록
                     </div>
                     <div class="card-body">
-                        <table id="datatableNllpAcb" class="dataTable-table table table-striped table-bordered" style="width: 100%">
+                        <table id="datatableRchgAcb" class="dataTable-table table table-striped table-bordered" style="width: 100%">
                             <thead>
                             <tr>
-                                <th>재산대장키</th>
+                                <th>계약대장키</th>
+                                <th>계약번호</th>
                                 <th>재산번호</th>
-                                <th>소관청</th>
-                                <th>주소</th>
-                                <th>산</th>
-                                <th>본번</th>
-                                <th>부번</th>
-                                <th>면적</th>
-                                <th>공시지가</th>
-                                <th>공시지가연도</th>
+                                <th>납부자구분</th>
+                                <th>납부자명</th>
+                                <th>납부자번호</th>
+                                <th>계약방법</th>
+                                <th>계약일자</th>
+                                <th>허가시작일자</th>
+                                <th>허가종료일자</th>
+                                <th>물건지주소</th>
+                                <th>점용면적</th>
                                 <th>비고</th>
                             </tr>
                             </thead>
@@ -133,6 +164,8 @@
                 </div>
             </div>
         </main>
+
+
         <div th:replace="fragments/footer :: footer"/>
     </div>
 </div>
