@@ -1,3 +1,5 @@
+server:
+  port: 8081
 spring:
   datasource:
     url: jdbc:log4jdbc:oracle:thin:@10.211.55.3:1521/orcl
