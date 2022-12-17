@@ -1,0 +1,44 @@
+server:
+  # 기본 포트 8080 설정
+  port: 8080
+---
+spring:
+  cloud:
+    # gateway 설정
+    gateway:
+      # gateway를 통한 처리 시 기본 동작하는 global filter
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: Spring Cloud Gateway GlobalFilter
+            preLogger: true
+            postLogger: true
+      # 각 routes 기술
+      routes:
+#        - id: default
+#          uri: forward:/user/login
+#          predicates:
+#            - Path:/
+        # nllp 프로젝트
+        - id: nllp
+          uri: http://localhost:8081/
+          # 해당 요청이 있을 때, 8081 포트로 처리
+          predicates:
+          - Path=/nllp/**, /user/**, /**
+          # nllp 요청 시 동작하는 filter
+          filters:
+            - name: NllpFilter
+              args:
+                baseMessage: Spring Cloud Gateway NllpFilter
+                preLogger: true
+                postLogger: true
+#        - id: user
+#          uri: http://localhost:8082/
+#          predicates:
+#            - Path=/user/**
+#          filters:
+#            - name: UserFilter
+#              args:
+#                baseMessage: Spring Cloud Gateway UserFilter
+#                preLogger: true
+#                postLogger: true
