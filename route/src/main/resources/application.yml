@@ -6,6 +6,9 @@ spring:
   cloud:
     # gateway 설정
     gateway:
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 50s
       # gateway를 통한 처리 시 기본 동작하는 global filter
       default-filters:
         - name: GlobalFilter
@@ -25,6 +28,12 @@ spring:
           # 해당 요청이 있을 때, 8081 포트로 처리
           predicates:
           - Path=/nllp/**, /user/**, /**
+#           특정날짜 이전/이후/사이에 호출 가능한 설정
+#          - Before=2050-05-15T20:20:20.126+09:00[Asia/Seoul]
+#          - After=2021-05-15T20:20:20.126+09:00[Asia/Seoul]
+#          - Between=2021-05-15T20:20:20.126+09:00[Asia/Seoul], 2050-05-15T20:20:20.126+09:00[Asia/Seoul]
+#           route의 group 별 가중치 설정
+#          - Weight=group-nllp, 5
           # nllp 요청 시 동작하는 filter
           filters:
             - name: NllpFilter
@@ -36,6 +45,9 @@ spring:
 #          uri: http://localhost:8082/
 #          predicates:
 #            - Path=/user/**
+# route의 group 별 가중치 설정
+#            - Weight=group-nllp, 5
+#
 #          filters:
 #            - name: UserFilter
 #              args:

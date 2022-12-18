@@ -25,6 +25,7 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+	/* m1 macbook error */
 	implementation 'io.netty:netty-resolver-dns-native-macos:4.1.75.Final:osx-aarch_64'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
