@@ -68,8 +68,7 @@ public class NllpController {
      */
     @PostMapping("/findNllpList")
     public @ResponseBody List<NllpDVO> findNllpList(@ModelAttribute("json") NllpVO inVO) throws Exception {
-        List<NllpDVO> rList = this.nllpService.findNllpList(inVO);
-        return rList;
+        return this.nllpService.findNllpList(inVO);
     }
 
     /***
@@ -100,6 +99,9 @@ public class NllpController {
             return "operation/nllp/nllpInfoInstForm";
         }
         String nllpAcbKey = this.nllpService.instNllpInfo(inVO);
+        if(nllpAcbKey == null){
+            throw new Exception("등록처리에 실패했습니다.");
+        }
         return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
     }
 
@@ -116,6 +118,9 @@ public class NllpController {
         NllpVO inVO = new NllpVO();
         inVO.setNllpAcbKey(nllpAcbKey);
         NllpDVO rData = this.nllpService.findNllpInfo(inVO);
+        if(rData == null){
+            throw new Exception("조회에 실패했습니다.");
+        }
         rData.setCodes(this.codeService.findCodes(Arrays.asList("biz0001", "biz0002", "biz0003")));
         model.addAttribute("nllpInfo", rData);
         return "operation/nllp/nllpInfoUpdtForm";
@@ -136,6 +141,9 @@ public class NllpController {
         }
         inVO.setNllpAcbKey(nllpAcbKey);
         int rst = this.nllpService.updtNllpInfo(inVO);
+        if(rst < 1){
+            throw new Exception("수정처리에 실패했습니다.");
+        }
         return "redirect:/nllp/findNllpInfo/" + nllpAcbKey;
     }
 
@@ -150,6 +158,9 @@ public class NllpController {
         NllpVO inVO = new NllpVO();
         inVO.setNllpAcbKey(nllpAcbKey);
         int rst = this.nllpService.deltNllpInfo(inVO);
+        if(rst < 1){
+            throw new Exception("삭제처리에 실패했습니다.");
+        }
         return "redirect:/nllp/moveNllpList";
     }
 

@@ -18,10 +18,6 @@ spring:
             postLogger: true
       # 각 routes 기술
       routes:
-#        - id: default
-#          uri: forward:/user/login
-#          predicates:
-#            - Path:/
         # nllp 프로젝트
         - id: nllp
           uri: http://localhost:8081/
